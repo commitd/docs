@@ -8,8 +8,15 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import {
+  AppBar,
+  Toolbar,
+  Box,
+  Button,
+  Heading,
+  ThemeProvider,
+} from "@commitd/components"
 
-import Header from "./header"
 import "./layout.css"
 
 const Layout = ({ children }) => {
@@ -24,8 +31,17 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
+    <ThemeProvider>
+      <AppBar position="relative">
+        <Toolbar>
+          <Box flexGrow={1}>
+            <Heading.h1>{data.site.siteMetadata.title}</Heading.h1>
+          </Box>
+          <Button color="inherit" variant="text">
+            Login
+          </Button>
+        </Toolbar>
+      </AppBar>
       <div
         style={{
           margin: `0 auto`,
@@ -41,7 +57,7 @@ const Layout = ({ children }) => {
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>
       </div>
-    </>
+    </ThemeProvider>
   )
 }
 
