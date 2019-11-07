@@ -1,7 +1,7 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import { Layout } from "../components/Layout"
-import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
+import { Markdown } from "../components/Markdown"
 
 export default ({ location, data }) => {
   const {
@@ -12,7 +12,7 @@ export default ({ location, data }) => {
   } = data
   return (
     <Layout location={location} title={title}>
-      <MDXRenderer>{mdx.body}</MDXRenderer>
+      <Markdown>{mdx.body}</Markdown>
     </Layout>
   )
 }

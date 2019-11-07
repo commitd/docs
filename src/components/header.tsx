@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { Link } from "./Link"
+import { ClearLink } from "./Link"
 import config from "../../config.js"
 import {
   styled,
@@ -11,11 +11,6 @@ import {
   Heading,
   Icons,
 } from "@commitd/components"
-
-const HeaderLink = styled(Link)({
-  textDecoration: "none",
-  color: "inherit",
-})
 
 export const Header = () => {
   const {
@@ -46,7 +41,7 @@ export const Header = () => {
   return (
     <>
       <Flex color="white" flexGrow={1}>
-        <HeaderLink to={finalLogoLink}>
+        <ClearLink href={finalLogoLink}>
           <Flex color="white">
             <Box mx={2}>
               {logo.image !== "" ? (
@@ -57,16 +52,16 @@ export const Header = () => {
             </Box>
             <Heading.h1>{headerTitle}</Heading.h1>
           </Flex>
-        </HeaderLink>
+        </ClearLink>
       </Flex>
       {headerLinks.map((link, key) => {
         if (link.link !== "" && link.text !== "") {
           return (
-            <HeaderLink key={key} to={link.link}>
+            <ClearLink key={key} href={link.link}>
               <Button color="inherit" variant="text">
                 {link.text}
               </Button>
-            </HeaderLink>
+            </ClearLink>
           )
         }
       })}

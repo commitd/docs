@@ -23,10 +23,20 @@ const plugins = [
     resolve: `gatsby-plugin-mdx`,
     options: {
       extensions: [`.mdx`, `.md`],
+      remarkPlugins: [require("remark-slug"), require("remark-emoji")],
+      gatsbyRemarkPlugins: [ {
+        resolve: 'gatsby-remark-mermaid',
+        options: {
+            mermaidOptions: {
+                themeCSS: ".node rect { fill: cornflowerblue; }"
+            }
+        }
+     }, `gatsby-remark-prismjs`],
     },
   },
   `gatsby-transformer-sharp`,
   `gatsby-plugin-sharp`,
+
   {
     resolve: `gatsby-plugin-manifest`,
     options: {

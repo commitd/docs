@@ -10,7 +10,7 @@ const config = {
     title: "Committed Docs Starter",
     githubUrl: "https://github.com/committed/docs-starter",
     helpUrl: "",
-    links: [{ text: "example", link: "/example" }],
+    links: [{ text: "example", link: "/example1" }, { text: "mdx", link: "/example2" }],
   },
   sidebar: {
     forcedNavOrder: ["/introduction", "/test"],

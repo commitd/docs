@@ -1,5 +1,6 @@
 import React from "react"
 import "typeface-dosis"
+import '../style/code.css'
 import { Header } from "./Header"
 import { Sidebar } from "./Sidebar"
 import { SEO, SEOProps } from "./SEO"

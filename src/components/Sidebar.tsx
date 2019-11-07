@@ -1,12 +1,10 @@
 import React from "react"
 import { Tree } from "./Tree"
-import { ExternalLink } from "./Link"
+import { ClearLink } from "./Link"
 import { StaticQuery, graphql } from "gatsby"
 import {
   styled,
   Icons,
-  Flex,
-  Box,
   Divider,
   List,
   ListItem,
@@ -51,12 +49,12 @@ export const Sidebar = ({ location }) => (
             {config.sidebar.links.map((link, key) => {
               if (link.link !== "" && link.text !== "") {
                 return (
-                  <ExternalLink key={key} href={link.link}>
+                  <ClearLink key={key} href={link.link}>
                     <ListItem button>
                       <ListItemText primary={link.text} />
                       <Icons.ExitToApp color="disabled" />
                     </ListItem>
-                  </ExternalLink>
+                  </ClearLink>
                 )
               }
             })}
