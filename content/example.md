@@ -1,10 +1,11 @@
 ---
-title: "Introduction"
-metaTitle: "This is the title tag of this page"
+title: "Example MD"
+order: "1"
+metaTitle: "This is meta title"
 metaDescription: "This is the meta description"
 ---
 
-Some introduction text. Lists out all the headings from h1 to h6. Easy to customise.
+# Example
 
 # Heading H1
 

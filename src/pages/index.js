@@ -1,21 +1,34 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
+import { Layout } from "../components/Layout"
+import { Box, Button, Display, Typography, Icons } from "@commitd/components"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
-
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
-
-export default IndexPage
+export default () => {
+  const data = useStaticQuery(graphql`
+    query {
+      placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 300) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `)
+  return (
+    <Layout title="Home">
+      <Display.d1 my={3}>Hi people</Display.d1>
+      <Typography>Welcome to your new documentation site.</Typography>
+      <Typography>Now go write some docs.</Typography>
+      <Box my={3} maxWidth={300}>
+        <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+      </Box>
+      <Link to="/instructions/">
+        <Button color="primary">
+          Instructions <Icons.NavigateNext mx={1} />
+        </Button>
+      </Link>
+    </Layout>
+  )
+}

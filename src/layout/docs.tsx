@@ -1,28 +1,19 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import { Layout } from "../components/Layout"
 import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
 
-export default ({ data }) => {
+export default ({ location, data }) => {
   const {
-    allMdx,
     mdx,
     site: {
       siteMetadata: { docsLocation, title },
     },
   } = data
   return (
-    <div>
-      <h1>{data.site.siteMetadata.title}</h1>
+    <Layout location={location} title={title}>
       <MDXRenderer>{mdx.body}</MDXRenderer>
-      <h2>Sidebar</h2>
-      <div>
-        {allMdx.edges.map(edge => (
-          <li>
-            <Link to={edge.node.fields.slug}>{edge.node.fields.title}</Link>
-          </li>
-        ))}
-      </div>
-    </div>
+    </Layout>
   )
 }
 
@@ -50,16 +41,6 @@ export const pageQuery = graphql`
       frontmatter {
         metaTitle
         metaDescription
-      }
-    }
-    allMdx {
-      edges {
-        node {
-          fields {
-            slug
-            title
-          }
-        }
       }
     }
   }

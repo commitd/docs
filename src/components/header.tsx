@@ -1,42 +1,80 @@
 import React from "react"
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
+import { useStaticQuery, graphql } from "gatsby"
+import { Link } from "./Link"
+import config from "../../config.js"
+import {
+  styled,
+  Box,
+  Flex,
+  Logo,
+  Button,
+  Heading,
+  Icons,
+} from "@commitd/components"
 
-interface HeaderProps {
-  siteTitle?: string
+const HeaderLink = styled(Link)({
+  textDecoration: "none",
+  color: "inherit",
+})
+
+export const Header = () => {
+  const {
+    site: {
+      siteMetadata: { headerTitle, helpUrl, logo, headerLinks },
+    },
+  } = useStaticQuery(
+    graphql`
+      query headerTitleQuery {
+        site {
+          siteMetadata {
+            headerTitle
+            helpUrl
+            logo {
+              link
+              image
+            }
+            headerLinks {
+              link
+              text
+            }
+          }
+        }
+      }
+    `
+  )
+  const finalLogoLink = logo.link !== "" ? logo.link : "/"
+  return (
+    <>
+      <Flex color="white" flexGrow={1}>
+        <HeaderLink to={finalLogoLink}>
+          <Flex color="white">
+            <Box mx={2}>
+              {logo.image !== "" ? (
+                <img src={logo.image} alt="logo" />
+              ) : (
+                <Logo size={24} />
+              )}
+            </Box>
+            <Heading.h1>{headerTitle}</Heading.h1>
+          </Flex>
+        </HeaderLink>
+      </Flex>
+      {headerLinks.map((link, key) => {
+        if (link.link !== "" && link.text !== "") {
+          return (
+            <HeaderLink key={key} to={link.link}>
+              <Button color="inherit" variant="text">
+                {link.text}
+              </Button>
+            </HeaderLink>
+          )
+        }
+      })}
+      {helpUrl !== "" ? (
+        <a href={helpUrl}>
+          <Icons.Help />
+        </a>
+      ) : null}
+    </>
+  )
 }
-
-const Header = ({ siteTitle }: HeaderProps) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-)
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-export default Header

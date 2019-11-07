@@ -1,13 +1,16 @@
 import React from "react"
-
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import { Layout } from "../components/Layout"
+import { Display, Text, Box, Loader } from "@commitd/components"
 
 const NotFoundPage = () => (
-  <Layout>
-    <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+  <Layout title="404: Not found">
+    <Box m={4}>
+      <Display.d1 align="center">404</Display.d1>
+      <Box m={4}>
+        <Loader variant={"spin"} color="secondary.dark" size={200} />
+      </Box>
+      <Text align="center">We don't have any docs for that, PR's welcome!</Text>
+    </Box>
   </Layout>
 )
 

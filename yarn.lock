@@ -820,6 +820,11 @@
   dependencies:
     clsx "^1.0.4"
 
+"@commitd/layout@^0.0.2":
+  version "0.0.2"
+  resolved "https://npm.pkg.github.com/download/@commitd/layout/0.0.2/5a5fad607311c550ca5967ce50b445b45f371fa37fbc74f8b8e87a7d5238bd9b#6ee59f57f712e1d609eb9b4ed953f0e385cec89e"
+  integrity sha512-Qt5oFhaTFlo5liTsJtZSAnfxIihBtWAefFG75rw9QNZIzASBNJNPa7EbHLORCsrdLhcU/+5Dflw58nf89eZz7A==
+
 "@emotion/hash@^0.7.1":
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.7.3.tgz#a166882c81c0c6040975dd30df24fae8549bd96f"
@@ -12608,6 +12613,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typeface-dosis@^0.0.72:
+  version "0.0.72"
+  resolved "https://registry.yarnpkg.com/typeface-dosis/-/typeface-dosis-0.0.72.tgz#fac9495f7b98b20ed734702294e6f58daecfa9e5"
+  integrity sha512-EC9TLuX+27in9/OMMUF27L/czJQRuQXtLVGw+FOJ2x+IITvvEJLviylARV6D4YcqMDQv85wVCgzgQ5tMdNe11Q==
 
 ua-parser-js@^0.7.18:
   version "0.7.20"
