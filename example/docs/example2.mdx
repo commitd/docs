@@ -1,0 +1,57 @@
+---
+title: "Example mdx"
+order: "2"
+metaTitle: "This is meta title"
+metaDescription: "This is the meta description"
+---
+
+import React from "react"
+import {
+  Loader,
+  Card,
+  Box,
+  CardContent,
+  Checkbox,
+  FormGroup,
+  FormControl,
+  FormLabel,
+  FormControlLabel,
+  Collapse,
+} from "@commitd/components"
+
+# Example MDX
+
+You can add JSX directly:
+
+<Loader />
+
+Elements can use state:
+
+<Card>
+  <CardContent>
+  {React.createElement(() =>  {
+    const [open, setOpen] = React.useState(false)
+    return (
+      <>
+      <FormControl component="fieldset">
+      <FormLabel component="legend">Example</FormLabel>
+      <FormGroup aria-label="position" row>
+        <FormControlLabel
+          control={<Checkbox checked={open} onChange={() => setOpen(!open)} color="primary" />}
+          label="Open"
+          labelPlacement="end"
+          onChange={() => setOpen()}
+        />
+      </FormGroup>
+    </FormControl>
+    <Collapse in={open}>
+      <Box p={4}>
+       <Loader color="primary" variant={'spin'} size={100}/>
+      </Box>
+    </Collapse>
+    </>
+    )})}
+  </CardContent>
+</Card>
+
+[`@commitd/components`](https://committed.software/components) Are available to use.
