@@ -1,9 +1,12 @@
 import React from "react"
 import "typeface-dosis"
-import '../style/code.css'
+import "../style/code.css"
 import { Header } from "./Header"
 import { Sidebar } from "./Sidebar"
+import { PreviousNext } from "./PreviousNext"
 import { SEO, SEOProps } from "./SEO"
+import { useStaticQuery, graphql } from "gatsby"
+import { calculateTreeData, flattenTree } from "../util/tree"
 import {
   Root,
   Header as LayoutHeader,
@@ -16,6 +19,26 @@ import { ThemeProvider, Container } from "@commitd/components"
 export interface LayoutProps extends SEOProps {}
 
 export const Layout = ({ children, location, title, ...props }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      allMdx {
+        edges {
+          node {
+            id
+            fields {
+              slug
+              title
+            }
+            frontmatter {
+              order
+            }
+          }
+        }
+      }
+    }
+  `)
+  const treeData = calculateTreeData(data.allMdx.edges)
+  const flattenedData = flattenTree(treeData)
   return (
     <ThemeProvider
       fonts={{
@@ -40,11 +63,12 @@ export const Layout = ({ children, location, title, ...props }) => {
             ctx => null
           }
         >
-          <Sidebar location={location} />
+          <Sidebar treeData={treeData} location={location} />
         </Nav>
         <Content>
           <Container maxWidth="md">
             <main>{children}</main>
+            <PreviousNext data={flattenedData} location={location} />
           </Container>
         </Content>
         <LayoutFooter />

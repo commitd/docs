@@ -1,7 +1,7 @@
 import React from "react"
 import { Tree } from "./Tree"
+import { Node } from "../types"
 import { ClearLink } from "./Link"
-import { StaticQuery, graphql } from "gatsby"
 import {
   styled,
   Icons,
@@ -18,49 +18,26 @@ const ActiveListItem = styled(ListItem)({
 
 export interface SidebarProps {
   location: string
+  treeData: Node
 }
 
-export const Sidebar = ({ location }) => (
-  <StaticQuery
-    query={graphql`
-      query {
-        allMdx {
-          edges {
-            node {
-              id
-              fields {
-                slug
-                title
-              }
-              frontmatter {
-                order
-              }
-            }
-          }
+export const Sidebar = ({ location, treeData }) => (
+  <>
+    <Tree location={location} treeData={treeData} />
+    <Divider />
+    <List>
+      {config.sidebar.links.map((link, key) => {
+        if (link.link !== "" && link.text !== "") {
+          return (
+            <ClearLink key={key} href={link.link}>
+              <ListItem button>
+                <ListItemText primary={link.text} />
+                <Icons.ExitToApp color="disabled" />
+              </ListItem>
+            </ClearLink>
+          )
         }
-      }
-    `}
-    render={({ allMdx }) => {
-      return (
-        <>
-          <Tree location={location} edges={allMdx.edges} />
-          <Divider />
-          <List>
-            {config.sidebar.links.map((link, key) => {
-              if (link.link !== "" && link.text !== "") {
-                return (
-                  <ClearLink key={key} href={link.link}>
-                    <ListItem button>
-                      <ListItemText primary={link.text} />
-                      <Icons.ExitToApp color="disabled" />
-                    </ListItem>
-                  </ClearLink>
-                )
-              }
-            })}
-          </List>
-        </>
-      )
-    }}
-  />
+      })}
+    </List>
+  </>
 )
