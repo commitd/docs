@@ -1,5 +1,5 @@
 ---
-title: "Order B"
+title: Order B
 order: "1"
 ---
 

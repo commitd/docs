@@ -1,5 +1,4 @@
-import config from "../../config"
-import { Item, Node, Info } from "../types"
+import { Item, Node, Info, Sidebar } from '../types'
 
 export interface Edge {
   node: {
@@ -22,11 +21,11 @@ const calculateTree = (edges: Edge[]) =>
         node: {
           id,
           fields: { slug, title },
-          frontmatter: { order },
-        },
+          frontmatter: { order }
+        }
       }
     ) => {
-      const parts = slug.split("/")
+      const parts = slug.split('/')
       let { items: prevItems } = accu
       for (const part of parts.slice(1, -1)) {
         let tmp = prevItems.find(({ label }) => label == part)
@@ -35,7 +34,7 @@ const calculateTree = (edges: Edge[]) =>
             tmp.items = []
           }
         } else {
-          tmp = { label: part, items: [] }
+          tmp = { id: part, label: part, items: [] }
           prevItems.push(tmp)
         }
         prevItems = tmp.items
@@ -52,7 +51,7 @@ const calculateTree = (edges: Edge[]) =>
           id,
           label: parts[parts.length - 1],
           items: [],
-          info,
+          info
         })
       }
       return accu
@@ -64,7 +63,7 @@ const itemOrder = (item: Item) => (item.info ? item.info.order : item.label)
 
 const sortItems = (items: Item[]) =>
   items.sort((a, b) =>
-    itemOrder(a).localeCompare(itemOrder(b), "en", { numeric: true })
+    itemOrder(a).localeCompare(itemOrder(b), 'en', { numeric: true })
   )
 
 const sortNode = (node: Node) => {
@@ -73,14 +72,14 @@ const sortNode = (node: Node) => {
   return node
 }
 
-export const calculateTreeData = (edges: Edge[]) => {
-  const filtered = config.sidebar.ignoreIndex
+export const calculateTreeData = (sidebar: Sidebar, edges: Edge[]) => {
+  const filtered = sidebar.ignoreIndex
     ? edges.filter(
         ({
           node: {
-            fields: { slug },
-          },
-        }) => slug !== "/"
+            fields: { slug }
+          }
+        }) => slug !== '/'
       )
     : edges
   return sortNode(calculateTree(filtered))
