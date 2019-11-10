@@ -26,6 +26,21 @@ module.exports = {
           ignoreIndex: true
         }
       }
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `@commitd/docs-theme`,
+        short_name: `docs`,
+        start_url: `/`,
+        background_color: `#3E3E3E`,
+        theme_color: `#FFBB00`,
+        display: `browser`,
+        icon: `${__dirname}/Avatar.png` // This path is relative to the root of the site.
+      }
     }
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.dev/offline
+    // `gatsby-plugin-offline`,
   ]
 };

@@ -6,7 +6,10 @@ module.exports = ({
     helpUrl: '',
     links: []
   },
-  sidebar = {}
+  sidebar = {
+    ignoreIndex: true,
+    links: []
+  }
 }) => ({
   pathPrefix,
   siteMetadata: {
@@ -54,21 +57,6 @@ module.exports = ({
           }
         ]
       }
-    },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `docs-starter`,
-        short_name: `docs`,
-        start_url: `/`,
-        background_color: `#3E3E3E`,
-        theme_color: `#FFBB00`,
-        display: `minimal-ui`,
-        icon: `${__dirname}/src/images/Avatar 1 - Yellow Trans-512px.png` // This path is relative to the root of the site.
-      }
     }
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ]
 })
