@@ -5,9 +5,11 @@ metaTitle: "Example Markdown"
 metaDescription: "This is an example of markdown docs"
 ---
 
-# Example Markdown
+# (H1) Example Markdown
 
-# Heading H1
+Full markdown is supported. Some examples are below.
+
+## (H2) Code
 
 The following is a code block with JavaScript language syntax highlighting.
 
@@ -15,15 +17,24 @@ The following is a code block with JavaScript language syntax highlighting.
 import React from 'react';
 ```
 
-## Heading H2
+### (H3) Links
 
 [Internal](/) and [external](http://committed.software) links are rendered with highlighting.
 
-### Heading H3
+#### (H4) Emojis
 
 :tada: emojis are supported
 
-## Lists
+##### (H5) Images
+
+
+Pngs
+![Example Image](./CommittedSoftware.png "Committed Software")
+
+SVG
+![Example Image](./CommittedSoftware.svg "Committed Software")
+
+###### (H6) Lists
 
 - Item 1
 - Item 2
