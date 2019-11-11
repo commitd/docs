@@ -5,9 +5,10 @@
   <a href="https://www.gatsbyjs.org">
     <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
   </a>
+  <img alt="Docs" src="../docs.svg" width="60" />
 </p>
 <h1 align="center">
- Committed Gatsby Theme Docs
+ Committed Gatsby Theme for Docs
 </h1>
 
 A Gatsby theme for documentaion sites. See http://committed.software/theme for instructions.

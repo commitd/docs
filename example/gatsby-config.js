@@ -22,8 +22,7 @@ module.exports = {
           ]
         },
         sidebar: {
-          links: [{ text: "Example", link: "https://committed.io" }],
-          ignoreIndex: true
+          links: [{ text: "Example", link: "https://committed.io" }]
         }
       }
     },

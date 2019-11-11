@@ -1,20 +1,26 @@
 module.exports = ({
   docsPath = 'docs',
   pathPrefix = '/',
-  header = {
-    logo: { image: '', link: '/' },
-    helpUrl: '',
-    links: []
-  },
-  sidebar = {
-    ignoreIndex: true,
-    links: []
-  }
+  header,
+  sidebar
 }) => ({
   pathPrefix,
   siteMetadata: {
-    header,
-    sidebar
+    header: Object.assign(
+      {
+        logo: { image: '', link: '/' },
+        helpUrl: '',
+        links: []
+      },
+      header
+    ),
+    sidebar: Object.assign(
+      {
+        ignoreIndex: true,
+        links: []
+      },
+      sidebar
+    )
   },
   plugins: [
     `gatsby-plugin-typescript`,
@@ -36,6 +42,7 @@ module.exports = ({
           {
             resolve: 'gatsby-remark-mermaid',
             options: {
+              // TODO: custom theme
               // mermaidOptions: {
               //   themeCSS: '.node rect { fill: cornflowerblue; }'
               // }
