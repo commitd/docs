@@ -5,10 +5,10 @@ const startCase = require('lodash.startcase')
 const fs = require('fs')
 // Make sure the docs directory exists
 exports.onPreBootstrap = ({ reporter }, options) => {
-  const contentPath = options.contentPath || 'docs'
-  if (!fs.existsSync(contentPath)) {
-    reporter.info(`creating the ${contentPath} directory`)
-    fs.mkdirSync(contentPath)
+  const docsPath = options.docsPath || 'docs'
+  if (!fs.existsSync(docsPath)) {
+    reporter.info(`creating the ${docsPath} directory`)
+    fs.mkdirSync(docsPath)
   }
 }
 

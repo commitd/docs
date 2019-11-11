@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 
 /**
  * Empty footer that can be overridden using shadowing

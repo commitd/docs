@@ -9,7 +9,7 @@
     "build": "yarn workspace example build"
   },
   "workspaces": [
-    "docs-theme",
+    "theme",
     "example"
   ]
 }

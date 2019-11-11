@@ -1,5 +1,5 @@
 module.exports = ({
-  contentPath = 'docs',
+  docsPath = 'docs',
   pathPrefix = '/',
   header = {
     logo: { image: '', link: '/' },
@@ -24,7 +24,7 @@ module.exports = ({
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `docs`,
-        path: contentPath
+        path: docsPath
       }
     },
     {
@@ -36,9 +36,9 @@ module.exports = ({
           {
             resolve: 'gatsby-remark-mermaid',
             options: {
-              mermaidOptions: {
-                themeCSS: '.node rect { fill: cornflowerblue; }'
-              }
+              // mermaidOptions: {
+              //   themeCSS: '.node rect { fill: cornflowerblue; }'
+              // }
             }
           },
           `gatsby-remark-prismjs`,

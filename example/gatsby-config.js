@@ -8,7 +8,7 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `@commitd/docs-theme`,
+      resolve: `@commitd/gatsby-theme-docs`,
       options: {
         contentPath: "docs",
         basePath: "/",

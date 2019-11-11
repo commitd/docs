@@ -1,7 +1,7 @@
 import React from 'react'
-import { navigate } from "gatsby"
+import { navigate } from 'gatsby'
 import { styled, Link as RawLink, LinkProps, colors } from '@commitd/components'
-
+import { cursor } from 'sisteransi'
 
 const aColor = colors.committedYellow[300]
 const bColor = colors.red[200]
@@ -28,25 +28,24 @@ const Styled: React.ComponentType<LinkProps> = styled(RawLink)({
 const Cleared: React.ComponentType<LinkProps> = styled(RawLink)({
   color: 'inherit',
   textDecoration: 'none',
-  ["& .gatsby-resp-image-background-image"]:{
+  ['& .gatsby-resp-image-background-image']: {
     display: 'none !important'
+  },
+  ['&:hover']: {
+    textDecoration: 'none',
+    cursor: 'pointer'
   }
 })
 
-export const Link: React.FC<LinkProps> = ({
-  href,
-  ...props
-}: LinkProps) => {
+export const Link: React.FC<LinkProps> = ({ href, ...props }: LinkProps) => {
   if (isExternal(href)) {
     return <Styled href={href} target="_blank" {...props} />
   }
   if (props.className && props.className.includes('gatsby-resp-image-link')) {
-    console.log("test")
+    console.log('test')
     return <Cleared href={href} target="_blank" {...props} />
   }
-  return (
-    <Styled onClick={() => navigate(href)} {...props} />
-  )
+  return <Styled onClick={() => navigate(href)} {...props} />
 }
 
 export const ClearLink: React.FC<LinkProps> = ({
@@ -56,8 +55,6 @@ export const ClearLink: React.FC<LinkProps> = ({
   if (isExternal(href)) {
     return <Cleared href={href} target="_blank" {...props} />
   } else {
-    return (
-      <Cleared onClick={() => navigate(href)} {...props} />
-    )
+    return <Cleared onClick={() => navigate(href)} {...props} />
   }
 }
