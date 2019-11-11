@@ -5,10 +5,10 @@
   "author": "Committed <opensource@committed.io>",
   "license": "MIT",
   "scripts": {
-    "clean": "gatsby clean",
+    "clean": "gatsby clean && rm -rf ../node_modules/gh-pages/.cache",
     "develop": "gatsby develop",
     "stage": "gatsby build",
-    "build": "gatsby build --prefix-paths && cp ./CNAME ./README.md public/",
+    "build": "gatsby build --prefix-paths && cp ./README.md public/",
     "serve": "gatsby serve --prefix-paths",
     "deploy": "gh-pages -d public -r https://$GITHUB_TOKEN@github.com/commitd/docs.git"
   },

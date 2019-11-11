@@ -18,7 +18,7 @@ steps:
       - yarn build
 
   - name: deploy
-    image: node:latest
+    image: committed/ci
     environment:
       GITHUB_TOKEN:
         from_secret: github_token
