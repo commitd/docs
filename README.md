@@ -12,9 +12,9 @@
 </h1>
 
 [![Committed Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fcommitted.software%2Fbadge)](https://committed.io)
-[![Build Status](https://drone.committed.software/api/badges/commitd/gatsby-theme-docs/status.svg)](https://drone.committed.software/commitd/components)
+[![Build Status](https://drone.committed.software/api/badges/commitd/docs/status.svg)](https://drone.committed.software/commitd/docs)
 
-A theme for writing documentation sties in Markdown.
+A theme for writing documentation sites in Markdown.
 
 ## 🔥 Features
 
@@ -25,7 +25,7 @@ A theme for writing documentation sties in Markdown.
 - Diagrams using mermaid
 - emojis using :shortcodes:
 - SEO friendly
-- Fully customisable
+- Fully customizable
 
 ## 🔗 Live Demo and Instructions
 
@@ -122,7 +122,7 @@ The theme is defined by the `gatsby-config.js` file with the `gatsby-node.js` su
 ### `example`
 
 This is an example usage of the theme. It looks the same as the
-site of someone who installed and used your theme from npm.
+site of someone who installed and used your theme.
 
 - `example/`
   - `gatsby-config.js`: Specifies which theme to use and any other one-off config a site might need.
