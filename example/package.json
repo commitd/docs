@@ -5,6 +5,7 @@
   "author": "Committed <opensource@committed.io>",
   "license": "MIT",
   "scripts": {
+    "clean": "gatsby clean",
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve"
