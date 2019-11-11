@@ -37,7 +37,7 @@ export const PreviousNext = ({ prefix, location, data }: PreviousNextProps) => {
   return (
     <>
       <Divider my={3} />
-      <Flex width={1} justifyContent={justifyContent}>
+      <Flex mb={4} width={1} justifyContent={justifyContent}>
         {previous && (
           <Button
             color="primary"
