@@ -1,7 +1,6 @@
 import React from 'react'
 import { navigate } from 'gatsby'
 import { styled, Link as RawLink, LinkProps, colors } from '@commitd/components'
-import { cursor } from 'sisteransi'
 
 const aColor = colors.committedYellow[300]
 const bColor = colors.red[200]
