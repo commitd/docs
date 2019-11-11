@@ -11,6 +11,9 @@
  Committed Gatsby Theme for Docs
 </h1>
 
+[![Committed Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fcommitted.software%2Fbadge)](https://committed.io)
+[![Build Status](https://drone.committed.software/api/badges/commitd/gatsby-theme-docs/status.svg)](https://drone.committed.software/commitd/components)
+
 A theme for writing documentation sties in Markdown.
 
 ## 🔥 Features
