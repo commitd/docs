@@ -71,8 +71,8 @@ module.exports = {
     {
       resolve: `@commitd/docs-theme`,
       options: {
-        docsPath: "docs",
-        basePath: "/",
+        docsPath: "documents",
+        pathPrefix: "/docs",
         header: {
           title: "Committed Docs Example",
           logo: { image: "", link: "/" },
@@ -92,7 +92,7 @@ module.exports = {
 };
 ```
 
-The `docsPath` allows you to specify a different folder for the documentation, and the `basePath` option can specify the path if the site is hosted at a nested path.
+The `docsPath` allows you to specify a different folder for the documentation, and the `pathPrefix` option can specify the path if the site is hosted at a nested path.
 
 ### Links
 

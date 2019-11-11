@@ -1,6 +1,10 @@
 # @commitd/gatsby-theme-docs example
 
-Show the usage and provides instructions for the [@commitd/gatsby-theme-docs](https://github.com/commitd/gatsby-theme-docs).
+See site at https://committed.software/docs
+
+The example show the usage and provides instructions for the [@commitd/gatsby-theme-docs](https://github.com/commitd/gatsby-theme-docs).
+
+## Development
 
 On first use run:
 

@@ -7,8 +7,10 @@
   "scripts": {
     "clean": "gatsby clean",
     "develop": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve"
+    "stage": "gatsby build",
+    "build": "gatsby build --prefix-paths && cp ./CNAME ./README.md public/",
+    "serve": "gatsby serve --prefix-paths",
+    "deploy": "gh-pages -d public -r https://$GITHUB_TOKEN@github.com/commitd/docs.git"
   },
   "dependencies": {
     "@commitd/gatsby-theme-docs": "1.0.0",
@@ -16,5 +18,8 @@
     "gatsby-plugin-manifest": "^2.2.26",
     "react": "^16.11.0",
     "react-dom": "^16.11.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.1.1"
   }
 }

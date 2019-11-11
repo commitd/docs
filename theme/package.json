@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Committed <opensource@committed.io>",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "format": "prettier --write '**/{*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
     "format-check": "prettier --check '**/{**/*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",

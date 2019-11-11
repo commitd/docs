@@ -8,7 +8,9 @@
     "clean": "yarn workspace example clean",
     "start": "yarn develop",
     "develop": "yarn workspace example develop",
-    "build": "yarn workspace example build"
+    "build": "yarn workspace example build",
+    "serve": "yarn workspace example serve",
+    "deploy": "yarn workspace @commitd/gatsby-theme-docs publish && yarn workspace example deploy"
   },
   "workspaces": [
     "theme",

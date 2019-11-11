@@ -11,7 +11,7 @@ module.exports = {
       resolve: `@commitd/gatsby-theme-docs`,
       options: {
         contentPath: "docs",
-        basePath: "/",
+        pathPrefix: "/docs",
         header: {
           title: "Committed Docs Example",
           logo: { image: "", link: "/" },
