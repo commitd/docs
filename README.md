@@ -1,61 +1,129 @@
 <p align="center">
+  <a href="https://committed.io">
+    <img alt="Committed" src="./example/Avatar.png" width="60" />
+  </a>
   <a href="https://www.gatsbyjs.org">
     <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
   </a>
+  <img alt="Docs" src="./docs.svg" width="60" />
 </p>
 <h1 align="center">
-  Starter for creating a Gatsby Theme workspace
+ Committed Gatsby Theme for Docs
 </h1>
 
-```shell
-gatsby new my-theme https://github.com/gatsbyjs/gatsby-starter-theme-workspace
-cd my-theme
-yarn workspace example develop
+A theme for writing documentation sties in Markdown.
+
+## 🔥 Features
+
+- Write using Markdown / [MDX](https://github.com/mdx-js/mdx)
+- Committed style theme
+- Syntax Highlighting using Prism
+- Automatically generated sidebar navigation, previous/next
+- Diagrams using mermaid
+- emojis using :shortcodes:
+- SEO friendly
+- Fully customisable
+
+## 🔗 Live Demo and Instructions
+
+Here's a [live demo](https://committed.software/theme)
+
+## 🚀 Quickstart
+
+Get started by adding the dependencies:
+
+```bash
+yarn add @commitd/gatsby-theme-docs gatsby react react-dom
 ```
 
-## Layout
+and configure in `gatsby-config.js` with your site metadata e.g.
+
+```javascript
+module.exports = {
+  siteMetadata: {
+    title: "Title",
+    author: "Author",
+    description: "Description",
+    siteUrl: "https://your.site.url"
+  },
+  plugins: [
+    {
+      resolve: `@commitd/gatsby-theme-docs`,
+      options: {}
+    }
+  ]
+};
+```
+
+Put your markdown docs in `/docs/` and run:
+
+```bash
+gatsby develop
+```
+
+Visit `http://localhost:8000/` to view the site.
+
+For full instructions see the [live demo](https://committed.software/theme).
+
+## 🤖 SEO friendly
+
+The docs come with SEO. Configure meta tags like title and description for each markdown file using MDX Frontmatter
+
+```markup
+---
+title: "Title of the page"
+metaTitle: "Meta Title Tag for this page"
+metaDescription: "Meta Description Tag for this page"
+---
+```
+
+Canonical URLs are generated automatically.
+
+## Development
+
+We use yarn workspaces to develop the theme alongside an example usage that also serves as a documentation site for this project.
+
+On first use run
+
+```bash
+yarn install
+```
+
+### Layout
+
+A simplified layout is shown below
 
 ```shell
 .
 ├── README.md
-├── gatsby-theme-minimal
+├── theme
 │   ├── README.md
 │   ├── gatsby-config.js
+│   ├── gatsby-node.js
 │   ├── index.js
 │   └── package.json
+│   └── src
 ├── example
 │   ├── README.md
 │   ├── gatsby-config.js
 │   ├── package.json
-│   └── src
+│   └── docs
 ├── package.json
 └── yarn.lock
-
-3 directories, 10 files
 ```
 
-### `gatsby-theme-minimal`
+### `theme`
 
-This directory is the theme package itself. You should rename this at
-some point to be `gatsby-theme-{my-theme-name}`. Also change the
-`package.json` name field and the corresponding dependency in the
-example directory's `package.json`/`gatsby-config.js` to match the chosen name.
-
-- `gatsby-theme-minimal/`
-  - `gatsby-config.js`: An empty gatsby-config that you can use as a starting point for building functionality into your theme.
-  - `index.js`: Since themes also function as plugins, this is an empty file that
-    gatsby needs to use this theme as a plugin.
-  - `package.json`: The dependencies that your theme will pull in when people install it. `gatsby` should be a `peerDependency`.
+The theme is defined by the `gatsby-config.js` file with the `gatsby-node.js` supplying the content from the site using the theme. The `src` folder contains the code for the theme, with the components used stored in the `theme/src/components` folder. Each markdown file is rendered using the `theme/src/layout/docs.tsx` to layout the supporting components and configure the markdown.
 
 ### `example`
 
-This is an example usage of your theme. It should look the same as the
+This is an example usage of the theme. It looks the same as the
 site of someone who installed and used your theme from npm.
 
 - `example/`
   - `gatsby-config.js`: Specifies which theme to use and any other one-off config a site might need.
-  - `src/`: Source code such as one-off pages or components that might live in
-    a user's site.
+  - `docs/`: The markdown documentation pages that make up the site.
 
 You can run the example with:
 

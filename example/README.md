@@ -1,6 +1,25 @@
-# Gatsby Theme Minimal Example
+# @commitd/gatsby-theme-docs example
 
-A usage of
-[gatsby-theme-minimal](https://github.com/ChristopherBiscardi/gatsby-theme-minimal)
-that does nothing but use the theme. As a result you will see `Error: Missing resources for /` when navigating to `localhost:8000`. To get
-rid of that, create a page in `src/pages/index.js`.
+Show the usage and provides instructions for the [@commitd/gatsby-theme-docs](https://github.com/commitd/gatsby-theme-docs).
+
+On first use run:
+
+```bash
+yarn install
+```
+
+To run use:
+
+```bash
+yarn develop
+```
+
+and the development site will be available on http://localhost:8000
+
+To build run:
+
+```bash
+yarn build
+```
+
+The equivalent commands are available in the root directory and uses workspaces to delegate.
