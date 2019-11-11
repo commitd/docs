@@ -1,0 +1,31 @@
+---
+title: "Welcome"
+metaTitle: "@commitd/gatsgy-theme-docs"
+metaDescription: "This is a gatsby theme for documentation"
+---
+
+import { Flex, Button } from "@commitd/components";
+import { navigate } from "gatsby";
+
+# @commitd/gatsby-theme-docs
+
+The gatsby theme allows you to write documentation in Markdown. With support for:
+
+- :zap: MDX
+- :camera: images
+- :pencil2: svg
+- :tropical_fish: mermaid diagrams
+- :package: @commitd/components
+- :tada: :shortcode: emoji.
+
+This is meant for Committed's documentation site, but feel free to use it, or copy it, for your own projects.
+
+<Flex justifyContent="center">
+  <Button
+    size="large"
+    color="primary"
+    onClick={() => navigate("/instructions")}
+  >
+    Get Started
+  </Button>
+</Flex>
