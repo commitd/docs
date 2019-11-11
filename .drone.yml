@@ -12,13 +12,13 @@ steps:
         from_secret: github_token
 
   - name: build
-    image: node:latest
+    image: committed/ci:1.2.0
     commands:
       - yarn install
       - yarn build
 
   - name: deploy
-    image: committed/ci
+    image: committed/ci:1.2.0
     environment:
       GITHUB_TOKEN:
         from_secret: github_token
