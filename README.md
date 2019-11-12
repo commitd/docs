@@ -29,7 +29,7 @@ A theme for writing documentation sites in Markdown.
 
 ## 🔗 Live Demo and Instructions
 
-Here's a [live demo](https://committed.software/theme)
+Here's a [live demo](https://committed.software/docs)
 
 ## 🚀 Quickstart
 
