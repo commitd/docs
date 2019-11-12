@@ -71,7 +71,9 @@ module.exports = {
     {
       resolve: `@commitd/docs-theme`,
       options: {
+        // docsPath defaults to `/docs`
         docsPath: "documents",
+        // pathPrefix defaults to `/`
         pathPrefix: "/docs",
         header: {
           title: "Committed Docs Example",
