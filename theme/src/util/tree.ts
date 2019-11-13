@@ -1,30 +1,12 @@
-import { Item, Node, Info, Sidebar } from '../types'
+import { Item, Node, Info, Sidebar, Doc } from '../types'
 
 export interface Edge {
-  node: {
-    id
-    fields: {
-      slug: string
-      title: string
-    }
-    frontmatter: {
-      order: string
-    }
-  }
+  node: Doc
 }
 
 const calculateTree = (edges: Edge[]) =>
   edges.reduce(
-    (
-      accu,
-      {
-        node: {
-          id,
-          fields: { slug, title },
-          frontmatter: { order }
-        }
-      }
-    ) => {
+    (accu, { node: { id, slug, title, order } }) => {
       const parts = slug.split('/')
       let { items: prevItems } = accu
       for (const part of parts.slice(1, -1)) {
@@ -74,13 +56,7 @@ const sortNode = (node: Node) => {
 
 export const calculateTreeData = (sidebar: Sidebar, edges: Edge[]) => {
   const filtered = sidebar.ignoreIndex
-    ? edges.filter(
-        ({
-          node: {
-            fields: { slug }
-          }
-        }) => slug !== '/'
-      )
+    ? edges.filter(({ node: { slug } }) => slug !== '/')
     : edges
   return sortNode(calculateTree(filtered))
 }

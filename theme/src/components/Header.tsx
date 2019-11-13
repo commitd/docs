@@ -49,17 +49,15 @@ export const Header = () => {
           </Flex>
         </ClearLink>
       </Flex>
-      {links.map((link, key) => {
-        if (link.link !== '' && link.text !== '') {
-          return (
-            <ClearLink key={key} href={link.link}>
-              <Button color="inherit" variant="text">
-                {link.text}
-              </Button>
-            </ClearLink>
-          )
-        }
-      })}
+      {links
+        .filter(link => link.link !== '' && link.text !== '')
+        .map((link, key) => (
+          <ClearLink key={key} href={link.link}>
+            <Button color="inherit" variant="text">
+              {link.text}
+            </Button>
+          </ClearLink>
+        ))}
       {helpUrl !== '' ? (
         <a href={helpUrl}>
           <Icons.Help />

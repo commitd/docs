@@ -12,6 +12,60 @@ exports.onPreBootstrap = ({ reporter }, options) => {
   }
 }
 
+exports.sourceNodes = ({ actions, schema }) => {
+  const { createTypes } = actions
+  createTypes(
+    schema.buildObjectType({
+      name: `Docs`,
+      fields: {
+        id: { type: `ID!` },
+        slug: {
+          type: 'String!'
+        },
+        title: {
+          type: 'String!'
+        },
+        metaTitle: {
+          type: 'String!'
+        },
+        metaDescription: {
+          type: 'String!'
+        },
+        order: {
+          type: 'String!'
+        },
+        tableOfContents: {
+          type: 'Json!',
+          resolve(source, args, context, info) {
+            const type = info.schema.getType(`Mdx`)
+            const mdxNode = context.nodeModel.getNodeById({
+              id: source.parent
+            })
+            const resolver = type.getFields()['tableOfContents'].resolve
+            return resolver(mdxNode, {}, context, {
+              fieldName: 'tableOfContents'
+            })
+          }
+        },
+        body: {
+          type: 'String!',
+          resolve(source, args, context, info) {
+            const type = info.schema.getType(`Mdx`)
+            const mdxNode = context.nodeModel.getNodeById({
+              id: source.parent
+            })
+            const resolver = type.getFields()['body'].resolve
+            return resolver(mdxNode, {}, context, {
+              fieldName: 'body'
+            })
+          }
+        }
+      },
+      interfaces: [`Node`]
+    })
+  )
+}
+
 exports.createPages = async ({ actions, graphql, reporter }, options) => {
   const pathPrefix = options.pathPrefix || '/'
   const { createPage } = actions
@@ -20,16 +74,10 @@ exports.createPages = async ({ actions, graphql, reporter }, options) => {
       graphql(
         `
           {
-            allMdx {
+            allDocs {
               edges {
                 node {
-                  fields {
-                    id
-                  }
-                  tableOfContents
-                  fields {
-                    slug
-                  }
+                  id
                 }
               }
             }
@@ -42,12 +90,12 @@ exports.createPages = async ({ actions, graphql, reporter }, options) => {
         }
 
         // Create docs pages.
-        result.data.allMdx.edges.forEach(({ node }) => {
+        result.data.allDocs.edges.forEach(({ node }) => {
           createPage({
-            path: node.fields.slug ? node.fields.slug : pathPrefix,
+            path: node.slug ? node.slug : pathPrefix,
             component: path.resolve(`${__dirname}/src/layout/docs.tsx`),
             context: {
-              id: node.fields.id
+              id: node.id
             }
           })
         })
@@ -56,10 +104,17 @@ exports.createPages = async ({ actions, graphql, reporter }, options) => {
   })
 }
 
-exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions
-
+exports.onCreateNode = ({
+  node,
+  actions,
+  getNode,
+  createNodeId,
+  createContentDigest
+}) => {
+  const { createNode, createParentChildLink } = actions
   if (node.internal.type === `Mdx`) {
+    const { frontmatter } = node
+
     const parent = getNode(node.parent)
     let value = parent.relativePath.replace(parent.ext, '')
 
@@ -67,22 +122,38 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       value = ''
     }
 
-    createNodeField({
-      name: `slug`,
-      node,
-      value: `/${value}`
-    })
+    const title = node.frontmatter.title || startCase(parent.name)
 
-    createNodeField({
-      name: 'id',
-      node,
-      value: node.id
-    })
+    if (
+      parent.internal.type === 'File' &&
+      parent.sourceInstanceName === 'docs'
+    ) {
+      const fieldData = {
+        title: title,
+        metaTitle: node.frontmatter.metaTitle || title,
+        metaDescription: node.frontmatter.metaDescription || '',
+        order: node.frontmatter.order || title,
+        slug: `/${value}`,
+        tableOfContents: node.tableOfContents
+      }
 
-    createNodeField({
-      name: 'title',
-      node,
-      value: node.frontmatter.title || startCase(parent.name)
-    })
+      createNode({
+        ...fieldData,
+        // Required fields.
+        id: createNodeId(`${node.id} >>> Docs`),
+        parent: node.id,
+        children: [],
+        internal: {
+          type: `Docs`,
+          content: JSON.stringify(fieldData),
+          description: `Documentation`,
+          contentDigest: createContentDigest(fieldData)
+        }
+      })
+      createParentChildLink({
+        parent: parent,
+        child: node
+      })
+    }
   }
 }

@@ -35,12 +35,16 @@ export const SEO = ({ description = '', lang = 'en', meta = [], title }) => {
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
+          property: `og:title`,
+          content: title
+        },
+        {
           name: `description`,
           content: metaDescription
         },
         {
-          property: `og:title`,
-          content: title
+          name: `author`,
+          content: site.siteMetadata.author
         },
         {
           property: `og:description`,

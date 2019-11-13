@@ -24,18 +24,16 @@ export const Sidebar = ({ prefix, location, treeData, sidebar }) => (
     <Tree prefix={prefix} location={location} treeData={treeData} />
     <Divider />
     <List>
-      {sidebar.links.map((link, key) => {
-        if (link.link !== '' && link.text !== '') {
-          return (
-            <ClearLink key={key} href={link.link}>
-              <ListItem button>
-                <ListItemText primary={link.text} />
-                <Icons.ExitToApp color="disabled" />
-              </ListItem>
-            </ClearLink>
-          )
-        }
-      })}
+      {sidebar.links
+        .filter(link => link.link !== '' && link.text !== '')
+        .map((link, key) => (
+          <ClearLink key={key} href={link.link}>
+            <ListItem button>
+              <ListItemText primary={link.text} />
+              <Icons.ExitToApp color="disabled" />
+            </ListItem>
+          </ClearLink>
+        ))}
     </List>
   </>
 )

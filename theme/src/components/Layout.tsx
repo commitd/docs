@@ -28,17 +28,16 @@ export const Layout = ({ children, location, title, ...props }) => {
         }
         pathPrefix
       }
-      allMdx {
+      allDocs {
         edges {
           node {
             id
-            fields {
-              slug
-              title
-            }
-            frontmatter {
-              order
-            }
+            metaDescription
+            metaTitle
+            order
+            slug
+            tableOfContents
+            title
           }
         }
       }
@@ -46,7 +45,7 @@ export const Layout = ({ children, location, title, ...props }) => {
   `)
   const prefix = data.site.pathPrefix || '/'
   const sidebar = data.site.siteMetadata.sidebar
-  const treeData = calculateTreeData(sidebar, data.allMdx.edges)
+  const treeData = calculateTreeData(sidebar, data.allDocs.edges)
   const flattenedData = flattenTree(treeData)
   return (
     <ThemeProvider

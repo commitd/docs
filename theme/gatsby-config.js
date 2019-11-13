@@ -6,18 +6,22 @@ module.exports = ({
 }) => ({
   pathPrefix,
   siteMetadata: {
+    title: 'Docs',
+    author: 'Committed',
+    description: 'Documentation',
     header: Object.assign(
       {
+        title: 'Docs',
         logo: { image: '', link: '/' },
         helpUrl: '',
-        links: []
+        links: [{ text: '', link: '' }]
       },
       header
     ),
     sidebar: Object.assign(
       {
         ignoreIndex: true,
-        links: []
+        links: [{ text: '', link: '' }]
       },
       sidebar
     )

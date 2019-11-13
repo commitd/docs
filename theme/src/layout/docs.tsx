@@ -5,10 +5,14 @@ import { Markdown } from '../components/Markdown'
 
 export default ({ location, data }) => {
   const {
-    mdx: {
+    docs: {
       body,
+      metaDescription,
+      metaTitle,
+      order,
+      slug,
       tableOfContents,
-      frontmatter: { metaTitle, metaDescription }
+      title
     }
   } = data
   return (
@@ -19,14 +23,15 @@ export default ({ location, data }) => {
 }
 
 export const pageQuery = graphql`
-  query($id: String!) {
-    mdx(fields: { id: { eq: $id } }) {
-      body
+  query DocQuery($id: String!) {
+    docs(id: { eq: $id }) {
+      metaDescription
+      metaTitle
+      order
+      slug
       tableOfContents
-      frontmatter {
-        metaTitle
-        metaDescription
-      }
+      title
+      body
     }
   }
 `

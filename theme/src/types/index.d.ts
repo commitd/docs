@@ -1,3 +1,14 @@
+export interface Doc {
+  id: string
+  slug: string
+  title: string
+  metaTitle: string
+  metaDescription: string
+  order: string
+  body: string
+  tableOfContents: object
+}
+
 export interface Page {
   title: string
   metaTitle?: string
