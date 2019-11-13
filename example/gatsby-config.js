@@ -1,3 +1,9 @@
+const { NODE_ENV } = process.env;
+
+const pathPrefix = env => {
+  return env === "production" ? "/docs" : "";
+};
+
 module.exports = {
   siteMetadata: {
     title: "Committed Docs Theme",
@@ -11,7 +17,7 @@ module.exports = {
       resolve: `@commitd/gatsby-theme-docs`,
       options: {
         contentPath: "docs",
-        pathPrefix: "/docs",
+        pathPrefix: pathPrefix(NODE_ENV),
         header: {
           title: "Committed Docs Example",
           logo: { image: "", link: "/" },
