@@ -2,11 +2,28 @@ import React, { FC } from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import { Link } from './Link'
-import { Display, Divider, Text, Box, theme } from '@commitd/components'
+import {
+  styled,
+  Display,
+  Divider,
+  Text,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  Box,
+  theme
+} from '@commitd/components'
 
 interface MardownProps {
   children: any
 }
+
+const StripedTable = styled(Table)({
+  '& tr:nth-child(even)': {
+    backgroundColor: theme.palettes.neutral[100]
+  }
+})
 
 export const Markdown: FC = (props: MardownProps) => (
   <MDXProvider
@@ -34,6 +51,15 @@ export const Markdown: FC = (props: MardownProps) => (
         >
           <Text {...props} />
         </Box>
+      ),
+      table: props => <StripedTable {...props} />,
+      thead: props => <TableHead {...props} />,
+      tr: props => <TableRow {...props} />,
+      td: ({ align, ...props }) => (
+        <TableCell align={align ? align : 'left'} {...props} />
+      ),
+      th: ({ align, ...props }) => (
+        <TableCell align={align ? align : 'left'} {...props} />
       )
     }}
   >
