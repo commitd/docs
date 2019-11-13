@@ -7,7 +7,9 @@ metaDescription: "This is an example of markdown docs"
 
 # (H1) Example Markdown
 
-Full markdown is supported. Some examples are below.
+> Full markdown is supported.
+
+Some examples are below.
 
 ## (H2) Code
 
