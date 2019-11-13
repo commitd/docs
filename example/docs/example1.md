@@ -21,6 +21,10 @@ import React from "react";
 
 [Internal](/) and [external](http://committed.software) links are rendered with highlighting.
 
+In page links to headings use slugs e.g. `#h3-links` for this section [(H3) Links](#h3-links).
+
+Other page headings require the page prefix, [Instructions#Links](/instructions#links)
+
 #### (H4) Emojis
 
 :tada: [emojis](https://www.webfx.com/tools/emoji-cheat-sheet/) are supported using their :shortcodes:

@@ -11,12 +11,12 @@ interface MardownProps {
 export const Markdown: FC = (props: MardownProps) => (
   <MDXProvider
     components={{
-      h1: props => <Display.d1>{props.children}</Display.d1>,
-      h2: props => <Display.d2>{props.children}</Display.d2>,
-      h3: props => <Display.d3>{props.children}</Display.d3>,
-      h4: props => <Display.d4>{props.children}</Display.d4>,
-      h5: props => <Display.d4>{props.children}</Display.d4>,
-      h6: props => <Display.d4>{props.children}</Display.d4>,
+      h1: props => <Display.d1 {...props} />,
+      h2: props => <Display.d2 {...props} />,
+      h3: props => <Display.d3 {...props} />,
+      h4: props => <Display.d4 {...props} />,
+      h5: props => <Display.d4 {...props} variant="h5" />,
+      h6: props => <Display.d4 {...props} variant="h6" />,
       thematicBreak: () => <Divider />,
       hr: () => <Divider />,
       p: ({ children }) => <Text component="p">{children}</Text>,

@@ -41,8 +41,14 @@ export const Link: React.FC<LinkProps> = ({ href, ...props }: LinkProps) => {
     return <Styled href={href} target="_blank" {...props} />
   }
   if (props.className && props.className.includes('gatsby-resp-image-link')) {
-    console.log('test')
     return <Cleared href={href} target="_blank" {...props} />
+  }
+  if (props.className && props.className.includes('autolink')) {
+    // Do not show the generated header links
+    return null
+  }
+  if (href.startsWith('#')) {
+    return <Styled href={href} {...props} />
   }
   return <Styled onClick={() => navigate(href)} {...props} />
 }

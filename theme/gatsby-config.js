@@ -52,6 +52,13 @@ module.exports = ({
               // }
             }
           },
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              icon: '',
+              className: `autolink`
+            }
+          },
           `gatsby-remark-prismjs`,
           {
             resolve: `gatsby-remark-images`,
