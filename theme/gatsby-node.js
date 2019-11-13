@@ -78,6 +78,7 @@ exports.createPages = async ({ actions, graphql, reporter }, options) => {
               edges {
                 node {
                   id
+                  slug
                 }
               }
             }
@@ -92,7 +93,7 @@ exports.createPages = async ({ actions, graphql, reporter }, options) => {
         // Create docs pages.
         result.data.allDocs.edges.forEach(({ node }) => {
           createPage({
-            path: node.slug ? node.slug : pathPrefix,
+            path: node.slug,
             component: path.resolve(`${__dirname}/src/layout/docs.tsx`),
             context: {
               id: node.id
