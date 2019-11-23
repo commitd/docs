@@ -824,17 +824,16 @@
   resolved "https://registry.yarnpkg.com/@braintree/sanitize-url/-/sanitize-url-3.1.0.tgz#8ff71d51053cd5ee4981e5a501d80a536244f7fd"
   integrity sha512-GcIY79elgB+azP74j8vqkiXz8xLFfIzbQJdlwOPisgbKT00tviJQuEghOXSMVxJ00HoYJbGswr4kcllUc4xCcg==
 
-"@commitd/components@^0.0.19":
-  version "0.0.19"
-  resolved "https://npm.pkg.github.com/download/@commitd/components/0.0.19/fa533286405acfc778be47ecc3edae1a9f5efb50e6f405ef9aebe5f139f05f2e#0c5a3bf6b05addc9f3f3b67d96eef5aa72742296"
-  integrity sha512-6laR0AqRbGH31McRuARwk98XANBLlEW8HWMRs+EzXahkPpR5rrsUx1wHk9icXD106Y8YJEY9vIQ5exCNt4PmtQ==
+"@commitd/components@0.0.22":
+  version "0.0.22"
+  resolved "https://npm.pkg.github.com/download/@commitd/components/0.0.22/c10036311c83daf59ebfc6a237099360fe5205a493890eb812add667adc31769#"
+  integrity sha512-kPMsRTEpWi9Xf9/NZ0vUkWPyMxsyxeRklAgr06aFNfVNsOlhV9cHM8B45IvGlo93Frvjtzzcp7TU4JdrBZuzPQ==
   dependencies:
     clsx "^1.0.4"
 
-"@commitd/layout@^0.0.2":
-  version "0.0.2"
-  resolved "https://npm.pkg.github.com/download/@commitd/layout/0.0.2/5a5fad607311c550ca5967ce50b445b45f371fa37fbc74f8b8e87a7d5238bd9b#6ee59f57f712e1d609eb9b4ed953f0e385cec89e"
-  integrity sha512-Qt5oFhaTFlo5liTsJtZSAnfxIihBtWAefFG75rw9QNZIzASBNJNPa7EbHLORCsrdLhcU/+5Dflw58nf89eZz7A==
+"@commitd/layout@0.0.3":
+  version "0.0.3"
+  resolved "https://npm.pkg.github.com/download/@commitd/layout/0.0.3/ffc7f95582b221a01ceafeb6c9d0727c70b64e0449cca2f987dc2b525d93e64e#"
 
 "@emotion/hash@^0.7.1":
   version "0.7.3"
@@ -13220,6 +13219,11 @@ typeface-dosis@^0.0.72:
   version "0.0.72"
   resolved "https://registry.yarnpkg.com/typeface-dosis/-/typeface-dosis-0.0.72.tgz#fac9495f7b98b20ed734702294e6f58daecfa9e5"
   integrity sha512-EC9TLuX+27in9/OMMUF27L/czJQRuQXtLVGw+FOJ2x+IITvvEJLviylARV6D4YcqMDQv85wVCgzgQ5tMdNe11Q==
+
+typeface-lato@^0.0.75:
+  version "0.0.75"
+  resolved "https://registry.yarnpkg.com/typeface-lato/-/typeface-lato-0.0.75.tgz#8aa11c5611dc38416837c089b265a2abd1f7dd31"
+  integrity sha512-iA5uJD4PSTyIE4BDiSOexQeXkDkiJuX4Hu3wh3saJ06EB2TvJayab1Lbbmqq2je/LQv7KCQZHZmC0k4hedd8sw==
 
 ua-parser-js@^0.7.18:
   version "0.7.20"
