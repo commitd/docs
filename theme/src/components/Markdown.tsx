@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import { Link } from './Link'
-import { mdx } from '@commitd/components'
+import { mdx, Text } from '@commitd/components'
 
 interface MardownProps {
   children: any
@@ -13,6 +13,11 @@ const components = Object.assign(mdx.components, {
     <Link href={href} {...props}>
       {children}
     </Link>
+  ),
+  li: props => (
+    <li>
+      <Text {...props} />
+    </li>
   )
 })
 
