@@ -1,5 +1,6 @@
 import React from 'react'
 import 'typeface-dosis'
+import 'typeface-lato'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { Sidebar } from './Sidebar'
@@ -49,8 +50,15 @@ export const Layout = ({ children, location, title, ...props }) => {
   return (
     <ThemeProvider
       fonts={{
-        display:
-          'Dosis, "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif'
+        display: {
+          fontFamily:
+            'Dosis, "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif',
+          fontWeight: 700
+        },
+        text: {
+          fontFamily:
+            'Lato, -apple-system, BlinkMacSystemFont, "San Francisco", Roboto,  "Segoe UI", "Helvetica Neue"'
+        }
       }}
     >
       <SEO title={title} {...props} />
