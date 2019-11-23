@@ -45,7 +45,7 @@ export const Header = () => {
                 <Logo size={24} />
               )}
             </Box>
-            <Heading.h1>{title}</Heading.h1>
+            <Heading.h1 style={{ fontSize: '1.5rem' }}>{title}</Heading.h1>
           </Flex>
         </ClearLink>
       </Flex>
