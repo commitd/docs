@@ -10,7 +10,7 @@
     "develop": "yarn workspace example develop",
     "build": "yarn workspace example build",
     "serve": "yarn workspace example serve",
-    "deploy": "yarn workspace @commitd/gatsby-theme-docs publish && yarn workspace example deploy"
+    "deploy": "yarn workspaces run deploy"
   },
   "workspaces": [
     "theme",

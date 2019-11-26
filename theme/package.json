@@ -17,7 +17,8 @@
     "format-check": "prettier --check '**/{**/*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "start": "npm run develop"
+    "start": "npm run develop",
+    "deploy": "npm publish  --access public"
   },
   "prettier": {
     "semi": false,
