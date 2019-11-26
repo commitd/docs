@@ -1,6 +1,6 @@
 {
   "name": "@commitd/gatsby-theme-docs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "author": "Committed <opensource@committed.io>",
   "license": "MIT",
