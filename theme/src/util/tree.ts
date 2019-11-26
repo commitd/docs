@@ -1,4 +1,5 @@
 import { Item, Node, Info, Sidebar, Doc } from '../types'
+import startCase from 'lodash.startcase'
 
 export interface Edge {
   node: Doc
@@ -16,7 +17,7 @@ const calculateTree = (edges: Edge[]) =>
             tmp.items = []
           }
         } else {
-          tmp = { id: part, label: part, items: [] }
+          tmp = { id: part, label: startCase(part), items: [] }
           prevItems.push(tmp)
         }
         prevItems = tmp.items
