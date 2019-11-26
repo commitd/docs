@@ -7,9 +7,8 @@ steps:
   - name: npm_auth
     image: robertstettner/drone-npm-auth
     settings:
-      registry: npm.pkg.github.com
       token:
-        from_secret: github_token
+        from_secret: npm_token
 
   - name: build
     image: committed/ci:1.2.0
