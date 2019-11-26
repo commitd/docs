@@ -78,9 +78,9 @@ export const TreeNode = ({
       {hasChildren ? (
         <Collapse in={!isCollapsed} timeout="auto" unmountOnExit>
           <List dense disablePadding>
-            {items.map(item => (
+            {items.map((item, index) => (
               <TreeNode
-                key={item.label}
+                key={`${item.label}-${index}`}
                 isActive={isActive}
                 navigate={navigate}
                 setCollapsed={setCollapsed}

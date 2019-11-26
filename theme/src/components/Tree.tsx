@@ -32,9 +32,9 @@ export const Tree = ({ prefix, location, treeData }: TreeProps) => {
   }
   return (
     <List dense>
-      {treeData.items.map(item => (
+      {treeData.items.map((item, index) => (
         <TreeNode
-          key={`${item.label}-${item.info && item.info.url}`}
+          key={`${item.label}-${(item.info && item.info.url) || index}`}
           navigate={navigateTo}
           isActive={isActive}
           level={0}
