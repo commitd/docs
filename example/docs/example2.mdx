@@ -6,18 +6,7 @@ metaDescription: "This is the meta description"
 ---
 
 import React from "react"
-import {
-  Loader,
-  Card,
-  Box,
-  CardContent,
-  Checkbox,
-  FormGroup,
-  FormControl,
-  FormLabel,
-  FormControlLabel,
-  Collapse,
-} from "@commitd/components"
+
 
 # Example MDX
 
@@ -27,7 +16,7 @@ You can add JSX directly:
 
 Elements can use state:
 
-<Card>
+<Card my={3}>
   <CardContent>
   {React.createElement(() =>  {
     const [open, setOpen] = React.useState(false)
@@ -54,4 +43,4 @@ Elements can use state:
   </CardContent>
 </Card>
 
-[`@commitd/components`](https://committed.software/components) Are available to use.
+[`@commitd/components`](https://committed.software/components) are available to use without imports.
