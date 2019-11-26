@@ -8,10 +8,10 @@ export interface Edge {
 const calculateTree = (edges: Edge[]) =>
   edges.reduce(
     (accu, { node: { id, slug, title, order } }) => {
-      const parts = slug.split('/')
+      const parts = slug.replace(/\/index$/, '').split('/')
       let { items: prevItems } = accu
       for (const part of parts.slice(1, -1)) {
-        let tmp = prevItems.find(({ label }) => label == part)
+        let tmp = prevItems.find(({ label }) => label == startCase(part))
         if (tmp) {
           if (!tmp.items) {
             tmp.items = []
@@ -23,8 +23,13 @@ const calculateTree = (edges: Edge[]) =>
         prevItems = tmp.items
       }
       const existingItem = prevItems.find(
-        ({ label }) => label === parts[parts.length - 1]
+        ({ label }) => label === startCase(parts[parts.length - 1])
       )
+      if (slug.endsWith('/index')) {
+        if (title === 'Index') {
+          title = startCase(parts[parts.length - 1])
+        }
+      }
       const info = { url: slug, order: order || title, title }
       if (existingItem) {
         existingItem.id = id
@@ -32,7 +37,7 @@ const calculateTree = (edges: Edge[]) =>
       } else {
         prevItems.push({
           id,
-          label: parts[parts.length - 1],
+          label: startCase(parts[parts.length - 1]),
           items: [],
           info
         })
