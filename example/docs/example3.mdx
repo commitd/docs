@@ -127,7 +127,29 @@ stateDiagram
     Crash --> [*]
 ```
 
-## TO FIX
+## Testing edge cases
+
+### Entity in class
+
+    ```mermaid
+    classDiagram
+      class Example {
+        <<entity>>
+        String variable
+        int length()
+      }
+    ```
+
+gives
+
+```mermaid
+classDiagram
+  class Example {
+    <<entity>>
+    String variable
+    int length()
+  }
+```
 
 ### state with fork
 
@@ -144,6 +166,8 @@ stateDiagram
         join_state --> State4
         State4 --> [*]
     ```
+
+gives
 
 ```mermaid
  stateDiagram

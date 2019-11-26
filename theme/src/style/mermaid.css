@@ -1,0 +1,584 @@
+:root {
+  --mermaid-font-family: 'trebuchet ms', verdana, arial;
+}
+
+.node rect,
+.node circle,
+.node ellipse,
+.node polygon {
+  fill: #3e3e3e;
+  stroke: #2e2e2e;
+  stroke-width: 1px;
+}
+
+.node .label {
+  text-align: center;
+}
+
+.node.clickable {
+  cursor: pointer;
+}
+
+.arrowheadPath {
+  fill: #2e2e2e;
+}
+
+.edgePath .path {
+  stroke: #2e2e2e;
+  stroke-width: 1.5px;
+}
+
+.cluster rect {
+  fill: #5ed0fa;
+  stroke: #2bb0ed;
+  stroke-width: 1px;
+}
+
+.cluster text {
+  fill: #2e2e2e;
+}
+
+div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+
+  font-family: var(--mermaid-font-family);
+  font-size: 12px;
+  background: #5ed0fa;
+  border: 1px solid #2bb0ed;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.actor {
+  stroke: #2e2e2e;
+  fill: #3e3e3e;
+}
+
+text.actor {
+  fill: #ffbb00;
+  stroke: none;
+}
+
+.actor-line {
+  stroke: #a2a2a2;
+}
+
+.messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #3e3e3e;
+}
+
+.messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #3e3e3e;
+}
+
+#arrowhead {
+  fill: #3e3e3e;
+}
+
+.sequenceNumber {
+  fill: white;
+}
+
+#sequencenumber {
+  fill: #3e3e3e;
+}
+
+#crosshead path {
+  fill: #3e3e3e !important;
+  stroke: #3e3e3e !important;
+}
+
+.messageText {
+  fill: #3e3e3e;
+  stroke: none;
+}
+
+.labelBox {
+  stroke: #2e2e2e;
+  fill: #3e3e3e;
+}
+
+.labelText {
+  fill: #ffbb00;
+  stroke: none;
+}
+
+.loopText {
+  fill: #3e3e3e;
+  stroke: none;
+}
+
+.loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  stroke: #2e2e2e;
+}
+
+.note {
+  stroke: #2bb0ed;
+  fill: #5ed0fa;
+}
+
+.noteText {
+  fill: black;
+  stroke: none;
+
+  font-family: var(--mermaid-font-family);
+  font-size: 14px;
+}
+
+.activation0 {
+  fill: #e9e9e9;
+  stroke: #a2a2a2;
+}
+
+.activation1 {
+  fill: #e9e9e9;
+  stroke: #a2a2a2;
+}
+
+.activation2 {
+  fill: #e9e9e9;
+  stroke: #a2a2a2;
+}
+
+/** Section styling */
+.mermaid-main-font {
+  font-family: var(--mermaid-font-family);
+}
+
+.section {
+  stroke: none;
+  opacity: 0.2;
+}
+
+.section0 {
+  fill: #e9e9e9;
+}
+
+.section2 {
+  fill: #a2a2a2;
+}
+
+.section1,
+.section3 {
+  fill: white;
+  opacity: 0.2;
+}
+
+.sectionTitle0 {
+  fill: #2e2e2e;
+}
+
+.sectionTitle1 {
+  fill: #2e2e2e;
+}
+
+.sectionTitle2 {
+  fill: #2e2e2e;
+}
+
+.sectionTitle3 {
+  fill: #2e2e2e;
+}
+
+.sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px;
+
+  font-family: var(--mermaid-font-family);
+}
+
+/* Grid and axis */
+.grid .tick {
+  stroke: lightgrey;
+  opacity: 0.3;
+  shape-rendering: crispEdges;
+}
+.grid .tick text {
+  font-family: var(--mermaid-font-family);
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+/* Today line */
+.today {
+  fill: none;
+  stroke: #ba2525;
+  stroke-width: 2px;
+}
+
+/* Task styling */
+/* Default task */
+.task {
+  stroke-width: 2;
+}
+
+.taskText {
+  text-anchor: middle;
+
+  font-family: var(--mermaid-font-family);
+}
+
+.taskText:not([font-size]) {
+  font-size: 11px;
+}
+
+.taskTextOutsideRight {
+  fill: #2e2e2e;
+  text-anchor: start;
+  font-size: 11px;
+
+  font-family: var(--mermaid-font-family);
+}
+
+.taskTextOutsideLeft {
+  fill: #2e2e2e;
+  text-anchor: end;
+  font-size: 11px;
+}
+
+/* Special case clickable */
+.task.clickable {
+  cursor: pointer;
+}
+
+.taskText.clickable {
+  cursor: pointer;
+  fill: #2e2e2e !important;
+  font-weight: bold;
+}
+
+.taskTextOutsideLeft.clickable {
+  cursor: pointer;
+  fill: #2e2e2e !important;
+  font-weight: bold;
+}
+
+.taskTextOutsideRight.clickable {
+  cursor: pointer;
+  fill: #2e2e2e !important;
+  font-weight: bold;
+}
+
+/* Specific task settings for the sections*/
+.taskText0,
+.taskText1,
+.taskText2,
+.taskText3 {
+  fill: #3e3e3e;
+}
+
+.task0,
+.task1,
+.task2,
+.task3 {
+  fill: #ffdd80;
+  stroke: #ffbb00;
+}
+
+.taskTextOutside0,
+.taskTextOutside2 {
+  fill: #2e2e2e;
+}
+
+.taskTextOutside1,
+.taskTextOutside3 {
+  fill: #2e2e2e;
+}
+
+/* Active task */
+.active0,
+.active1,
+.active2,
+.active3 {
+  fill: #ffd3ba;
+  stroke: #ef8e58;
+}
+
+.activeText0,
+.activeText1,
+.activeText2,
+.activeText3 {
+  fill: #2e2e2e !important;
+}
+
+/* Completed task */
+.done0,
+.done1,
+.done2,
+.done3 {
+  stroke: grey;
+  fill: lightgrey;
+  stroke-width: 2;
+}
+
+.doneText0,
+.doneText1,
+.doneText2,
+.doneText3 {
+  fill: #2e2e2e !important;
+}
+
+/* Tasks on the critical line */
+.crit0,
+.crit1,
+.crit2,
+.crit3 {
+  stroke: #911111;
+  fill: #ba2525;
+  stroke-width: 2;
+}
+
+.activeCrit0,
+.activeCrit1,
+.activeCrit2,
+.activeCrit3 {
+  stroke: #911111;
+  fill: #ffd3ba;
+  stroke-width: 2;
+}
+
+.doneCrit0,
+.doneCrit1,
+.doneCrit2,
+.doneCrit3 {
+  stroke: #911111;
+  fill: lightgrey;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges;
+}
+
+.milestone {
+  transform: rotate(45deg) scale(0.8, 0.8);
+}
+
+.milestoneText {
+  font-style: italic;
+}
+
+.doneCritText0,
+.doneCritText1,
+.doneCritText2,
+.doneCritText3 {
+  fill: #2e2e2e !important;
+}
+
+.activeCritText0,
+.activeCritText1,
+.activeCritText2,
+.activeCritText3 {
+  fill: #2e2e2e !important;
+}
+
+.titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: #2e2e2e;
+
+  font-family: var(--mermaid-font-family);
+}
+
+g.classGroup text {
+  fill: #ffbb00;
+  stroke: none;
+
+  font-family: var(--mermaid-font-family);
+  font-size: 10px;
+}
+g.classGroup text .title {
+  font-weight: bolder;
+}
+
+g.classGroup rect {
+  stroke: #a2a2a2;
+  fill: #3e3e3e;
+}
+
+g.classGroup line {
+  stroke: #a2a2a2;
+  stroke-width: 1;
+}
+
+.classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #a2a2a2;
+  opacity: 0.5;
+}
+
+.classLabel .label {
+  fill: #2e2e2e;
+  font-size: 10px;
+}
+
+.relation {
+  stroke: #2e2e2e;
+  stroke-width: 1;
+  fill: none;
+}
+
+#compositionStart {
+  fill: #2e2e2e;
+  stroke: #2e2e2e;
+  stroke-width: 1;
+}
+
+#compositionEnd {
+  fill: #2e2e2e;
+  stroke: #2e2e2e;
+  stroke-width: 1;
+}
+
+#aggregationStart {
+  fill: #3e3e3e;
+  stroke: #2e2e2e;
+  stroke-width: 1;
+}
+
+#aggregationEnd {
+  fill: #3e3e3e;
+  stroke: #2e2e2e;
+  stroke-width: 1;
+}
+
+#dependencyStart {
+  fill: #2e2e2e;
+  stroke: #2e2e2e;
+  stroke-width: 1;
+}
+
+#dependencyEnd {
+  fill: #2e2e2e;
+  stroke: #2e2e2e;
+  stroke-width: 1;
+}
+
+#extensionStart {
+  fill: #2e2e2e;
+  stroke: #2e2e2e;
+  stroke-width: 1;
+}
+
+#extensionEnd {
+  fill: #2e2e2e;
+  stroke: #2e2e2e;
+  stroke-width: 1;
+}
+
+.commit-id,
+.commit-msg,
+.branch-label {
+  fill: lightgrey;
+  color: lightgrey;
+
+  font-family: var(--mermaid-font-family);
+}
+
+.pieTitleText {
+  text-anchor: middle;
+  font-size: 25px;
+  fill: #2e2e2e;
+  font-family: var(--mermaid-font-family);
+}
+
+.slice {
+  font-family: var(--mermaid-font-family);
+}
+
+g.stateGroup text {
+  fill: #2e2e2e;
+  stroke: none;
+  font-size: 10px;
+  font-family: var(--mermaid-font-family);
+}
+
+g.stateGroup text {
+  fill: #2e2e2e;
+  stroke: none;
+  font-size: 10px;
+}
+
+g.stateGroup .state-title {
+  font-weight: bolder;
+  fill: #ffbb00;
+}
+
+g.stateGroup rect {
+  fill: #3e3e3e;
+  stroke: #2e2e2e;
+}
+
+g.stateGroup line {
+  stroke: #2e2e2e;
+  stroke-width: 1;
+}
+
+.transition {
+  stroke: #2e2e2e;
+  stroke-width: 1;
+  fill: none;
+}
+
+.stateGroup .composit {
+  fill: white;
+  border-bottom: 1px;
+}
+
+.state-note {
+  stroke: #2bb0ed;
+  fill: #5ed0fa;
+}
+.state-note text {
+  fill: black;
+  stroke: none;
+  font-size: 10px;
+}
+
+.stateLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #3e3e3e;
+  opacity: 0.5;
+}
+
+.stateLabel text {
+  fill: #ffbb00;
+  font-size: 10px;
+  font-weight: bold;
+  font-family: var(--mermaid-font-family);
+}
+
+.label {
+  font-family: var(--mermaid-font-family);
+  color: #ffbb00;
+}
+
+.label text {
+  fill: #ffbb00;
+}
+
+.edgeLabel {
+  background-color: #e9e9e9;
+  text-align: center;
+  color: #2e2e2e;
+}
+
+.critText0,
+.critText1,
+.critText2,
+.critText3 {
+  fill: #ffeeee;
+}

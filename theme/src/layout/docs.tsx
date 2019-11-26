@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Layout } from '../components/Layout'
 import { Markdown } from '../components/Markdown'
+import '../style/mermaid.css'
 
 export default ({ location, data }) => {
   const {

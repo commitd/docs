@@ -1,3 +1,5 @@
+var fs = require('fs')
+
 module.exports = ({
   docsPath = 'docs',
   pathPrefix = '/',
@@ -44,14 +46,14 @@ module.exports = ({
         remarkPlugins: [require('remark-slug'), require('remark-emoji')],
         gatsbyRemarkPlugins: [
           {
+            resolve: require.resolve(`./plugins/fix-mermaid-pre`)
+          },
+          {
             resolve: 'gatsby-remark-mermaid',
             options: {
-              // TODO: custom theme
               mermaidOptions: {
                 arrowMarkerAbsolute: false,
-                fontFamily:
-                  'Lato, -apple-system, BlinkMacSystemFont, "San Francisco", Roboto,  "Segoe UI", "Helvetica Neue"'
-                //   themeCSS: '.node rect { fill: cornflowerblue; }'
+                fontFamily: "'trebuchet ms', verdana, arial"
               }
             }
           },
@@ -77,7 +79,7 @@ module.exports = ({
             }
           },
           {
-            resolve: require.resolve(`./plugins/fix-mermaid`)
+            resolve: require.resolve(`./plugins/fix-mermaid-post`)
           }
         ]
       }
