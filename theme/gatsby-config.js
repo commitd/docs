@@ -47,9 +47,12 @@ module.exports = ({
             resolve: 'gatsby-remark-mermaid',
             options: {
               // TODO: custom theme
-              // mermaidOptions: {
-              //   themeCSS: '.node rect { fill: cornflowerblue; }'
-              // }
+              mermaidOptions: {
+                arrowMarkerAbsolute: false,
+                fontFamily:
+                  'Lato, -apple-system, BlinkMacSystemFont, "San Francisco", Roboto,  "Segoe UI", "Helvetica Neue"'
+                //   themeCSS: '.node rect { fill: cornflowerblue; }'
+              }
             }
           },
           {
@@ -72,6 +75,9 @@ module.exports = ({
             options: {
               ignoreFileExtensions: [`png`, `jpg`, `jpeg`]
             }
+          },
+          {
+            resolve: require.resolve(`./plugins/fix-mermaid`)
           }
         ]
       }
