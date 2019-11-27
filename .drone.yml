@@ -7,6 +7,7 @@ steps:
   - name: npm_auth
     image: robertstettner/drone-npm-auth
     settings:
+      path: ./theme/
       token:
         from_secret: npm_token
 
