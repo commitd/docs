@@ -14,7 +14,7 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `@commitd/gatsby-theme-docs`,
+      resolve: `@committed/gatsby-theme-docs`,
       options: {
         contentPath: "docs",
         pathPrefix: pathPrefix(NODE_ENV),
@@ -35,7 +35,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `@commitd/docs-theme`,
+        name: `@committed/docs-theme`,
         short_name: `docs`,
         start_url: `/`,
         background_color: `#3E3E3E`,

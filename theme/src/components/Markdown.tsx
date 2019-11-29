@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import { Link } from './Link'
-import { mdx } from '@commitd/components'
+import { mdx } from '@committed/components'
 
 interface MardownProps {
   children: any

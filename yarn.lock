@@ -824,17 +824,17 @@
   resolved "https://registry.yarnpkg.com/@braintree/sanitize-url/-/sanitize-url-3.1.0.tgz#8ff71d51053cd5ee4981e5a501d80a536244f7fd"
   integrity sha512-GcIY79elgB+azP74j8vqkiXz8xLFfIzbQJdlwOPisgbKT00tviJQuEghOXSMVxJ00HoYJbGswr4kcllUc4xCcg==
 
-"@commitd/components@^0.0.23":
-  version "0.0.23"
-  resolved "https://registry.yarnpkg.com/@commitd/components/-/components-0.0.23.tgz#89f785d59b77207a8e82f5bc4c9a492545ba3140"
-  integrity sha512-ZffCcWQyFpPPKGkkro4W22lCtaPD6Z9SE5/Vk77qQdNy3isExAHfoAwRBqzdd1aBy3JifFAK1Z5sgQ2r8DgjwA==
+"@committed/components@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@committed/components/-/components-1.0.0.tgz#3748b7f94d6c1b6db9cfea3df409e5ed782788f4"
+  integrity sha512-GNejpQ4Y2bNOZep1iUrMQQcnciE8Aw9CZo2pJdGvatKIns24VWsG0H4LMzdlUaAEK7lg6xLbVd5/fyyZ6ddh8w==
   dependencies:
     clsx "^1.0.4"
 
-"@commitd/layout@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@commitd/layout/-/layout-0.0.4.tgz#6ad85fae7b2e4fb6cbc8bb1fd7fd5183f9479473"
-  integrity sha512-QpFEr2m5mPu1f0YsRx28PLBNbj6F5xlaUFqiMV5OEnRXWD+oWitzko5uL9LE1PXosbEGwuKiY7j8s+bmQ9koEw==
+"@committed/layout@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@committed/layout/-/layout-1.0.0.tgz#10db46a6304719fc5a698be44666cd5e3e85d5f7"
+  integrity sha512-ivdReS0FByiEPOvCdfKQpEwZI2zuJzE61Dj/LoLcuLYHmGPGiUzKvGVPKZe4MbWpyGocfofkaKy+iwTRYwVuTQ==
 
 "@emotion/hash@^0.7.1":
   version "0.7.3"

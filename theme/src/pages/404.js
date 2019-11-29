@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout } from '../components/Layout'
-import { Display, Text, Box, Loader } from '@commitd/components'
+import { Display, Text, Box, Loader } from '@committed/components'
 
 const NotFoundPage = () => (
   <Layout title="404: Not found">

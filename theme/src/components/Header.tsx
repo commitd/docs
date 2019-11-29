@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { ClearLink } from './Link'
-import { Box, Flex, Logo, Button, Heading, Icons } from '@commitd/components'
+import { Box, Flex, Logo, Button, Heading, Icons } from '@committed/components'
 
 export const Header = () => {
   const {

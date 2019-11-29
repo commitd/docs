@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Node } from '../types'
 import TreeNode from './TreeNode'
 import { navigate } from 'gatsby'
-import { List } from '@commitd/components'
+import { List } from '@committed/components'
 
 export interface TreeProps {
   location?: any

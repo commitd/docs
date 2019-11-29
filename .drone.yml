@@ -64,7 +64,7 @@ steps:
       webhook:
         from_secret: slack_webhook
       template: >
-        :tada: New version ${DRONE_TAG} of `@commitd/docs` available http://committed.software/docs
+        :tada: New version ${DRONE_TAG} of `@committed/docs` available, http://committed.software/docs
     when:
       ref:
         - refs/tags/v*

@@ -147,7 +147,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam hendrerit mi p
 Paragraph:
 
 ```bash
-git add @commitd/gatsby-theme-docs
+git add @committed/gatsby-theme-docs
 ```
 
 <!-- -->
@@ -155,7 +155,7 @@ git add @commitd/gatsby-theme-docs
     Paragraph:
 
     ```bash
-    git add @commitd/gatsby-theme-docs
+    git add @committed/gatsby-theme-docs
     ```
 
 * * *
@@ -194,23 +194,25 @@ This is [an example][id] reference-style link.
 
     [id]: http://example.com "Optional Title"
 
-*single asterisks*
+This is *single asterisks* text
 
-_single underscores_
+This is _single underscores_ text
 
-**double asterisks**
+This is **double asterisks** text
 
-**double underscores**
+This is **double underscores** text
 
-~~double strike~~
+This is ~~double strike~~ text
 
-    *single asterisks*
+    This is *single asterisks* text
 
-    _single underscores_
+    This is _single underscores_ text
 
-    **double asterisks**
+    This is **double asterisks** text
 
-    __double underscores__
+    This is __double underscores__ text
+    
+    This is ~~double strike~~ text
 
 This paragraph has some `code` in it.
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Info } from '../types'
 import { navigate } from 'gatsby'
-import { Flex, Button, Divider, Icons } from '@commitd/components'
+import { Flex, Button, Divider, Icons } from '@committed/components'
 
 export interface PreviousNextProps {
   prefix: string

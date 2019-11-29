@@ -1,6 +1,6 @@
 import React from 'react'
 import { navigate } from 'gatsby'
-import { Link as RawLink, LinkProps } from '@commitd/components'
+import { Link as RawLink, LinkProps } from '@committed/components'
 
 const isExternal = (url: string) => url && url.startsWith('http')
 const isInPage = (url: string) => url && url.startsWith('#')

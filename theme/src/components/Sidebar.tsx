@@ -8,7 +8,7 @@ import {
   List,
   ListItem,
   ListItemText
-} from '@commitd/components'
+} from '@committed/components'
 
 export interface SidebarProps {
   prefix: string

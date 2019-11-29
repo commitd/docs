@@ -8,8 +8,8 @@ import { PreviousNext } from './PreviousNext'
 import { SEO, SEOProps } from './SEO'
 import { useStaticQuery, graphql } from 'gatsby'
 import { calculateTreeData, flattenTree } from '../util/tree'
-import { Root, Header as LayoutHeader, Nav, Content } from '@commitd/layout'
-import { ThemeProvider, CodeStyle, Container } from '@commitd/components'
+import { Root, Header as LayoutHeader, Nav, Content } from '@committed/layout'
+import { ThemeProvider, CodeStyle, Container, Box } from '@committed/components'
 
 export interface LayoutProps extends SEOProps {}
 
@@ -87,14 +87,16 @@ export const Layout = ({ children, location, title, ...props }) => {
         </Nav>
         <Content>
           <Container maxWidth="md">
-            <CodeStyle>
-              <main>{children}</main>
-            </CodeStyle>
-            <PreviousNext
-              prefix={prefix}
-              data={flattenedData}
-              location={location}
-            />
+            <Box py={3}>
+              <CodeStyle>
+                <main>{children}</main>
+              </CodeStyle>
+              <PreviousNext
+                prefix={prefix}
+                data={flattenedData}
+                location={location}
+              />
+            </Box>
           </Container>
         </Content>
         <Footer />

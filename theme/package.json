@@ -1,6 +1,6 @@
 {
-  "name": "@commitd/gatsby-theme-docs",
-  "version": "1.0.1",
+  "name": "@committed/gatsby-theme-docs",
+  "version": "1.0.0",
   "main": "index.js",
   "author": "Committed <opensource@committed.io>",
   "license": "MIT",
@@ -30,8 +30,8 @@
     "react-dom": "^16.11.0"
   },
   "dependencies": {
-    "@commitd/components": "^0.0.23",
-    "@commitd/layout": "^0.0.4",
+    "@committed/components": "^1.0.0",
+    "@committed/layout": "^1.0.0",
     "@material-ui/core": "^4.6.0",
     "@material-ui/icons": "^4.5.1",
     "@mdx-js/mdx": "^1.5.1",

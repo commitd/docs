@@ -36,7 +36,7 @@ Here's a [live demo](https://committed.software/docs)
 Get started by adding the dependencies:
 
 ```bash
-yarn add @commitd/gatsby-theme-docs gatsby react react-dom
+yarn add @committed/gatsby-theme-docs gatsby react react-dom
 ```
 
 and configure in `gatsby-config.js` with your site metadata e.g.
@@ -51,7 +51,7 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `@commitd/gatsby-theme-docs`,
+      resolve: `@committed/gatsby-theme-docs`,
       options: {}
     }
   ]

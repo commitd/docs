@@ -8,7 +8,7 @@ import {
   ListItem,
   ListItemText,
   Collapse
-} from '@commitd/components'
+} from '@committed/components'
 
 export interface TreeNodeProps extends Item {
   isActive: (key: string) => boolean
