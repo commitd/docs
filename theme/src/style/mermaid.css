@@ -2,6 +2,12 @@
   --mermaid-font-family: 'trebuchet ms', verdana, arial;
 }
 
+.mermaid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .node rect,
 .node circle,
 .node ellipse,
@@ -29,13 +35,19 @@
 }
 
 .cluster rect {
-  fill: #5ed0fa;
-  stroke: #2bb0ed;
+  fill: #e9e9e9;
+  stroke: #454545;
+  color: #454545;
   stroke-width: 1px;
 }
 
 .cluster text {
   fill: #2e2e2e;
+}
+
+.cluster > .label {
+  fill: #2e2e2e;
+  color: #2e2e2e;
 }
 
 div.mermaidTooltip {

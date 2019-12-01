@@ -183,6 +183,30 @@ gives
       State4 --> [*]
 ```
 
+### Flow with subgraph
+
+```mermaid
+graph TD
+  subgraph SG
+    UI(User Interface) --> |API|S(Serer)
+  end
+
+  S --> Service
+  S --> Persistence
+  S --> Messaging
+```
+
+    ```mermaid
+    graph TD
+    subgraph SG
+        UI(User Interface) --> |API|S(Serer)
+    end
+
+    S --> Service
+    S --> Persistence
+    S --> Messaging
+    ```
+
 ### Gant
 
 [Docs](https://mermaidjs.github.io/#/gantt)
