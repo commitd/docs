@@ -1,6 +1,7 @@
 import React from 'react'
 import { Info } from '../types'
 import { navigate } from 'gatsby'
+import { useHotkeys } from 'react-hotkeys-hook'
 import { Flex, Button, Divider, Icons } from '@committed/components'
 
 export interface PreviousNextProps {
@@ -25,6 +26,9 @@ export const PreviousNext = ({ prefix, location, data }: PreviousNextProps) => {
   if (active >= 0 && active < data.length - 1) {
     next = data[active + 1]
   }
+  if (active == -1) {
+    next = data[0]
+  }
 
   let justifyContent = 'space-between'
   if (next && !previous) {
@@ -32,6 +36,16 @@ export const PreviousNext = ({ prefix, location, data }: PreviousNextProps) => {
   }
   if (!next && previous) {
     justifyContent = 'flex-start'
+  }
+
+  if (previous) {
+    useHotkeys('left', () => navigate(previous.url))
+    useHotkeys('shift+left', () => navigate(previous.url))
+  }
+
+  if (next) {
+    useHotkeys('right', () => navigate(next.url))
+    useHotkeys('shift+right', () => navigate(next.url))
   }
 
   return (

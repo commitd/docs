@@ -1,6 +1,7 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql, navigate } from 'gatsby'
 import { ClearLink } from './Link'
+import { useHotkeys } from 'react-hotkeys-hook'
 import { Box, Flex, Logo, Button, Heading, Icons } from '@committed/components'
 
 export const Header = () => {
@@ -33,6 +34,7 @@ export const Header = () => {
     `
   )
   const finalLogoLink = logo.link !== '' ? logo.link : '/'
+  useHotkeys('shift+home', () => navigate('/'))
   return (
     <>
       <Flex color="white" flexGrow={1}>

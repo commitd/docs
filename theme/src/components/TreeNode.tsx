@@ -1,5 +1,6 @@
 import React from 'react'
 import { Item, Info, Node } from '../types'
+import { firstUrl } from '../util/tree'
 import {
   useTheme,
   Theme,
@@ -18,18 +19,6 @@ export interface TreeNodeProps extends Item {
   level: number
   info?: Info
   id: string
-}
-
-const firstUrl = ({ items, info }: Node) => {
-  if (info) {
-    return info.url
-  } else {
-    if (items.length === 0) {
-      return '404'
-    } else {
-      return firstUrl(items[0])
-    }
-  }
 }
 
 export const TreeNode = ({

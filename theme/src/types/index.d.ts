@@ -17,6 +17,7 @@ export interface Page {
 
 export interface Node {
   items: Item[]
+  slug?: string
   info?: Info
 }
 

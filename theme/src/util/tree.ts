@@ -5,19 +5,33 @@ export interface Edge {
   node: Doc
 }
 
+export const firstUrl = ({ items, info }: Node) => {
+  if (info) {
+    return info.url
+  } else {
+    if (items.length === 0) {
+      return '404'
+    } else {
+      return firstUrl(items[0])
+    }
+  }
+}
+
 const calculateTree = (edges: Edge[]) =>
   edges.reduce(
     (accu, { node: { id, slug, title, order } }) => {
       const parts = slug.replace(/\/index$/, '').split('/')
       let { items: prevItems } = accu
+      let tmpSlug = ''
       for (const part of parts.slice(1, -1)) {
+        tmpSlug = `${tmpSlug}/${part}`
         let tmp = prevItems.find(({ label }) => label == startCase(part))
         if (tmp) {
           if (!tmp.items) {
             tmp.items = []
           }
         } else {
-          tmp = { id: part, label: startCase(part), items: [] }
+          tmp = { id: part, slug: tmpSlug, label: startCase(part), items: [] }
           prevItems.push(tmp)
         }
         prevItems = tmp.items
@@ -25,18 +39,22 @@ const calculateTree = (edges: Edge[]) =>
       const existingItem = prevItems.find(
         ({ label }) => label === startCase(parts[parts.length - 1])
       )
+      let url = slug
+      let fixedSlug = slug
       if (slug.endsWith('/index')) {
         if (title === 'Index') {
           title = startCase(parts[parts.length - 1])
         }
+        fixedSlug = slug.slice(0, -6)
       }
-      const info = { url: slug, order: order || title, title }
+      const info = { url: url, order: order || title, title }
       if (existingItem) {
         existingItem.id = id
         existingItem.info = info
       } else {
         prevItems.push({
           id,
+          slug: fixedSlug,
           label: startCase(parts[parts.length - 1]),
           items: [],
           info
