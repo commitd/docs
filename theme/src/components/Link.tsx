@@ -13,12 +13,17 @@ const LocalLink: React.FC<LinkProps> = ({
   ...props
 }: LinkProps) => (
   <LocationContext.Consumer>
-    {({ pathname }) => {
+    {({ prefix, pathname }) => {
       let to = href
+      let base = pathname
+      // account for pathname including prefix
+      if (prefix !== '/' && pathname.startsWith(prefix)) {
+        base = pathname.substring(prefix.length)
+      }
       if (isInPage(href)) {
-        to = pathname + href
+        to = base + href
       } else if (isRelative(href)) {
-        to = pathname.replace(/\/[^\/]*$/, `/${href}`)
+        to = base.replace(/\/[^\/]*$/, `/${href}`)
       }
       return (
         <RawLink variant={variant} onClick={() => navigate(to)} {...props} />

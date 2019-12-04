@@ -14,6 +14,7 @@ import { ThemeProvider, CodeStyle, Container, Box } from '@committed/components'
 export interface LayoutProps extends SEOProps {}
 export type LocationContextProps = {
   pathname: string
+  prefix: string
 }
 export const LocationContext = React.createContext<
   Partial<LocationContextProps>
@@ -54,7 +55,7 @@ export const Layout = ({ children, location = {}, title, ...props }) => {
   const treeData = calculateTreeData(sidebar, data.allDocs.edges)
   const flattenedData = flattenTree(treeData)
   return (
-    <LocationContext.Provider value={location}>
+    <LocationContext.Provider value={{ prefix, ...location }}>
       <ThemeProvider
         fonts={{
           display: {
