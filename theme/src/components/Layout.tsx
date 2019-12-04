@@ -12,6 +12,12 @@ import { Root, Header as LayoutHeader, Nav, Content } from '@committed/layout'
 import { ThemeProvider, CodeStyle, Container, Box } from '@committed/components'
 
 export interface LayoutProps extends SEOProps {}
+export type LocationContextProps = {
+  pathname: string
+}
+export const LocationContext = React.createContext<
+  Partial<LocationContextProps>
+>({})
 
 export const Layout = ({ children, location, title, ...props }) => {
   const data = useStaticQuery(graphql`
@@ -48,59 +54,61 @@ export const Layout = ({ children, location, title, ...props }) => {
   const treeData = calculateTreeData(sidebar, data.allDocs.edges)
   const flattenedData = flattenTree(treeData)
   return (
-    <ThemeProvider
-      fonts={{
-        display: {
-          fontFamily:
-            'Dosis, "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif',
-          fontWeight: 700
-        },
-        text: {
-          fontFamily:
-            'Lato, -apple-system, BlinkMacSystemFont, "San Francisco", Roboto,  "Segoe UI", "Helvetica Neue"'
-        }
-      }}
-    >
-      <SEO title={title} {...props} />
-      <Root
-        style={{ minHeight: '100vh' }}
-        config={{
-          collapsible: false
+    <LocationContext.Provider value={location}>
+      <ThemeProvider
+        fonts={{
+          display: {
+            fontFamily:
+              'Dosis, "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif',
+            fontWeight: 700
+          },
+          text: {
+            fontFamily:
+              'Lato, -apple-system, BlinkMacSystemFont, "San Francisco", Roboto,  "Segoe UI", "Helvetica Neue"'
+          }
         }}
       >
-        <LayoutHeader>
-          <Header />
-        </LayoutHeader>
-        <Nav
-          header={
-            // you can provide fixed header inside nav
-            // change null to some react element
-            ctx => null
-          }
+        <SEO title={title} {...props} />
+        <Root
+          style={{ minHeight: '100vh' }}
+          config={{
+            collapsible: false
+          }}
         >
-          <Sidebar
-            sidebar={sidebar}
-            prefix={prefix}
-            treeData={treeData}
-            location={location}
-          />
-        </Nav>
-        <Content>
-          <Container maxWidth="md">
-            <Box py={3}>
-              <CodeStyle>
-                <main>{children}</main>
-              </CodeStyle>
-              <PreviousNext
-                prefix={prefix}
-                data={flattenedData}
-                location={location}
-              />
-            </Box>
-          </Container>
-        </Content>
-        <Footer />
-      </Root>
-    </ThemeProvider>
+          <LayoutHeader>
+            <Header />
+          </LayoutHeader>
+          <Nav
+            header={
+              // you can provide fixed header inside nav
+              // change null to some react element
+              ctx => null
+            }
+          >
+            <Sidebar
+              sidebar={sidebar}
+              prefix={prefix}
+              treeData={treeData}
+              location={location}
+            />
+          </Nav>
+          <Content>
+            <Container maxWidth="md">
+              <Box py={3}>
+                <CodeStyle>
+                  <main>{children}</main>
+                </CodeStyle>
+                <PreviousNext
+                  prefix={prefix}
+                  data={flattenedData}
+                  location={location}
+                />
+              </Box>
+            </Container>
+          </Content>
+          <Footer />
+        </Root>
+      </ThemeProvider>
+    </LocationContext.Provider>
   )
 }

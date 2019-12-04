@@ -13,7 +13,7 @@ import {
 export interface SidebarProps {
   prefix: string
   treeData: Node
-  location?: string
+  location?: any
   sidebar: {
     links: { text: string; link: string }[]
   }

@@ -1,9 +1,32 @@
 import React from 'react'
 import { navigate } from 'gatsby'
+import { LocationContext } from './Layout'
 import { Link as RawLink, LinkProps } from '@committed/components'
 
 const isExternal = (url: string) => url && url.startsWith('http')
 const isInPage = (url: string) => url && url.startsWith('#')
+const isRelative = (url: string) => url && !url.startsWith('/')
+
+const LocalLink: React.FC<LinkProps> = ({
+  href,
+  variant,
+  ...props
+}: LinkProps) => (
+  <LocationContext.Consumer>
+    {({ pathname }) => {
+      let to = href
+      if (isInPage(href)) {
+        to = pathname + href
+      } else if (isRelative(href)) {
+        to = pathname.replace(/\/[^\/]*$/, `/${href}`)
+      }
+      console.log(`to ${to}`)
+      return (
+        <RawLink variant={variant} onClick={() => navigate(to)} {...props} />
+      )
+    }}
+  </LocationContext.Consumer>
+)
 
 export const Link: React.FC<LinkProps> = ({ href, ...props }: LinkProps) => {
   if (isExternal(href)) {
@@ -16,11 +39,9 @@ export const Link: React.FC<LinkProps> = ({ href, ...props }: LinkProps) => {
     // Do not show the generated header links
     return null
   }
-  if (isInPage(href)) {
-    return <RawLink variant="styled" href={href} {...props} />
-  }
-  return <RawLink variant="styled" onClick={() => navigate(href)} {...props} />
+  return <LocalLink {...props} variant="styled" href={href} />
 }
+//Link.contextType = LocationContext
 
 export const ClearLink: React.FC<LinkProps> = ({
   href,
@@ -29,6 +50,6 @@ export const ClearLink: React.FC<LinkProps> = ({
   if (isExternal(href)) {
     return <RawLink variant="clear" href={href} target="_blank" {...props} />
   } else {
-    return <RawLink variant="clear" onClick={() => navigate(href)} {...props} />
+    return <LocalLink {...props} variant="clear" href={href} />
   }
 }

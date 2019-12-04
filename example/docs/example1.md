@@ -27,6 +27,8 @@ In page links to headings use slugs e.g. `#h3-links` for this section [(H3) Link
 
 Other page headings require the page prefix, [Instructions#Links](/instructions#links)
 
+If in a folder you can use relative links so to link from page `example/1.md` to `example/2.md` use `[link](2)`.
+
 #### (H4) Emojis
 
 :tada: [emojis](https://www.webfx.com/tools/emoji-cheat-sheet/) are supported using their :shortcodes:
