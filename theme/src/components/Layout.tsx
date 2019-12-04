@@ -19,7 +19,7 @@ export const LocationContext = React.createContext<
   Partial<LocationContextProps>
 >({})
 
-export const Layout = ({ children, location, title, ...props }) => {
+export const Layout = ({ children, location = {}, title, ...props }) => {
   const data = useStaticQuery(graphql`
     query {
       site {

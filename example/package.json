@@ -13,7 +13,7 @@
     "deploy": "gh-pages -d public -r https://$GITHUB_TOKEN@github.com/commitd/docs.git"
   },
   "dependencies": {
-    "@committed/gatsby-theme-docs": "1.0.0",
+    "@committed/gatsby-theme-docs": "1.0.1",
     "gatsby": "^2.17.6",
     "gatsby-plugin-manifest": "^2.2.26",
     "react": "^16.11.0",

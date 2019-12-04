@@ -20,7 +20,6 @@ const LocalLink: React.FC<LinkProps> = ({
       } else if (isRelative(href)) {
         to = pathname.replace(/\/[^\/]*$/, `/${href}`)
       }
-      console.log(`to ${to}`)
       return (
         <RawLink variant={variant} onClick={() => navigate(to)} {...props} />
       )
