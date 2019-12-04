@@ -109,6 +109,53 @@ The options allow links to be added to the sidebar and header the links have the
 }
 ```
 
+Any internal links that are [broken](/broken) will be warned about at in `develop` and error at `build` time. This can be configured under a `checkLinks` key in the options. There are two options: ignore and exceptions, and while they both expect an array of paths, they work differently.
+
+```json
+// gatsby-config.js
+module.exports = {
+  siteMetadata: {
+    ...
+  },
+  plugins: [
+    {
+      resolve: `@committed/docs-theme`,
+      options: {
+        ...
+        checkLinks: {
+            ignore: [
+              '/foo/bar',
+              '/generated/docs/'
+            ],
+            exceptions: [
+              '/bar/baz/',
+              '/dynamic/headings/'
+            ]
+          }
+        }
+    }
+  ]
+};
+```
+
+| Option     | Default | Description                                                                                                                           |
+| :--------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------ |
+| ignore     | `[]`    | Paths passed to ignore will not have their content checked for broken links.                                                          |
+| exceptions | `[]`    | Paths passed to exceptions will ensure that any links from other pages to these paths or hashes within them will not count as broken. |
+| verbose    | `true`  | Disable logs and warnings in your console by passing false to the verbose option, which is true by default.                           |
+
+#### Caveats
+
+Once a markdown page has been cached by Gatsby, you won't see any output about its broken links until the file changes or your cache gets cleared. If you want to see link check output for all files every time you run `npm start`, you can set up a `prestart` script that removes your Gatsby cache directory:
+
+```json
+{
+  "scripts": {
+    "prestart": "gatsby clean"
+  }
+}
+```
+
 ### Header
 
 In the header you can configure the logo, text and links.

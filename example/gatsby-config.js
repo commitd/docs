@@ -29,6 +29,9 @@ module.exports = {
         },
         sidebar: {
           links: [{ text: "Example", link: "https://committed.io" }]
+        },
+        checkLinks: {
+          exceptions: ["/broken"]
         }
       }
     },

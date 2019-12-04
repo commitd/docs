@@ -4,7 +4,8 @@ module.exports = ({
   docsPath = 'docs',
   pathPrefix = '/',
   header,
-  sidebar
+  sidebar,
+  checkLinks = {}
 }) => ({
   pathPrefix,
   siteMetadata: {
@@ -80,6 +81,10 @@ module.exports = ({
           },
           {
             resolve: require.resolve(`./plugins/fix-mermaid-post`)
+          },
+          {
+            resolve: require.resolve(`./plugins/check-links`),
+            options: checkLinks
           }
         ]
       }
