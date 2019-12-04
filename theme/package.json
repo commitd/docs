@@ -18,7 +18,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "deploy": "npm publish  --access public"
+    "deploy": "cp ../README.md .  ; npm publish  --access public"
   },
   "prettier": {
     "semi": false,
