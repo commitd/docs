@@ -824,10 +824,10 @@
   resolved "https://registry.yarnpkg.com/@braintree/sanitize-url/-/sanitize-url-3.1.0.tgz#8ff71d51053cd5ee4981e5a501d80a536244f7fd"
   integrity sha512-GcIY79elgB+azP74j8vqkiXz8xLFfIzbQJdlwOPisgbKT00tviJQuEghOXSMVxJ00HoYJbGswr4kcllUc4xCcg==
 
-"@committed/components@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@committed/components/-/components-1.0.0.tgz#3748b7f94d6c1b6db9cfea3df409e5ed782788f4"
-  integrity sha512-GNejpQ4Y2bNOZep1iUrMQQcnciE8Aw9CZo2pJdGvatKIns24VWsG0H4LMzdlUaAEK7lg6xLbVd5/fyyZ6ddh8w==
+"@committed/components@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@committed/components/-/components-1.0.1.tgz#eb39769093a33007616b974bfad6527dbbe051f6"
+  integrity sha512-kym5NkVxm3SDfKOpvjEoOEAoOGxp0Hz76dV+4KMNb/H7dzLSaTztpOKByml3VaD7evWxSzaTEChZpKRFqseYhQ==
   dependencies:
     clsx "^1.0.4"
 
