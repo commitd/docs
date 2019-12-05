@@ -11,7 +11,6 @@ import {
 } from '@committed/components'
 
 export interface SidebarProps {
-  prefix: string
   treeData: Node
   location?: any
   sidebar: {
@@ -19,9 +18,9 @@ export interface SidebarProps {
   }
 }
 
-export const Sidebar = ({ prefix, location, treeData, sidebar }) => (
+export const Sidebar = ({ location, treeData, sidebar }) => (
   <>
-    <Tree prefix={prefix} location={location} treeData={treeData} />
+    <Tree location={location} treeData={treeData} />
     <Divider />
     <List>
       {sidebar.links

@@ -14,7 +14,6 @@ import { ThemeProvider, CodeStyle, Container, Box } from '@committed/components'
 export interface LayoutProps extends SEOProps {}
 export type LocationContextProps = {
   pathname: string
-  prefix: string
 }
 export const LocationContext = React.createContext<
   Partial<LocationContextProps>
@@ -50,12 +49,11 @@ export const Layout = ({ children, location = {}, title, ...props }) => {
       }
     }
   `)
-  const prefix = data.site.pathPrefix || '/'
   const sidebar = data.site.siteMetadata.sidebar
   const treeData = calculateTreeData(sidebar, data.allDocs.edges)
   const flattenedData = flattenTree(treeData)
   return (
-    <LocationContext.Provider value={{ prefix, ...location }}>
+    <LocationContext.Provider value={location}>
       <ThemeProvider
         fonts={{
           display: {
@@ -88,7 +86,6 @@ export const Layout = ({ children, location = {}, title, ...props }) => {
           >
             <Sidebar
               sidebar={sidebar}
-              prefix={prefix}
               treeData={treeData}
               location={location}
             />
@@ -99,11 +96,7 @@ export const Layout = ({ children, location = {}, title, ...props }) => {
                 <CodeStyle>
                   <main>{children}</main>
                 </CodeStyle>
-                <PreviousNext
-                  prefix={prefix}
-                  data={flattenedData}
-                  location={location}
-                />
+                <PreviousNext data={flattenedData} location={location} />
               </Box>
             </Container>
           </Content>

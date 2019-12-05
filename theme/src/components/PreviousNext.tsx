@@ -1,20 +1,17 @@
 import React from 'react'
 import { Info } from '../types'
-import { navigate } from 'gatsby'
+import { navigate, withPrefix } from 'gatsby'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Flex, Button, Divider, Icons } from '@committed/components'
 
 export interface PreviousNextProps {
-  prefix: string
   data: Info[]
   location?: any
 }
 
-export const PreviousNext = ({ prefix, location, data }: PreviousNextProps) => {
+export const PreviousNext = ({ location, data }: PreviousNextProps) => {
   const isActive = ({ url }) =>
-    (location &&
-      (location.pathname === url || location.pathname === prefix + url)) ||
-    false
+    (location && location.pathname === withPrefix(url)) || false
 
   const active = data.findIndex(isActive)
   let previous

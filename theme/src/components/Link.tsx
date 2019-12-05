@@ -1,8 +1,10 @@
 import React from 'react'
-import { navigate } from 'gatsby'
+import escapeStringRegexp from 'escape-string-regexp'
+import { withPrefix, navigate } from 'gatsby'
 import { LocationContext } from './Layout'
 import { Link as RawLink, LinkProps } from '@committed/components'
 
+const pathStartRegEx = new RegExp(`^${escapeStringRegexp(withPrefix(`/`))}`)
 const isExternal = (url: string) => url && url.startsWith('http')
 const isInPage = (url: string) => url && url.startsWith('#')
 const isRelative = (url: string) => url && !url.startsWith('/')
@@ -13,21 +15,17 @@ const LocalLink: React.FC<LinkProps> = ({
   ...props
 }: LinkProps) => (
   <LocationContext.Consumer>
-    {({ prefix, pathname }) => {
-      let base = pathname
-      // account for pathname including prefix
-      if (prefix !== '/' && pathname.startsWith(prefix)) {
-        base = pathname.substring(prefix.length)
-      }
+    {({ pathname }) => {
+      let base = pathname.replace(pathStartRegEx, `/`)
+
       let to = href
       if (isInPage(href)) {
         to = base + href
       } else if (isRelative(href)) {
         to = base.replace(/\/[^\/]*$/, `/${href}`)
-      } else if (prefix !== '/' && href.startsWith(prefix)) {
-        to = href.substring(prefix.length)
+      } else {
+        to = href.replace(pathStartRegEx, `/`)
       }
-
       return (
         <RawLink variant={variant} onClick={() => navigate(to)} {...props} />
       )

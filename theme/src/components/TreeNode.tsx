@@ -58,7 +58,6 @@ export const TreeNode = React.memo(
     items,
     ...rest
   }: TreeNodeProps) => {
-    const ref = React.useRef()
     const theme = useTheme<Theme>()
     const url = firstUrl({ items, info })
     const isCollapsed = collapsed[id] || false

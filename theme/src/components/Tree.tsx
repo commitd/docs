@@ -1,27 +1,24 @@
 import React, { useState } from 'react'
 import { Node } from '../types'
 import TreeNode from './TreeNode'
-import { navigate } from 'gatsby'
+import { withPrefix, navigate } from 'gatsby'
 import { firstUrl } from '../util/tree'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { List } from '@committed/components'
 
 export interface TreeProps {
   location?: any
-  prefix: string
   treeData: Node
 }
 
-export const Tree = ({ prefix, location, treeData }: TreeProps) => {
+export const Tree = ({ location, treeData }: TreeProps) => {
   const isActive = url =>
-    (location &&
-      (location.pathname === url || location.pathname === prefix + url)) ||
-    false
+    (location && location.pathname === withPrefix(url)) || false
 
   const isParent = (item: Node) =>
     (location &&
-      (location.pathname.startsWith(item.slug) ||
-        location.pathname.startsWith(prefix + item.slug))) ||
+      location.pathname &&
+      location.pathname.startsWith(withPrefix(item.slug))) ||
     false
 
   const [collapsed, setCollapsed] = useState((location && location.state) || {})
