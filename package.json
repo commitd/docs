@@ -1,7 +1,7 @@
 {
   "name": "@committed/gatsby-theme-docs-workspace",
   "private": true,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -10,7 +10,8 @@
     "develop": "yarn workspace example develop",
     "build": "yarn workspace example build",
     "serve": "yarn workspace example serve",
-    "deploy": "yarn workspaces run deploy"
+    "deploy": "yarn workspaces run deploy",
+    "bump": "yarn version --patch --no-git-tag-version ; yarn workspaces run version --patch --no-git-tag-version"
   },
   "workspaces": [
     "theme",
