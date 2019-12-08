@@ -22,6 +22,7 @@ export interface Node {
 }
 
 export interface Info {
+  id: string
   url: string
   order: string
   title: string
@@ -50,4 +51,10 @@ export interface Header {
 export interface Sidebar {
   links: Link[]
   ignoreIndex: boolean
+}
+
+export interface PageContext {
+  id: string
+  previous?: Info
+  next?: Info
 }

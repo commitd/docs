@@ -1,59 +1,57 @@
-import React from 'react'
+import React, { useState, ReactNode, Dispatch } from 'react'
 import 'typeface-dosis'
 import 'typeface-lato'
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { Sidebar } from './Sidebar'
+import { PageContext } from '../types'
 import { PreviousNext } from './PreviousNext'
 import { SEO, SEOProps } from './SEO'
-import { useStaticQuery, graphql } from 'gatsby'
-import { calculateTreeData, flattenTree } from '../util/tree'
+import { useStaticQuery, graphql, navigate } from 'gatsby'
 import { Root, Header as LayoutHeader, Nav, Content } from '@committed/layout'
 import { ThemeProvider, CodeStyle, Container, Box } from '@committed/components'
 
-export interface LayoutProps extends SEOProps {}
-export type LocationContextProps = {
-  pathname: string
+export interface LayoutProps extends SEOProps {
+  id: string
+  pageContext: PageContext
+  location: any
+  children: ReactNode
 }
-export const LocationContext = React.createContext<
-  Partial<LocationContextProps>
->({})
 
-export const Layout = ({ children, location = {}, title, ...props }) => {
-  const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          sidebar {
-            links {
-              link
-              text
-            }
-            ignoreIndex
-          }
-        }
-        pathPrefix
-      }
-      allDocs {
-        edges {
-          node {
-            id
-            metaDescription
-            metaTitle
-            order
-            slug
-            tableOfContents
-            title
-          }
-        }
-      }
-    }
-  `)
-  const sidebar = data.site.siteMetadata.sidebar
-  const treeData = calculateTreeData(sidebar, data.allDocs.edges)
-  const flattenedData = flattenTree(treeData)
+export type DocsContextProps = {
+  pathname: string
+  navigate: (string) => void
+  collapsed: any
+  setCollapsed: Dispatch<any>
+}
+
+export const DocsContext = React.createContext<Partial<DocsContextProps>>({})
+
+export const Layout = ({
+  id,
+  pageContext,
+  children,
+  location = {},
+  title,
+  ...props
+}: LayoutProps) => {
+  const [collapsed, setCollapsed] = useState((location && location.state) || {})
+
+  const navigateTo = url => {
+    navigate(url, {
+      state: collapsed
+    })
+  }
+
   return (
-    <LocationContext.Provider value={location}>
+    <DocsContext.Provider
+      value={{
+        pathname: location.pathname,
+        navigate: navigateTo,
+        collapsed,
+        setCollapsed
+      }}
+    >
       <ThemeProvider
         fonts={{
           display: {
@@ -84,11 +82,7 @@ export const Layout = ({ children, location = {}, title, ...props }) => {
               ctx => null
             }
           >
-            <Sidebar
-              sidebar={sidebar}
-              treeData={treeData}
-              location={location}
-            />
+            <Sidebar location={location} current={id} />
           </Nav>
           <Content>
             <Container maxWidth="md">
@@ -96,13 +90,16 @@ export const Layout = ({ children, location = {}, title, ...props }) => {
                 <CodeStyle>
                   <main>{children}</main>
                 </CodeStyle>
-                <PreviousNext data={flattenedData} location={location} />
+                <PreviousNext
+                  previous={pageContext.previous}
+                  next={pageContext.next}
+                />
               </Box>
             </Container>
           </Content>
           <Footer />
         </Root>
       </ThemeProvider>
-    </LocationContext.Provider>
+    </DocsContext.Provider>
   )
 }

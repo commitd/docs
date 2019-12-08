@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item, Info, Node } from '../types'
+import { Item, Info } from '../types'
 import { firstUrl } from '../util/tree'
 import {
   useTheme,
@@ -12,7 +12,7 @@ import {
 } from '@committed/components'
 
 export interface TreeNodeProps extends Item {
-  isActive: (key: string) => boolean
+  isActive: (id: string) => boolean
   navigate: (key: string) => void
   setCollapsed: (key: string) => void
   collapsed: { [key: string]: boolean }
@@ -59,11 +59,11 @@ export const TreeNode = React.memo(
     ...rest
   }: TreeNodeProps) => {
     const theme = useTheme<Theme>()
-    const url = firstUrl({ items, info })
+    const url = firstUrl({ id, label, items, info })
     const isCollapsed = collapsed[id] || false
     const hasChildren = items.length !== 0
     const title = info ? info.title : label
-    const active = isActive(url)
+    const active = isActive(id)
     return (
       <Scroller active={active}>
         <ListItem

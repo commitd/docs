@@ -1,6 +1,6 @@
-const componentWithMDXScope = require('gatsby-plugin-mdx/component-with-mdx-scope')
 const path = require('path')
 const startCase = require('lodash.startcase')
+const { calculateTreeData, flattenTree } = require('./src/util/node')
 
 const fs = require('fs')
 // Make sure the docs directory exists
@@ -14,7 +14,7 @@ exports.onPreBootstrap = ({ reporter }, options) => {
 
 exports.sourceNodes = ({ actions, schema }) => {
   const { createTypes } = actions
-  createTypes(
+  createTypes([
     schema.buildObjectType({
       name: `Docs`,
       fields: {
@@ -62,13 +62,25 @@ exports.sourceNodes = ({ actions, schema }) => {
         }
       },
       interfaces: [`Node`]
+    }),
+    schema.buildObjectType({
+      name: `Menu`,
+      fields: {
+        id: { type: `ID!` },
+        data: {
+          type: 'Json!'
+        }
+      },
+      interfaces: [`Node`]
     })
-  )
+  ])
 }
 
-exports.createPages = async ({ actions, graphql, reporter }, options) => {
-  const pathPrefix = options.pathPrefix || '/'
-  const { createPage } = actions
+exports.createPages = async (
+  { actions, graphql, reporter, createContentDigest },
+  options
+) => {
+  const { createPage, createNode } = actions
   return new Promise((resolve, reject) => {
     resolve(
       graphql(
@@ -78,7 +90,9 @@ exports.createPages = async ({ actions, graphql, reporter }, options) => {
               edges {
                 node {
                   id
+                  order
                   slug
+                  title
                 }
               }
             }
@@ -86,19 +100,54 @@ exports.createPages = async ({ actions, graphql, reporter }, options) => {
         `
       ).then(result => {
         if (result.errors) {
-          console.log(result.errors) // eslint-disable-line no-console
-          reject(result.errors)
+          reporter.panicOnBuild(`Error while running GraphQL query.`)
+          return
         }
 
-        // Create docs pages.
-        result.data.allDocs.edges.forEach(({ node }) => {
+        const treeData = calculateTreeData(
+          options.sidebar,
+          result.data.allDocs.edges
+        )
+
+        const data = flattenTree(treeData)
+
+        data.forEach((item, index) => {
+          let previous
+          let next
+
+          if (index > 0) {
+            previous = data[index - 1]
+          }
+          if (index >= 0 && index < data.length - 1) {
+            next = data[index + 1]
+          }
+
           createPage({
-            path: node.slug,
+            path: item.url,
             component: path.resolve(`${__dirname}/src/layout/docs.tsx`),
             context: {
-              id: node.id
+              id: item.id,
+              previous,
+              next
             }
           })
+        })
+
+        const fieldData = {
+          data: treeData
+        }
+
+        createNode({
+          ...fieldData,
+          // Required fields.
+          id: 'menu', //createNodeId(`${node.id} >>> Menu`),
+          //children: [],
+          internal: {
+            type: `Menu`,
+            content: JSON.stringify(fieldData),
+            description: `Menu`,
+            contentDigest: createContentDigest(fieldData)
+          }
         })
       })
     )
@@ -117,11 +166,12 @@ exports.onCreateNode = ({
     const { frontmatter } = node
 
     const parent = getNode(node.parent)
-    let value = parent.relativePath.replace(parent.ext, '')
 
-    if (value === 'index') {
-      value = ''
-    }
+    // Get file path
+    let value = parent.relativePath
+      .replace(parent.ext, '') // remove file extension
+      .replace(/\/?index$/, '') // remove tailing 'index'
+      .toLowerCase()
 
     const title = node.frontmatter.title || startCase(parent.name)
 

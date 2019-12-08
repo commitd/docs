@@ -28,6 +28,7 @@ module.exports = {
           ]
         },
         sidebar: {
+          ignoreIndex: false,
           links: [{ text: "Example", link: "https://committed.io" }]
         },
         checkLinks: {
