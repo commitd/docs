@@ -66,7 +66,7 @@ You can also navigate with the keyboard using `left` and `right` arrows for prev
 ## Printing
 
 An additional page on `/print` is provided in order to print (or print to pdf) the docs.
-Use keyboard shortcut `cmd+p` to navigate to the print page, press again to print, `esc` to go back home.
+Use keyboard shortcut `shift+p` to navigate to the print page (then `cmd+p` to print), `esc` to go back home.
 
 ## Configuration
 

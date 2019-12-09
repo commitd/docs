@@ -38,7 +38,7 @@ export const Layout = ({
 }: LayoutProps) => {
   const [collapsed, setCollapsed] = useState((location && location.state) || {})
   useHotkeys('shift+home', () => navigate('/'))
-  useHotkeys('command+p', () => navigate('/print'))
+  useHotkeys('shift+p', () => navigate('/print'))
 
   const navigateTo = url => {
     navigate(url, {
