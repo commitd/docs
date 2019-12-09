@@ -30,7 +30,7 @@ export const DocsContext = React.createContext<Partial<DocsContextProps>>({})
 
 export const Layout = ({
   id,
-  pageContext,
+  pageContext = { id: 'default' },
   children,
   location = {},
   title,
