@@ -1,15 +1,7 @@
 import React, { FC } from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
-import {
-  styled,
-  mdx,
-  Text,
-  Box,
-  Table,
-  Theme,
-  Flex
-} from '@committed/components'
+import { styled, mdx, Table, Theme, Flex, Link } from '@committed/components'
 
 const StripedTable = styled(Table)(({ theme }: { theme: Theme }) => ({
   '& tr:nth-child(even)': {
@@ -17,11 +9,11 @@ const StripedTable = styled(Table)(({ theme }: { theme: Theme }) => ({
   }
 }))
 
-const components = Object.assign(mdx.components, {
+const components = Object.assign({}, mdx.components, {
   a: ({ children, href, ...props }) => (
-    <Text component="span" {...props}>
+    <Link variant="clear" href={href} {...props}>
       {children}
-    </Text>
+    </Link>
   ),
   pre: props => (
     <Flex

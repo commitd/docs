@@ -8,7 +8,7 @@ interface MardownProps {
   children: any
 }
 
-const components = Object.assign(mdx.components, {
+const components = Object.assign({}, mdx.components, {
   a: ({ children, href, ...props }) => (
     <Link href={href} {...props}>
       {children}
