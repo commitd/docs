@@ -31,41 +31,39 @@ export default ({ pageContext, data }) => {
         }
       }}
     >
-      <Column bgcolor="white" width="100vw">
-        <Header />
-        <table className="page">
-          <thead>
-            <tr>
-              <td>
-                <div className="header-space">&nbsp;</div>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <Box p={3}>
-                  <CodeStyle>
-                    {pageContext.data.map(node => (
-                      <div style={{ breakAfter: 'page' }}>
-                        <Printdown key={node.id}>{docs[node.id]}</Printdown>
-                      </div>
-                    ))}
-                  </CodeStyle>
-                </Box>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>
-                <div className="footer-space">&nbsp;</div>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </Column>
+      <Header />
       <Footer />
+      <table className="page">
+        <thead>
+          <tr>
+            <td>
+              <div className="header-space">&nbsp;</div>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <Box bgcolor="white" p={3}>
+                <CodeStyle>
+                  {pageContext.data.map(node => (
+                    <div style={{ breakAfter: 'page' }}>
+                      <Printdown key={node.id}>{docs[node.id]}</Printdown>
+                    </div>
+                  ))}
+                </CodeStyle>
+              </Box>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>
+              <div className="footer-space">&nbsp;</div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
     </ThemeProvider>
   )
 }

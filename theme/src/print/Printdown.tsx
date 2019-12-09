@@ -26,14 +26,15 @@ const components = Object.assign(mdx.components, {
   pre: props => (
     <Flex
       className="dontBreak"
-      width="calc(100% -16px)"
+      px={3}
+      width="100%"
       style={{ overflow: 'hidden' }}
     >
       <pre style={{ flexGrow: '1' }} {...props} />
     </Flex>
   ),
   table: props => (
-    <Flex className="dontBreak" width="calc(100% -16px)">
+    <Flex className="dontBreak" px={3} pb={3} width="100%">
       <StripedTable {...props} />
     </Flex>
   ),

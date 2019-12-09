@@ -27,9 +27,15 @@ export const Footer = () => {
     `
   )
   return (
-    <Column width="100%" position="fixed" px={3} bottom={0} bgcolor="white">
-      <Box flexGrow={1} />
-      <Row flexGrow={1} py={3}>
+    <Column
+      height="128px"
+      width="100%"
+      position="fixed"
+      bottom={0}
+      bgcolor="white"
+    >
+      <Box flexGrow={1}>&nbsp;</Box>
+      <Row flexGrow={1} p={3}>
         <Column height="100%" flexGrow={1} justifyContent="center">
           <img width="256px" src={logo} alt="Committed" />
         </Column>

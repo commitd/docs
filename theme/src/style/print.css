@@ -1,5 +1,6 @@
 body {
   background-color: white;
+  width: 100%;
 }
 
 .header-space,
@@ -17,10 +18,17 @@ body {
   height: 128px;
 }
 
+td,
+tr,
+table,
+div,
+svg {
+  max-width: 100%;
+}
+
 .page {
   border-collapse: collapse;
   border-spacing: 0;
-  width: 100%;
 }
 
 /* And this to your table's `td` elements. */
@@ -45,10 +53,6 @@ body {
     color: black !important;
   }
 
-  a[href^='http']:not([href*='example.com']):after {
-    content: ' (' attr(href) ')';
-  }
-
   h1,
   h2,
   h3,
@@ -66,5 +70,9 @@ body {
   img,
   table {
     break-inside: avoid;
+  }
+
+  body {
+    margin: 0;
   }
 }
