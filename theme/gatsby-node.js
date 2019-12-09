@@ -162,6 +162,28 @@ exports.createPages = async (
   })
 }
 
+const makeSlug = parent => {
+  let value = parent.relativePath
+    .replace(parent.ext, '') // remove file extension
+    .replace(/\/?index$/, '') // remove tailing 'index'
+    .toLowerCase()
+
+  return `/${value}`
+}
+
+const makeTitle = (node, parent, slug) => {
+  let title
+  if (node.frontmatter.title) {
+    title = node.frontmatter.title
+  } else if (parent.name === 'index') {
+    title = startCase(slug.substring(slug.lastIndexOf('/') + 1))
+  }
+  if (!title || title === '') {
+    title = startCase(parent.name)
+  }
+  return title
+}
+
 exports.onCreateNode = ({
   node,
   actions,
@@ -174,25 +196,19 @@ exports.onCreateNode = ({
     const { frontmatter } = node
 
     const parent = getNode(node.parent)
-
-    // Get file path
-    let value = parent.relativePath
-      .replace(parent.ext, '') // remove file extension
-      .replace(/\/?index$/, '') // remove tailing 'index'
-      .toLowerCase()
-
-    const title = node.frontmatter.title || startCase(parent.name)
+    const slug = makeSlug(parent)
+    const title = makeTitle(node, parent, slug)
 
     if (
       parent.internal.type === 'File' &&
       parent.sourceInstanceName === 'docs'
     ) {
       const fieldData = {
-        title: title,
+        title,
+        slug,
         metaTitle: node.frontmatter.metaTitle || title,
         metaDescription: node.frontmatter.metaDescription || '',
         order: node.frontmatter.order || title,
-        slug: `/${value}`,
         tableOfContents: node.tableOfContents
       }
 
