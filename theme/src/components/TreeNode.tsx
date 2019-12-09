@@ -77,7 +77,12 @@ export const TreeNode = React.memo(
             navigate(url)
           }}
         >
-          <ListItemText primary={title} />
+          <ListItemText
+            primary={title}
+            primaryTypographyProps={{
+              variant: level === 0 ? 'body1' : 'caption'
+            }}
+          />
           {title && hasChildren ? (
             <>
               {!isCollapsed ? (
