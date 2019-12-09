@@ -28,10 +28,15 @@ module.exports = {
           ]
         },
         sidebar: {
+          ignoreIndex: false,
           links: [{ text: "Example", link: "https://committed.io" }]
         },
         checkLinks: {
           exceptions: ["/broken"]
+        },
+        print: {
+          classification: "OFFICIAL",
+          reference: "https://committed.software/docs"
         }
       }
     },

@@ -1,32 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Info } from '../types'
-import { navigate, withPrefix } from 'gatsby'
+import { DocsContext } from './Layout'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Flex, Button, Divider, Icons } from '@committed/components'
 
 export interface PreviousNextProps {
-  data: Info[]
-  location?: any
+  previous?: Info
+  next?: Info
 }
 
-export const PreviousNext = ({ location, data }: PreviousNextProps) => {
-  const isActive = ({ url }) =>
-    (location && location.pathname === withPrefix(url)) || false
-
-  const active = data.findIndex(isActive)
-  let previous
-  let next
-
-  if (active > 0) {
-    previous = data[active - 1]
-  }
-  if (active >= 0 && active < data.length - 1) {
-    next = data[active + 1]
-  }
-  if (active == -1) {
-    next = data[0]
-  }
-
+export const PreviousNext = ({ previous, next }: PreviousNextProps) => {
+  const { navigate } = useContext(DocsContext)
   let justifyContent = 'space-between'
   if (next && !previous) {
     justifyContent = 'flex-end'

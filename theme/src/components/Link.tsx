@@ -1,7 +1,7 @@
 import React from 'react'
 import escapeStringRegexp from 'escape-string-regexp'
-import { withPrefix, navigate } from 'gatsby'
-import { LocationContext } from './Layout'
+import { withPrefix } from 'gatsby'
+import { DocsContext } from './Layout'
 import { Link as RawLink, LinkProps } from '@committed/components'
 
 const pathStartRegEx = new RegExp(`^${escapeStringRegexp(withPrefix(`/`))}`)
@@ -14,8 +14,8 @@ const LocalLink: React.FC<LinkProps> = ({
   variant,
   ...props
 }: LinkProps) => (
-  <LocationContext.Consumer>
-    {({ pathname }) => {
+  <DocsContext.Consumer>
+    {({ pathname, navigate }) => {
       let base = pathname.replace(pathStartRegEx, `/`)
 
       let to = href
@@ -27,10 +27,14 @@ const LocalLink: React.FC<LinkProps> = ({
         to = href.replace(pathStartRegEx, `/`)
       }
       return (
-        <RawLink variant={variant} onClick={() => navigate(to)} {...props} />
+        <RawLink
+          variant={variant}
+          onClick={() => navigate(to.toLowerCase())}
+          {...props}
+        />
       )
     }}
-  </LocationContext.Consumer>
+  </DocsContext.Consumer>
 )
 
 export const Link: React.FC<LinkProps> = ({ href, ...props }: LinkProps) => {
@@ -46,7 +50,6 @@ export const Link: React.FC<LinkProps> = ({ href, ...props }: LinkProps) => {
   }
   return <LocalLink {...props} variant="styled" href={href} />
 }
-//Link.contextType = LocationContext
 
 export const ClearLink: React.FC<LinkProps> = ({
   href,

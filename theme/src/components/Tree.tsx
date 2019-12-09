@@ -1,33 +1,33 @@
-import React, { useState } from 'react'
-import { Node } from '../types'
+import React, { useContext } from 'react'
+import { Item } from '../types'
 import TreeNode from './TreeNode'
-import { withPrefix, navigate } from 'gatsby'
-import { firstUrl } from '../util/tree'
+import { DocsContext } from './Layout'
+import { withPrefix } from 'gatsby'
+import { firstUrl, firstInfo } from '../util/tree'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { List } from '@committed/components'
 
 export interface TreeProps {
-  location?: any
-  treeData: Node
+  location: any
+  data: Item
+  ignoreIndex?: boolean
+  current?: string
 }
 
-export const Tree = ({ location, treeData }: TreeProps) => {
-  const isActive = url =>
-    (location && location.pathname === withPrefix(url)) || false
+export const Tree = ({
+  location,
+  ignoreIndex = true,
+  current = '',
+  data
+}: TreeProps) => {
+  const { navigate, collapsed, setCollapsed } = useContext(DocsContext)
+  const isActive = (id: string) => current === id
 
-  const isParent = (item: Node) =>
+  const isParent = (item: Item) =>
     (location &&
       location.pathname &&
       location.pathname.startsWith(withPrefix(item.slug))) ||
     false
-
-  const [collapsed, setCollapsed] = useState((location && location.state) || {})
-
-  const navigateTo = url => {
-    navigate(url, {
-      state: collapsed
-    })
-  }
 
   const toggle = id => {
     setCollapsed({
@@ -37,10 +37,10 @@ export const Tree = ({ location, treeData }: TreeProps) => {
   }
 
   const navigateItem = (index: number) => {
-    navigateTo(firstUrl(treeData.items[index]))
+    navigate(firstUrl(data.items[index]))
   }
 
-  const index = treeData.items.findIndex(item => isParent(item))
+  const index = data.items.findIndex(item => isParent(item))
 
   if (index == -1) {
     useHotkeys('shift+down', () => navigateItem(0))
@@ -49,23 +49,37 @@ export const Tree = ({ location, treeData }: TreeProps) => {
       useHotkeys('shift+up', () => navigate('/'))
     }
     if (index > 0) {
-      if (isActive(firstUrl(treeData.items[index]))) {
+      if (isActive(firstInfo(data.items[index]).id)) {
         useHotkeys('shift+up', () => navigateItem(index - 1))
       } else {
         useHotkeys('shift+up', () => navigateItem(index))
       }
     }
-    if (index < treeData.items.length - 1) {
+    if (index < data.items.length - 1) {
       useHotkeys('shift+down', () => navigateItem(index + 1))
     }
   }
 
   return (
     <List dense>
-      {treeData.items.map((item, index) => (
+      {!ignoreIndex && (
         <TreeNode
-          key={`${item.label}-${(item.info && item.info.url) || index}`}
-          navigate={navigateTo}
+          key={`index`}
+          navigate={navigate}
+          isActive={isActive}
+          level={0}
+          id={data.id}
+          info={data.info}
+          label={data.label}
+          setCollapsed={toggle}
+          collapsed={collapsed}
+          items={[]}
+        />
+      )}
+      {data.items.map((item, index) => (
+        <TreeNode
+          key={`${item.label}-${item.info && item.info.url}`}
+          navigate={navigate}
           isActive={isActive}
           level={0}
           setCollapsed={toggle}
