@@ -7,7 +7,8 @@ import { Sidebar } from './Sidebar'
 import { PageContext } from '../types'
 import { PreviousNext } from './PreviousNext'
 import { SEO, SEOProps } from './SEO'
-import { useStaticQuery, graphql, navigate } from 'gatsby'
+import { navigate } from 'gatsby'
+import { useHotkeys } from 'react-hotkeys-hook'
 import { Root, Header as LayoutHeader, Nav, Content } from '@committed/layout'
 import { ThemeProvider, CodeStyle, Container, Box } from '@committed/components'
 
@@ -36,6 +37,8 @@ export const Layout = ({
   ...props
 }: LayoutProps) => {
   const [collapsed, setCollapsed] = useState((location && location.state) || {})
+  useHotkeys('shift+home', () => navigate('/'))
+  useHotkeys('command+p', () => navigate('/print'))
 
   const navigateTo = url => {
     navigate(url, {

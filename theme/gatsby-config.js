@@ -5,6 +5,7 @@ module.exports = ({
   pathPrefix = '/',
   header,
   sidebar,
+  print,
   checkLinks = {}
 }) => ({
   pathPrefix,
@@ -27,6 +28,13 @@ module.exports = ({
         links: [{ text: '', link: '' }]
       },
       sidebar
+    ),
+    print: Object.assign(
+      {
+        classification: null,
+        reference: null
+      },
+      print
     )
   },
   plugins: [

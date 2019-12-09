@@ -33,6 +33,10 @@ module.exports = {
         },
         checkLinks: {
           exceptions: ["/broken"]
+        },
+        print: {
+          classification: "OFFICIAL",
+          reference: "https://committed.software/docs"
         }
       }
     },

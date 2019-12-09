@@ -133,6 +133,14 @@ exports.createPages = async (
           })
         })
 
+        createPage({
+          path: '/print',
+          component: path.resolve(`${__dirname}/src/layout/print.tsx`),
+          context: {
+            data
+          }
+        })
+
         const fieldData = {
           data: treeData
         }

@@ -63,6 +63,11 @@ The next and previous pages are also linked at the bottom of each page automatic
 
 You can also navigate with the keyboard using `left` and `right` arrows for previous and next and using `shift+up` and `shift+down` to go to the next and previous top level folder. Finally, `shift+home` goes to the home page.
 
+## Printing
+
+An additional page on `/print` is provided in order to print (or print to pdf) the docs.
+Use keyboard shortcut `cmd+p` to navigate to the print page, press again to print, `esc` to go back home.
+
 ## Configuration
 
 Options can be supplied to configure the docs.

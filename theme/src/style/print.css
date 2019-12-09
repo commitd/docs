@@ -1,0 +1,70 @@
+body {
+  background-color: white;
+}
+
+.header-space,
+.footer-space {
+  width: 100%;
+}
+
+.header,
+.header-space {
+  height: 64px;
+}
+
+.footer,
+.footer-space {
+  height: 128px;
+}
+
+.page {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+/* And this to your table's `td` elements. */
+.page td {
+  padding: 0;
+  margin: 0;
+}
+
+@page {
+  margin: 20mm;
+}
+
+@media print {
+  thead {
+    display: table-header-group;
+  }
+  tfoot {
+    display: table-footer-group;
+  }
+  body,
+  p {
+    color: black !important;
+  }
+
+  a[href^='http']:not([href*='example.com']):after {
+    content: ' (' attr(href) ')';
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid-page;
+  }
+
+  .mermaid,
+  .dontBreak,
+  svg,
+  pre,
+  figure,
+  img,
+  table {
+    break-inside: avoid;
+  }
+}
