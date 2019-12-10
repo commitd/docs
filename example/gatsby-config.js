@@ -5,6 +5,7 @@ const pathPrefix = env => {
 };
 
 module.exports = {
+  pathPrefix: pathPrefix(NODE_ENV),
   siteMetadata: {
     title: "Committed Docs Theme",
     author: "Committed",
@@ -17,7 +18,6 @@ module.exports = {
       resolve: `@committed/gatsby-theme-docs`,
       options: {
         contentPath: "docs",
-        pathPrefix: pathPrefix(NODE_ENV),
         header: {
           title: "Committed Docs Example",
           logo: { image: "", link: "/" },

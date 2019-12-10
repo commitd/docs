@@ -2,13 +2,11 @@ var fs = require('fs')
 
 module.exports = ({
   docsPath = 'docs',
-  pathPrefix = '/',
   header,
   sidebar,
   print,
   checkLinks = {}
 }) => ({
-  pathPrefix,
   siteMetadata: {
     title: 'Docs',
     author: 'Committed',
