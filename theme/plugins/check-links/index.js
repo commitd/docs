@@ -1,22 +1,33 @@
 // Code adapted from https://github.com/trevorblades/gatsby-remark-check-links
 const visit = require('unist-util-visit')
+const { makeSlug } = require('../../src/util/node')
 
 function getCacheKey(node) {
   return `check-links-${node.id}-${node.internal.contentDigest}`
 }
 
 function getHeadingsMapKey(link, path) {
-  let key = link
-  const hashIndex = link.indexOf('#')
+  let basePath = link.toLowerCase().replace(/^\.\//, '') // strip ./
+  const hashIndex = basePath.indexOf('#')
   const hasHash = hashIndex !== -1
-  if (hasHash) {
-    key = link.startsWith('#') ? path : link.slice(0, hashIndex)
+  const hashId = hasHash ? basePath.slice(hashIndex + 1) : null
+
+  basePath = hasHash ? basePath.slice(0, hashIndex) : basePath // strip #
+
+  // prefix base path according to current path
+  if (basePath === '') {
+    basePath = path
+  } else if (!basePath.startsWith('/')) {
+    basePath = path.replace(/\/[^\/]*$/, `/${basePath}`)
   }
+
+  // change 'index' for trailing slash
+  const key = basePath.replace(/\/index$/, '/')
 
   return {
     key,
     hasHash,
-    hashIndex
+    hashId
   }
 }
 
@@ -32,10 +43,7 @@ module.exports = async (
   { exceptions = [], ignore = [], verbose = true } = {}
 ) => {
   const parent = await getNode(markdownNode.parent)
-  let slug = '/' + parent.relativePath.replace(parent.ext, '')
-  if (slug === '/index') {
-    slug = '/'
-  }
+  let slug = makeSlug(parent)
 
   const links = []
   const headings = []
@@ -46,7 +54,7 @@ module.exports = async (
       return
     }
 
-    if (node.url.startsWith('#') || /^\.{0,2}\//.test(node.url)) {
+    if (node.url.startsWith('#') || !/:[0-9]*\/\//.test(node.url)) {
       links.push({
         ...node,
         frontmatter: markdownNode.frontmatter
@@ -108,7 +116,7 @@ module.exports = async (
     if (linksForPath.length) {
       const brokenLinks = linksForPath.filter(link => {
         // return true for broken links, false = pass
-        const { key, hasHash, hashIndex } = getHeadingsMapKey(link.url, path)
+        const { key, hasHash, hashId } = getHeadingsMapKey(link.url, path)
         if (prefixedExceptions.includes(key)) {
           return false
         }
@@ -116,8 +124,9 @@ module.exports = async (
         const headings = headingsMap[key]
         if (headings) {
           if (hasHash) {
-            const id = link.url.slice(hashIndex + 1)
-            return !prefixedExceptions.includes(id) && !headings.includes(id)
+            return (
+              !prefixedExceptions.includes(hashId) && !headings.includes(hashId)
+            )
           }
 
           return false

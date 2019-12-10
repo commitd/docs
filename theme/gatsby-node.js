@@ -1,6 +1,6 @@
 const path = require('path')
 const startCase = require('lodash.startcase')
-const { calculateTreeData, flattenTree } = require('./src/util/node')
+const { calculateTreeData, flattenTree, makeSlug } = require('./src/util/node')
 
 const fs = require('fs')
 // Make sure the docs directory exists
@@ -111,6 +111,11 @@ exports.createPages = async (
 
         const data = flattenTree(treeData)
 
+        reporter.verbose(
+          `Creating menu data node\n${JSON.stringify(treeData, null, 2)}`
+        )
+        reporter.verbose(`Page ordering\n${JSON.stringify(data, null, 2)}`)
+
         data.forEach((item, index) => {
           let previous
           let next
@@ -162,15 +167,6 @@ exports.createPages = async (
   })
 }
 
-const makeSlug = parent => {
-  let value = parent.relativePath
-    .replace(parent.ext, '') // remove file extension
-    .replace(/\/?index$/, '') // remove tailing 'index'
-    .toLowerCase()
-
-  return `/${value}`
-}
-
 const makeTitle = (node, parent, slug) => {
   let title
   if (node.frontmatter.title) {
@@ -189,7 +185,8 @@ exports.onCreateNode = ({
   actions,
   getNode,
   createNodeId,
-  createContentDigest
+  createContentDigest,
+  reporter
 }) => {
   const { createNode, createParentChildLink } = actions
   if (node.internal.type === `Mdx`) {
@@ -198,6 +195,10 @@ exports.onCreateNode = ({
     const parent = getNode(node.parent)
     const slug = makeSlug(parent)
     const title = makeTitle(node, parent, slug)
+
+    reporter.verbose(
+      `${slug} added from file ${parent.relativePath} with title ${title}`
+    )
 
     if (
       parent.internal.type === 'File' &&

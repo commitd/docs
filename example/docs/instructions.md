@@ -40,7 +40,7 @@ Further options are available to customize, detailed below.
 
 The `index.md(x)` file is shown on load.
 
-Each documentation page can add frontmatter that is used to improve SEO. You can add metadata, [order](/ordered/index) the pages and add user friendly links:
+Each documentation page can add frontmatter that is used to improve SEO. You can add metadata, [order](ordered/index) the pages and add user friendly links:
 
 ```markup
 ---
@@ -51,11 +51,11 @@ metaDescription: "This is the meta description"
 ---
 ```
 
-If no title is provided the filename is used. The sidebar is populated from the files in `docs` folder and supports [nesting](/nested) in sub-folders. At each level the contents are sorted using alphanumerically using the order frontmatter or the title.
+If no title is provided the filename is used. The sidebar is populated from the files in `docs` folder and supports [nesting](nested/index) in sub-folders. At each level the contents are sorted using alphanumerically using the order frontmatter or the title.
 
 ## Navigation
 
-The Sidebar on the left allows you to navigate between the docs pages according to the [nested](/nested) and [ordered](/ordered/index) folder structure.
+The Sidebar on the left allows you to navigate between the docs pages according to the [nested](/nested/) and [ordered](/ordered/) folder structure.
 
 The next and previous pages are also linked at the bottom of each page automatically.
 
@@ -75,6 +75,8 @@ A full example is shown below.
 
 ```javascript
 module.exports = {
+  // pathPrefix defaults to `/`
+  pathPrefix: "/docs",
   siteMetadata: {
     title: "Committed Docs Theme",
     author: "Committed",
@@ -88,8 +90,6 @@ module.exports = {
       options: {
         // docsPath defaults to `/docs`
         docsPath: "documents",
-        // pathPrefix defaults to `/`
-        pathPrefix: "/docs",
         header: {
           title: "Committed Docs Example",
           logo: { image: "", link: "/" },
@@ -102,6 +102,10 @@ module.exports = {
         sidebar: {
           links: [{ text: "Example", link: "https://committed.io" }],
           ignoreIndex: false
+        },
+        print: {
+          classification: null
+          reference: "https://committed.software/docs"
         }
       }
     }

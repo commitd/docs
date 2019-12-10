@@ -26,12 +26,12 @@ const LocalLink: React.FC<LinkProps> = ({
       } else {
         to = href.replace(pathStartRegEx, `/`)
       }
+
+      // use lower case and replace final /index with training slash
+      to = to.toLowerCase().replace(/\/?index(?=$|#)/, '/')
+
       return (
-        <RawLink
-          variant={variant}
-          onClick={() => navigate(to.toLowerCase())}
-          {...props}
-        />
+        <RawLink variant={variant} onClick={() => navigate(to)} {...props} />
       )
     }}
   </DocsContext.Consumer>

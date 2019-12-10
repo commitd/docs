@@ -1,44 +1,40 @@
 const startCase = require('lodash.startcase')
 
+exports.makeSlug = parent => {
+  return `/${parent.relativePath}`
+    .replace(parent.ext, '') // remove file extension
+    .replace(/\/?index$/, '/') // change 'index' for trailing slash
+    .toLowerCase()
+}
+
 const calculateTree = edges =>
   edges.reduce(
     (accu, { node: { id, slug, title, order } }) => {
       const parts = slug.split('/')
-      let { items: prevItems } = accu
-      let existingItem
-      if (slug === '/') {
-        existingItem = accu
-      } else {
-        let tmpSlug = ''
-        for (const part of parts.slice(1, -1)) {
-          tmpSlug = `${tmpSlug}/${part}`
-          let tmp = prevItems.find(({ slug }) => slug == tmpSlug)
-          if (tmp) {
-            if (!tmp.items) {
-              tmp.items = []
-            }
-          } else {
-            tmp = { id: part, slug: tmpSlug, label: startCase(part), items: [] }
-            prevItems.push(tmp)
-          }
-          prevItems = tmp.items
+      let currentItem = accu
+      let tmpSlug = '/'
+      for (const part of parts.slice(1, -1)) {
+        tmpSlug = `${tmpSlug}${part}/`
+        let tmp = currentItem.items.find(({ slug }) => slug == tmpSlug)
+        if (!tmp) {
+          tmp = { id: part, slug: tmpSlug, label: startCase(part), items: [] }
+          currentItem.items.push(tmp)
         }
-        existingItem = prevItems.find(
-          ({ label }) => label === startCase(parts[parts.length - 1])
-        )
+        currentItem = tmp
       }
 
-      let url = slug
-      let fixedSlug = slug
-
-      const info = { id: id, url: url, order: order || title, title }
-      if (existingItem) {
-        existingItem.id = id
-        existingItem.info = info
+      if (currentItem.slug === slug) {
+        if (title === 'Index') {
+          title = currentItem.label
+        }
+        const info = { id: id, url: slug, order: order || title, title }
+        currentItem.id = id
+        currentItem.info = info
       } else {
-        prevItems.push({
+        const info = { id: id, url: slug, order: order || title, title }
+        currentItem.items.push({
           id,
-          slug: fixedSlug,
+          slug,
           label: startCase(parts[parts.length - 1]),
           items: [],
           info
@@ -46,7 +42,7 @@ const calculateTree = edges =>
       }
       return accu
     },
-    { slug: '/', label: 'index', items: new Array() }
+    { slug: '/', label: 'Index', items: new Array() }
   )
 
 const itemOrder = item => (item.info ? item.info.order : item.label)
