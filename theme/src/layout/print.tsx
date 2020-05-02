@@ -1,14 +1,14 @@
+import { Box, CodeStyle, ThemeProvider } from '@committed/components'
+import { graphql, navigate } from 'gatsby'
 import React from 'react'
-import '../style/print.css'
-import '../style/mermaid.css'
+import { useHotkeys } from 'react-hotkeys-hook'
 import 'typeface-dosis'
 import 'typeface-lato'
-import { useHotkeys } from 'react-hotkeys-hook'
-import { graphql, navigate } from 'gatsby'
-import { Header } from '../print/Header'
 import { Footer } from '../print/Footer'
+import { Header } from '../print/Header'
 import { Printdown } from '../print/Printdown'
-import { ThemeProvider, CodeStyle, Box, Column } from '@committed/components'
+import '../style/mermaid.css'
+import '../style/print.css'
 
 export default ({ pageContext, data }) => {
   useHotkeys('esc', () => navigate('/'))
@@ -19,16 +19,17 @@ export default ({ pageContext, data }) => {
   }, {})
   return (
     <ThemeProvider
+      choice="light"
       fonts={{
         display: {
           fontFamily:
             'Dosis, "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif',
-          fontWeight: 700
+          fontWeight: 700,
         },
         text: {
           fontFamily:
-            'Lato, -apple-system, BlinkMacSystemFont, "San Francisco", Roboto,  "Segoe UI", "Helvetica Neue"'
-        }
+            'Lato, -apple-system, BlinkMacSystemFont, "San Francisco", Roboto,  "Segoe UI", "Helvetica Neue"',
+        },
       }}
     >
       <Header />
@@ -46,7 +47,7 @@ export default ({ pageContext, data }) => {
             <td>
               <Box bgcolor="white" p={3}>
                 <CodeStyle>
-                  {pageContext.data.map(node => (
+                  {pageContext.data.map((node) => (
                     <div style={{ breakAfter: 'page' }}>
                       <Printdown key={node.id}>{docs[node.id]}</Printdown>
                     </div>
