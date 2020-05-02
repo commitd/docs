@@ -40,6 +40,12 @@ module.exports = ({
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/layout/index.tsx`)
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `docs`,
