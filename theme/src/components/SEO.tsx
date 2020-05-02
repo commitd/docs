@@ -1,6 +1,6 @@
+import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
-import Helmet from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+import { Helmet } from 'react-helmet'
 
 export interface SEOProps {
   description?: string
@@ -29,31 +29,31 @@ export const SEO = ({ description = '', lang = 'en', meta = [], title }) => {
   return (
     <Helmet
       htmlAttributes={{
-        lang
+        lang,
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
           property: `og:title`,
-          content: title
+          content: title,
         },
         {
           name: `description`,
-          content: metaDescription
+          content: metaDescription,
         },
         {
           name: `author`,
-          content: site.siteMetadata.author
+          content: site.siteMetadata.author,
         },
         {
           property: `og:description`,
-          content: metaDescription
+          content: metaDescription,
         },
         {
           property: `og:type`,
-          content: `website`
-        }
+          content: `website`,
+        },
       ].concat(meta)}
     />
   )
