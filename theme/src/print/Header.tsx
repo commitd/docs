@@ -1,8 +1,7 @@
-import React from 'react'
-import { useStaticQuery, graphql, navigate } from 'gatsby'
-import { useHotkeys } from 'react-hotkeys-hook'
-import { Classification } from './Classification'
 import { Column } from '@committed/components'
+import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
+import { Classification } from './Classification'
 
 export const Header = () => {
   const {
