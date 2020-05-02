@@ -1,15 +1,15 @@
-import React from 'react'
-import { Item, Info } from '../types'
-import { firstUrl } from '../util/tree'
 import {
-  useTheme,
-  Theme,
-  List,
+  Collapse,
   Icons,
+  List,
   ListItem,
   ListItemText,
-  Collapse
+  Theme,
+  useTheme
 } from '@committed/components'
+import React from 'react'
+import { Info, Item } from '../types'
+import { firstUrl } from '../util/tree'
 
 export interface TreeNodeProps extends Item {
   isActive: (id: string) => boolean
@@ -19,30 +19,6 @@ export interface TreeNodeProps extends Item {
   level: number
   info?: Info
   id: string
-}
-
-class Scroller extends React.Component<{ active: boolean }> {
-  private ref = React.createRef<HTMLDivElement>()
-
-  scroll = () => {
-    const { active } = this.props
-
-    if (active) {
-      this.ref.current.scrollIntoView({ block: 'center', inline: 'nearest' })
-    }
-  }
-
-  componentDidMount() {
-    this.scroll()
-  }
-
-  componentDidUpdate() {
-    this.scroll()
-  }
-
-  render() {
-    return <div ref={this.ref}>{this.props.children}</div>
-  }
 }
 
 export const TreeNode = React.memo(
@@ -65,7 +41,7 @@ export const TreeNode = React.memo(
     const title = info ? info.title : label
     const active = isActive(id)
     return (
-      <Scroller active={active}>
+      <>
         <ListItem
           style={{
             paddingLeft: theme.spacing(2) * (level + 1)
@@ -111,7 +87,7 @@ export const TreeNode = React.memo(
             </List>
           </Collapse>
         ) : null}
-      </Scroller>
+      </>
     )
   }
 )
