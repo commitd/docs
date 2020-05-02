@@ -20,59 +20,62 @@ exports.sourceNodes = ({ actions, schema }) => {
       fields: {
         id: { type: `ID!` },
         slug: {
-          type: 'String!'
+          type: 'String!',
         },
         title: {
-          type: 'String!'
+          type: 'String!',
         },
         metaTitle: {
-          type: 'String!'
+          type: 'String!',
         },
         metaDescription: {
-          type: 'String!'
+          type: 'String!',
         },
         order: {
-          type: 'String!'
+          type: 'String!',
         },
         tableOfContents: {
           type: 'Json!',
           resolve(source, args, context, info) {
             const type = info.schema.getType(`Mdx`)
             const mdxNode = context.nodeModel.getNodeById({
-              id: source.parent
+              id: source.parent,
             })
             const resolver = type.getFields()['tableOfContents'].resolve
             return resolver(mdxNode, {}, context, {
-              fieldName: 'tableOfContents'
+              fieldName: 'tableOfContents',
             })
-          }
+          },
         },
         body: {
           type: 'String!',
           resolve(source, args, context, info) {
             const type = info.schema.getType(`Mdx`)
             const mdxNode = context.nodeModel.getNodeById({
-              id: source.parent
+              id: source.parent,
             })
             const resolver = type.getFields()['body'].resolve
             return resolver(mdxNode, {}, context, {
-              fieldName: 'body'
+              fieldName: 'body',
             })
-          }
-        }
+          },
+        },
+        rawBody: {
+          type: 'String!',
+        },
       },
-      interfaces: [`Node`]
+      interfaces: [`Node`],
     }),
     schema.buildObjectType({
       name: `Menu`,
       fields: {
         id: { type: `ID!` },
         data: {
-          type: 'Json!'
-        }
+          type: 'Json!',
+        },
       },
-      interfaces: [`Node`]
-    })
+      interfaces: [`Node`],
+    }),
   ])
 }
 
@@ -98,7 +101,7 @@ exports.createPages = async (
             }
           }
         `
-      ).then(result => {
+      ).then((result) => {
         if (result.errors) {
           reporter.panicOnBuild(`Error while running GraphQL query.`)
           return
@@ -135,8 +138,8 @@ exports.createPages = async (
               current: item,
               id: item.id,
               previous,
-              next
-            }
+              next,
+            },
           })
         })
 
@@ -150,7 +153,7 @@ exports.createPages = async (
         })
 
         const fieldData = {
-          data: treeData
+          data: treeData,
         }
 
         createNode({
@@ -162,8 +165,8 @@ exports.createPages = async (
             type: `Menu`,
             content: JSON.stringify(fieldData),
             description: `Menu`,
-            contentDigest: createContentDigest(fieldData)
-          }
+            contentDigest: createContentDigest(fieldData),
+          },
         })
       })
     )
@@ -189,7 +192,7 @@ exports.onCreateNode = ({
   getNode,
   createNodeId,
   createContentDigest,
-  reporter
+  reporter,
 }) => {
   const { createNode, createParentChildLink } = actions
   if (node.internal.type === `Mdx`) {
@@ -213,7 +216,8 @@ exports.onCreateNode = ({
         metaTitle: node.frontmatter.metaTitle || title,
         metaDescription: node.frontmatter.metaDescription || '',
         order: node.frontmatter.order || title,
-        tableOfContents: node.tableOfContents
+        tableOfContents: node.tableOfContents,
+        rawBody: node.rawBody,
       }
 
       createNode({
@@ -226,12 +230,12 @@ exports.onCreateNode = ({
           type: `Docs`,
           content: JSON.stringify(fieldData),
           description: `Documentation`,
-          contentDigest: createContentDigest(fieldData)
-        }
+          contentDigest: createContentDigest(fieldData),
+        },
       })
       createParentChildLink({
         parent: parent,
-        child: node
+        child: node,
       })
     }
   }
