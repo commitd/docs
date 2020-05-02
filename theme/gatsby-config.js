@@ -40,6 +40,23 @@ module.exports = ({
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sharp`,
+    // Add search
+    {
+      resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
+      options: {
+        fields: [`title`, `description`, `content`],
+        resolvers: {
+          Docs: {
+            title: (node) => node.title,
+            description: (node) => node.metaDescription,
+            // TODO: This is the full raw body, including front matter
+            content: (node) => node.rawBody,
+            slug: (node) => node.slug,
+          },
+        },
+        // TODO: Optional filter here, which would be useful for drafts?
+      },
+    },
     {
       resolve: `gatsby-plugin-layout`,
       options: {
