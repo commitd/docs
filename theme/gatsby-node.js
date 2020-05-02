@@ -148,8 +148,17 @@ exports.createPages = async (
           component: path.resolve(`${__dirname}/src/layout/print.tsx`),
           context: {
             layout: 'print',
-            data
-          }
+            data,
+          },
+        })
+
+        createPage({
+          path: '/search',
+          component: path.resolve(`${__dirname}/src/layout/search.tsx`),
+          context: {
+            layout: 'docs',
+            data,
+          },
         })
 
         const fieldData = {
