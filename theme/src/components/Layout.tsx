@@ -1,16 +1,16 @@
-import React, { useState, ReactNode, Dispatch } from 'react'
+import { Box, CodeStyle, Container, ThemeProvider } from '@committed/components'
+import { Content, Header as LayoutHeader, Nav, Root } from '@committed/layout'
+import { navigate } from 'gatsby'
+import React, { Dispatch, ReactNode, useState } from 'react'
+import { useHotkeys } from 'react-hotkeys-hook'
 import 'typeface-dosis'
 import 'typeface-lato'
-import { Header } from './Header'
-import { Footer } from './Footer'
-import { Sidebar } from './Sidebar'
 import { PageContext } from '../types'
+import { Footer } from './Footer'
+import { Header } from './Header'
 import { PreviousNext } from './PreviousNext'
 import { SEO, SEOProps } from './SEO'
-import { navigate } from 'gatsby'
-import { useHotkeys } from 'react-hotkeys-hook'
-import { Root, Header as LayoutHeader, Nav, Content } from '@committed/layout'
-import { ThemeProvider, CodeStyle, Container, Box } from '@committed/components'
+import { Sidebar } from './Sidebar'
 
 export interface LayoutProps extends SEOProps {
   id: string
@@ -33,7 +33,6 @@ export const Layout = ({
   pageContext = { id: 'default' },
   children,
   location = {},
-  title,
   ...props
 }: LayoutProps) => {
   const [collapsed, setCollapsed] = useState((location && location.state) || {})
@@ -68,7 +67,9 @@ export const Layout = ({
           }
         }}
       >
-        <SEO title={title} {...props} />
+        {pageContext.current && pageContext.current.title && (
+          <SEO title={pageContext.current.title} {...props} />
+        )}
         <Root
           style={{ minHeight: '100vh' }}
           config={{

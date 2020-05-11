@@ -1,32 +1,18 @@
-import React from 'react'
 import { graphql } from 'gatsby'
-import { Layout } from '../components/Layout'
+import React from 'react'
 import { Markdown } from '../components/Markdown'
 import '../style/mermaid.css'
 
-export default ({ pageContext, location, data }) => {
+export default ({ data }) => {
   const {
-    docs: { id, body, metaDescription, metaTitle, tableOfContents }
+    docs: { body, tableOfContents }
   } = data
-  return (
-    <Layout
-      id={id}
-      pageContext={pageContext}
-      location={location}
-      title={metaTitle}
-      description={metaDescription}
-    >
-      <Markdown>{body}</Markdown>
-    </Layout>
-  )
+  return <Markdown>{body}</Markdown>
 }
 
 export const pageQuery = graphql`
   query DocQuery($id: String!) {
     docs(id: { eq: $id }) {
-      id
-      metaDescription
-      metaTitle
       tableOfContents
       body
     }

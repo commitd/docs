@@ -57,4 +57,5 @@ export interface PageContext {
   id: string
   previous?: Info
   next?: Info
+  current?: Info
 }

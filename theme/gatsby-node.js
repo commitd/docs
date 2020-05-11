@@ -131,6 +131,8 @@ exports.createPages = async (
             path: item.url,
             component: path.resolve(`${__dirname}/src/layout/docs.tsx`),
             context: {
+              layout: 'docs',
+              current: item,
               id: item.id,
               previous,
               next
@@ -142,6 +144,7 @@ exports.createPages = async (
           path: '/print',
           component: path.resolve(`${__dirname}/src/layout/print.tsx`),
           context: {
+            layout: 'print',
             data
           }
         })
