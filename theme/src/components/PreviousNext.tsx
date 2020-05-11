@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import { Button, Divider, Flex, Icons } from '@committed/components'
+import React, { useCallback, useContext } from 'react'
+import { useHotkeys } from 'react-hotkeys-hook'
 import { Info } from '../types'
 import { DocsContext } from './Layout'
-import { useHotkeys } from 'react-hotkeys-hook'
-import { Flex, Button, Divider, Icons } from '@committed/components'
 
 export interface PreviousNextProps {
   previous?: Info
@@ -19,15 +19,22 @@ export const PreviousNext = ({ previous, next }: PreviousNextProps) => {
     justifyContent = 'flex-start'
   }
 
-  if (previous) {
-    useHotkeys('left', () => navigate(previous.url))
-    useHotkeys('shift+left', () => navigate(previous.url))
-  }
+  const navigateToPrevious = useCallback(() => {
+    if (previous) {
+      navigate(previous.url)
+    }
+  }, [previous, navigate])
 
-  if (next) {
-    useHotkeys('right', () => navigate(next.url))
-    useHotkeys('shift+right', () => navigate(next.url))
-  }
+  const navigateToNext = useCallback(() => {
+    if (next) {
+      navigate(next.url)
+    }
+  }, [navigate, next])
+
+  useHotkeys('left', navigateToPrevious, [navigateToPrevious])
+  useHotkeys('shift+left', navigateToPrevious, [navigateToPrevious])
+  useHotkeys('right', navigateToNext, [navigateToNext])
+  useHotkeys('shift+right', navigateToNext, [navigateToNext])
 
   return (
     <>

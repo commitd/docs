@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
-import { Item } from '../types'
-import TreeNode from './TreeNode'
-import { DocsContext } from './Layout'
-import { withPrefix } from 'gatsby'
-import { firstUrl, firstInfo } from '../util/tree'
-import { useHotkeys } from 'react-hotkeys-hook'
 import { List } from '@committed/components'
+import { withPrefix } from 'gatsby'
+import React, { useCallback, useContext } from 'react'
+import { useHotkeys } from 'react-hotkeys-hook'
+import { Item } from '../types'
+import { firstInfo, firstUrl } from '../util/tree'
+import { DocsContext } from './Layout'
+import TreeNode from './TreeNode'
 
 export interface TreeProps {
   location: any
@@ -42,23 +42,28 @@ export const Tree = ({
 
   const index = data.items.findIndex(item => isParent(item))
 
-  if (index == -1) {
-    useHotkeys('shift+down', () => navigateItem(0))
-  } else {
-    if (index == 0) {
-      useHotkeys('shift+up', () => navigate('/'))
+  const navigateDown = useCallback(() => {
+    if (index === -1) {
+      navigateItem(0)
+    } else if (index < data.items.length - 1) {
+      navigateItem(index + 1)
     }
-    if (index > 0) {
+  }, [navigateItem, index, data])
+
+  const navigateUp = useCallback(() => {
+    if (index === 0) {
+      navigate('/')
+    } else if (index > 0) {
       if (isActive(firstInfo(data.items[index]).id)) {
-        useHotkeys('shift+up', () => navigateItem(index - 1))
+        navigateItem(index - 1)
       } else {
-        useHotkeys('shift+up', () => navigateItem(index))
+        navigateItem(index)
       }
     }
-    if (index < data.items.length - 1) {
-      useHotkeys('shift+down', () => navigateItem(index + 1))
-    }
-  }
+  }, [navigateItem, index, data, firstInfo, isActive])
+
+  useHotkeys('shift+down', navigateDown, [navigateDown])
+  useHotkeys('shift+up', navigateUp, [navigateUp])
 
   return (
     <List dense>
