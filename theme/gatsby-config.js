@@ -5,7 +5,7 @@ module.exports = ({
   header,
   sidebar,
   print,
-  checkLinks = {}
+  checkLinks = {},
 }) => ({
   siteMetadata: {
     title: 'Docs',
@@ -16,41 +16,42 @@ module.exports = ({
         title: 'Docs',
         logo: { image: '', link: '/' },
         helpUrl: '',
-        links: [{ text: '', link: '' }]
+        links: [{ text: '', link: '' }],
       },
       header
     ),
     sidebar: Object.assign(
       {
         ignoreIndex: true,
-        links: [{ text: '', link: '' }]
+        links: [{ text: '', link: '' }],
       },
       sidebar
     ),
     print: Object.assign(
       {
         classification: null,
-        reference: null
+        reference: null,
       },
       print
-    )
+    ),
   },
   plugins: [
     `gatsby-plugin-typescript`,
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/layout/index.tsx`)
-      }
+        component: require.resolve(`./src/layout/index.tsx`),
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `docs`,
-        path: docsPath
-      }
+        path: docsPath,
+      },
     },
     {
       resolve: `gatsby-plugin-mdx`,
@@ -59,47 +60,47 @@ module.exports = ({
         remarkPlugins: [require('remark-slug'), require('remark-emoji')],
         gatsbyRemarkPlugins: [
           {
-            resolve: require.resolve(`./plugins/fix-mermaid-pre`)
+            resolve: require.resolve(`./plugins/fix-mermaid-pre`),
           },
           {
             resolve: 'gatsby-remark-mermaid',
             options: {
               mermaidOptions: {
                 arrowMarkerAbsolute: false,
-                fontFamily: "'trebuchet ms', verdana, arial"
-              }
-            }
+                fontFamily: "'trebuchet ms', verdana, arial",
+              },
+            },
           },
           {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
               icon: '',
-              className: `autolink`
-            }
+              className: `autolink`,
+            },
           },
           `gatsby-remark-prismjs`,
           {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 896,
-              disableBgImage: true
-            }
+              disableBgImage: true,
+            },
           },
           {
             resolve: `gatsby-remark-copy-linked-files`,
             options: {
-              ignoreFileExtensions: [`png`, `jpg`, `jpeg`]
-            }
+              ignoreFileExtensions: [`png`, `jpg`, `jpeg`],
+            },
           },
           {
-            resolve: require.resolve(`./plugins/fix-mermaid-post`)
+            resolve: require.resolve(`./plugins/fix-mermaid-post`),
           },
           {
             resolve: require.resolve(`./plugins/check-links`),
-            options: checkLinks
-          }
-        ]
-      }
-    }
-  ]
+            options: checkLinks,
+          },
+        ],
+      },
+    },
+  ],
 })
