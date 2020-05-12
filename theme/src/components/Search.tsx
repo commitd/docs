@@ -47,7 +47,7 @@ export const Search: FC<SearchProps> = (props: SearchProps) => {
 
     const r = index
       // Expand allows for partial matches (mer matches mermaid)
-      .search(query, { expand: true })
+      .search(query, JSON.parse('{ "expand": true }'))
       // Map over each ID and return the full document
       .map(({ ref }) => index.documentStore.getDoc(ref))
 

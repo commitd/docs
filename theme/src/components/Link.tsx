@@ -9,11 +9,7 @@ const isExternal = (url: string) => url && url.startsWith('http')
 const isInPage = (url: string) => url && url.startsWith('#')
 const isRelative = (url: string) => url && !url.startsWith('/')
 
-const LocalLink: React.FC<LinkProps> = ({
-  href,
-  variant,
-  ...props
-}: LinkProps) => (
+const LocalLink = ({ href, variant, ...props }: LinkProps<'a'>) => (
   <DocsContext.Consumer>
     {({ pathname, navigate }) => {
       let base = pathname.replace(pathStartRegEx, `/`)
@@ -37,7 +33,7 @@ const LocalLink: React.FC<LinkProps> = ({
   </DocsContext.Consumer>
 )
 
-export const Link: React.FC<LinkProps> = ({ href, ...props }: LinkProps) => {
+export const Link = ({ href, ...props }: LinkProps<'a'>) => {
   if (isExternal(href)) {
     return <RawLink variant="styled" href={href} target="_blank" {...props} />
   }
@@ -51,10 +47,7 @@ export const Link: React.FC<LinkProps> = ({ href, ...props }: LinkProps) => {
   return <LocalLink {...props} variant="styled" href={href} />
 }
 
-export const ClearLink: React.FC<LinkProps> = ({
-  href,
-  ...props
-}: LinkProps) => {
+export const ClearLink = ({ href, ...props }: LinkProps<'a'>) => {
   if (isExternal(href)) {
     return <RawLink variant="clear" href={href} target="_blank" {...props} />
   } else {

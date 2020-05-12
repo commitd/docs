@@ -1,6 +1,6 @@
 {
   "name": "@committed/gatsby-theme-docs",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "main": "index.js",
   "author": "Committed <opensource@committed.io>",
   "license": "MIT",
@@ -30,13 +30,13 @@
     "react-dom": "^16.13.1"
   },
   "dependencies": {
-    "@committed/components": "^3.0.0",
-    "@committed/layout": "^1.1.0",
+    "@committed/components": "^3.0.2",
+    "@committed/layout": "^2.0.1",
+    "@gatsby-contrib/gatsby-plugin-elasticlunr-search": "^2.3.0",
     "@material-ui/core": "^4.9.12",
     "@material-ui/icons": "^4.9.1",
     "@mdx-js/mdx": "^1.6.1",
     "@mdx-js/react": "^1.6.1",
-    "@gatsby-contrib/gatsby-plugin-elasticlunr-search": "^2.3.0",
     "gatsby-plugin-layout": "^1.3.0",
     "gatsby-plugin-material-ui": "^2.1.8",
     "gatsby-plugin-mdx": "^1.2.4",

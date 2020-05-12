@@ -5,8 +5,8 @@ import { styled, mdx, Table, Theme, Flex, Link } from '@committed/components'
 
 const StripedTable = styled(Table)(({ theme }: { theme: Theme }) => ({
   '& tr:nth-child(even)': {
-    backgroundColor: theme.palette.grey[100]
-  }
+    backgroundColor: theme.palette.grey[100],
+  },
 }))
 
 const components = Object.assign({}, mdx.components, {
@@ -15,7 +15,7 @@ const components = Object.assign({}, mdx.components, {
       {children}
     </Link>
   ),
-  pre: props => (
+  pre: (props) => (
     <Flex
       className="dontBreak"
       px={3}
@@ -25,15 +25,15 @@ const components = Object.assign({}, mdx.components, {
       <pre style={{ flexGrow: '1' }} {...props} />
     </Flex>
   ),
-  table: props => (
+  table: (props) => (
     <Flex className="dontBreak" px={3} pb={3} width="100%">
       <StripedTable {...props} />
     </Flex>
   ),
-  ...mdx.shortcodes
+  ...mdx.shortcodes,
 })
 
-export const Printdown: FC = props => (
+export const Printdown: FC = (props) => (
   <MDXProvider components={components}>
     <MDXRenderer>{props.children}</MDXRenderer>
   </MDXProvider>

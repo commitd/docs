@@ -939,18 +939,18 @@
   resolved "https://registry.yarnpkg.com/@braintree/sanitize-url/-/sanitize-url-3.1.0.tgz#8ff71d51053cd5ee4981e5a501d80a536244f7fd"
   integrity sha512-GcIY79elgB+azP74j8vqkiXz8xLFfIzbQJdlwOPisgbKT00tviJQuEghOXSMVxJ00HoYJbGswr4kcllUc4xCcg==
 
-"@committed/components@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@committed/components/-/components-3.0.0.tgz#882d1cfcd98c2792f0782f02b46b4b55baaad9c6"
-  integrity sha512-b+RhuH7CXazhkW+n2pA4tnJluBxWRNXUJQC8A4/uCQlWH7tzhZWTjgrWhgpCMgLM59H/C8WKImGRrH5tCzli/w==
+"@committed/components@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@committed/components/-/components-3.0.2.tgz#3e7afa360b511443c9bae054bdd75cc8374b6e83"
+  integrity sha512-zT4XN7RwYJb05b7qin87SVneJ6Cx9fR/ci6+oCca4YlAfwxq13wmEn0056OshutZeeA6pZthTJ8e8UUY4h0kIQ==
   dependencies:
     clsx "^1.1.0"
     deepmerge "^4.2.2"
 
-"@committed/layout@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@committed/layout/-/layout-1.1.0.tgz#b8468bcaa78ddbec9b38fddf742da83274c4c156"
-  integrity sha512-iKg1p3ldn2puDa1bxkWjs2IJh5cwcj4ygft802ViJLC0pbaLemcUSwXRStrtW1qGsErKEHQKkyKxueV+F2IBLQ==
+"@committed/layout@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@committed/layout/-/layout-2.0.1.tgz#e568fd3b4699c821697f799da5348bfc295b9e60"
+  integrity sha512-4lZa6fp4+a5HBspJowBdw68nF+fRlJQXNxn5mN9JD2giBkc6D9KZDrRtAgYy0gvxQNfVcevxnPe2sT1RnoTtQw==
 
 "@emotion/hash@^0.8.0":
   version "0.8.0"

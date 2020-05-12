@@ -1,4 +1,11 @@
-import { Box, CodeStyle, Container, ThemeProvider } from '@committed/components'
+import {
+  Box,
+  CodeStyle,
+  Container,
+  ThemeProvider,
+  useThemeChoice,
+  fonts,
+} from '@committed/components'
 import { Content, Header as LayoutHeader, Nav, Root } from '@committed/layout'
 import { navigate } from 'gatsby'
 import React, { Dispatch, ReactNode, useState } from 'react'
@@ -36,8 +43,14 @@ export const Layout = ({
   ...props
 }: LayoutProps) => {
   const [collapsed, setCollapsed] = useState((location && location.state) || {})
-  useHotkeys('shift+home', () => navigate('/'))
-  useHotkeys('shift+p', () => navigate('/print'))
+  const [themeChoice, toggleThemeChoice, componentMounted] = useThemeChoice()
+
+  useHotkeys('shift+home', () => {
+    navigate('/')
+  })
+  useHotkeys('shift+p', () => {
+    navigate('/print')
+  })
 
   const navigateTo = (url) => {
     navigate(url, {
@@ -45,7 +58,7 @@ export const Layout = ({
     })
   }
 
-  return (
+  const component = componentMounted ? (
     <DocsContext.Provider
       value={{
         pathname: location.pathname,
@@ -55,7 +68,9 @@ export const Layout = ({
       }}
     >
       <ThemeProvider
-        fonts={{
+        choice={themeChoice}
+        createFonts={() => ({
+          ...fonts.defaultFonts,
           display: {
             fontFamily:
               'Dosis, "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif',
@@ -65,27 +80,35 @@ export const Layout = ({
             fontFamily:
               'Lato, -apple-system, BlinkMacSystemFont, "San Francisco", Roboto,  "Segoe UI", "Helvetica Neue"',
           },
-        }}
+        })}
       >
         {pageContext.current && pageContext.current.title && (
           <SEO title={pageContext.current.title} {...props} />
         )}
         <Root
-          style={{ minHeight: '100vh' }}
           config={{
             collapsible: false,
+            navVariant: {
+              xs: 'temporary',
+              sm: 'permanent',
+            },
+            headerResponse: {
+              xs: 'static',
+              sm: 'squeezed',
+            },
+            contentResponse: {
+              xs: 'static',
+              sm: 'squeezed',
+            },
           }}
         >
           <LayoutHeader>
-            <Header />
+            <Header
+              themeChoice={themeChoice}
+              toggleThemeChoice={toggleThemeChoice}
+            />
           </LayoutHeader>
-          <Nav
-            header={
-              // you can provide fixed header inside nav
-              // change null to some react element
-              (ctx) => null
-            }
-          >
+          <Nav>
             <Sidebar location={location} current={id} />
           </Nav>
           <Content>
@@ -105,5 +128,6 @@ export const Layout = ({
         </Root>
       </ThemeProvider>
     </DocsContext.Provider>
-  )
+  ) : null
+  return component
 }

@@ -1,9 +1,40 @@
-import { Box, Button, Flex, Heading, Icons, Logo } from '@committed/components'
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Icons,
+  Logo,
+  ThemeChoice,
+  ThemeSwitch,
+  useTheme,
+  makeStyles,
+} from '@committed/components'
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import { ClearLink } from './Link'
 
-export const Header = () => {
+export const useStyles = makeStyles((theme) => ({
+  color: {
+    '& .commit_logo': {
+      stroke: theme.palette.primary.contrastText,
+      fill: theme.palette.primary.contrastText,
+    },
+  },
+}))
+
+const ThemedLogo = () => {
+  const classes = useStyles()
+  return <Logo size={24} className={classes.color} />
+}
+
+export const Header = ({
+  themeChoice,
+  toggleThemeChoice,
+}: {
+  themeChoice: ThemeChoice
+  toggleThemeChoice: () => void
+}) => {
   const {
     site: {
       siteMetadata: {
@@ -34,20 +65,27 @@ export const Header = () => {
       }
     `
   )
+  const theme = useTheme()
   const finalLogoLink = logo.link !== '' ? logo.link : '/'
   return (
     <>
-      <Flex color="white" flexGrow={1}>
+      <Flex flexGrow={1}>
         <ClearLink href={finalLogoLink}>
-          <Flex color="white">
+          <Flex color={theme.palette.type == 'light' ? 'white' : 'black'}>
             <Box mx={2}>
               {logo.image !== '' ? (
                 <img src={logo.image} alt="logo" />
               ) : (
-                <Logo size={24} />
+                <ThemedLogo />
               )}
             </Box>
-            <Heading.h1 style={{ fontSize: '1.5rem' }}>{title}</Heading.h1>
+            <Heading.h1
+              style={{
+                fontSize: '1.5rem',
+              }}
+            >
+              {title}
+            </Heading.h1>
           </Flex>
         </ClearLink>
       </Flex>
@@ -67,6 +105,11 @@ export const Header = () => {
           </Button>
         </ClearLink>
       ) : null}
+      <ThemeSwitch
+        themeChoice={themeChoice}
+        toggleThemeChoice={toggleThemeChoice}
+        variant="celestial"
+      />
       {helpUrl !== '' ? (
         <a href={helpUrl}>
           <Icons.Help />

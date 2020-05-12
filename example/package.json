@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "main": "index.js",
   "author": "Committed <opensource@committed.io>",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "deploy": "gh-pages -d public -r https://$GITHUB_TOKEN@github.com/commitd/docs.git"
   },
   "dependencies": {
-    "@committed/gatsby-theme-docs": "^1.0.7",
+    "@committed/gatsby-theme-docs": "^2.0.0",
     "gatsby": "^2.21.9",
     "gatsby-plugin-manifest": "^2.4.1",
     "react": "^16.13.1",

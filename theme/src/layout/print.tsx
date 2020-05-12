@@ -1,4 +1,4 @@
-import { Box, CodeStyle, ThemeProvider } from '@committed/components'
+import { Box, CodeStyle, ThemeProvider, fonts } from '@committed/components'
 import { graphql, navigate } from 'gatsby'
 import React from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
@@ -11,7 +11,9 @@ import '../style/mermaid.css'
 import '../style/print.css'
 
 export default ({ pageContext, data }) => {
-  useHotkeys('esc', () => navigate('/'))
+  useHotkeys('esc', () => {
+    navigate('/')
+  })
 
   const docs = data.allDocs.edges.reduce((accu, edge) => {
     accu[edge.node.id] = edge.node.body
@@ -20,7 +22,8 @@ export default ({ pageContext, data }) => {
   return (
     <ThemeProvider
       choice="light"
-      fonts={{
+      createFonts={() => ({
+        ...fonts.defaultFonts,
         display: {
           fontFamily:
             'Dosis, "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif',
@@ -30,7 +33,7 @@ export default ({ pageContext, data }) => {
           fontFamily:
             'Lato, -apple-system, BlinkMacSystemFont, "San Francisco", Roboto,  "Segoe UI", "Helvetica Neue"',
         },
-      }}
+      })}
     >
       <Header />
       <Footer />
