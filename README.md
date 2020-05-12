@@ -26,6 +26,7 @@ A theme for writing documentation sites in Markdown.
 - emojis using :shortcodes:
 - SEO friendly
 - Fully customizable
+- 🔍 Search
 
 ## 🔗 Live Demo and Instructions
 
@@ -47,14 +48,14 @@ module.exports = {
     title: "Title",
     author: "Author",
     description: "Description",
-    siteUrl: "https://your.site.url"
+    siteUrl: "https://your.site.url",
   },
   plugins: [
     {
       resolve: `@committed/gatsby-theme-docs`,
-      options: {}
-    }
-  ]
+      options: {},
+    },
+  ],
 };
 ```
 
@@ -65,6 +66,16 @@ gatsby develop
 ```
 
 Visit `http://localhost:8000/` to view the site.
+
+Full text search is provided, but you MUST clean first to reindex the content:
+
+```bash
+gatsby clean
+# Then:
+gatsby build
+# Or
+gatbsy develop
+```
 
 For full instructions see the [live demo](https://committed.software/theme).
 

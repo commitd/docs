@@ -1,6 +1,6 @@
 const { NODE_ENV } = process.env;
 
-const pathPrefix = env => {
+const pathPrefix = (env) => {
   return env === "production" ? "/docs" : "";
 };
 
@@ -11,7 +11,7 @@ module.exports = {
     author: "Committed",
     description: "Documentation built with mdx.",
     siteUrl: "https://committed.software/docs",
-    docsLocation: "https://github.com/commitd/docs-starter/tree/master/content"
+    docsLocation: "https://github.com/commitd/docs-starter/tree/master/content",
   },
   plugins: [
     {
@@ -24,21 +24,21 @@ module.exports = {
           helpUrl: "",
           links: [
             { text: "example", link: "/example1" },
-            { text: "mdx", link: "/example2" }
-          ]
+            { text: "mdx", link: "/example2" },
+          ],
         },
         sidebar: {
           ignoreIndex: false,
-          links: [{ text: "Example", link: "https://committed.io" }]
+          links: [{ text: "Example", link: "https://committed.io" }],
         },
         checkLinks: {
-          exceptions: ["/broken"]
+          exceptions: ["/broken"],
         },
         print: {
           classification: "OFFICIAL",
-          reference: "https://committed.software/docs"
-        }
-      }
+          reference: "https://committed.software/docs",
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -49,11 +49,11 @@ module.exports = {
         background_color: `#3E3E3E`,
         theme_color: `#FFBB00`,
         display: `browser`,
-        icon: `${__dirname}/Avatar.png` // This path is relative to the root of the site.
-      }
-    }
+        icon: `${__dirname}/Avatar.png`, // This path is relative to the root of the site.
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-  ]
+  ],
 };

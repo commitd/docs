@@ -1,15 +1,16 @@
+import { Box, Button, Flex, Heading, Icons, Logo } from '@committed/components'
+import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
-import { useStaticQuery, graphql, navigate } from 'gatsby'
 import { ClearLink } from './Link'
-import { Box, Flex, Logo, Button, Heading, Icons } from '@committed/components'
 
 export const Header = () => {
   const {
     site: {
       siteMetadata: {
-        header: { title, helpUrl, logo, links }
-      }
-    }
+        header: { title, helpUrl, logo, links },
+        search,
+      },
+    },
   } = useStaticQuery(
     graphql`
       query headerQuery {
@@ -27,6 +28,7 @@ export const Header = () => {
                 text
               }
             }
+            search
           }
         }
       }
@@ -50,7 +52,7 @@ export const Header = () => {
         </ClearLink>
       </Flex>
       {links
-        .filter(link => link.link !== '' && link.text !== '')
+        .filter((link) => link.link !== '' && link.text !== '')
         .map((link, key) => (
           <ClearLink key={key} href={link.link}>
             <Button color="inherit" variant="text">
@@ -58,6 +60,13 @@ export const Header = () => {
             </Button>
           </ClearLink>
         ))}
+      {search ? (
+        <ClearLink href="/search">
+          <Button color="inherit" variant="text">
+            <Icons.Search />
+          </Button>
+        </ClearLink>
+      ) : null}
       {helpUrl !== '' ? (
         <a href={helpUrl}>
           <Icons.Help />

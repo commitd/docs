@@ -23,14 +23,14 @@ module.exports = {
     title: "Title",
     author: "Author",
     description: "Description",
-    siteUrl: "https://your.site.url"
+    siteUrl: "https://your.site.url",
   },
   plugins: [
     {
       resolve: `@committed/gatsby-theme-docs`,
-      options: {}
-    }
-  ]
+      options: {},
+    },
+  ],
 };
 ```
 
@@ -67,6 +67,10 @@ You can also navigate with the keyboard using `left` and `right` arrows for prev
 
 An additional page on `/print` is provided in order to print (or print to pdf) the docs.
 Use keyboard shortcut `shift+p` to navigate to the print page (then `cmd+p` to print), `esc` to go back home.
+
+## Search
+
+Search is added by default but can be turned off in the config by setting search `false`.
 
 ## Configuration
 
@@ -106,7 +110,9 @@ module.exports = {
         print: {
           classification: null
           reference: "https://committed.software/docs"
-        }
+        },
+        // can omit search when true, as true is the default
+        search: false
       }
     }
   ]
