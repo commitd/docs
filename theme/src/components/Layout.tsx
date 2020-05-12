@@ -12,7 +12,7 @@ import { PreviousNext } from './PreviousNext'
 import { SEO, SEOProps } from './SEO'
 import { Sidebar } from './Sidebar'
 
-export interface LayoutProps extends SEOProps {
+export interface LayoutProps extends Omit<SEOProps, 'title'> {
   id: string
   pageContext: PageContext
   location: any
@@ -39,9 +39,9 @@ export const Layout = ({
   useHotkeys('shift+home', () => navigate('/'))
   useHotkeys('shift+p', () => navigate('/print'))
 
-  const navigateTo = url => {
+  const navigateTo = (url) => {
     navigate(url, {
-      state: collapsed
+      state: collapsed,
     })
   }
 
@@ -51,7 +51,7 @@ export const Layout = ({
         pathname: location.pathname,
         navigate: navigateTo,
         collapsed,
-        setCollapsed
+        setCollapsed,
       }}
     >
       <ThemeProvider
@@ -59,12 +59,12 @@ export const Layout = ({
           display: {
             fontFamily:
               'Dosis, "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif',
-            fontWeight: 700
+            fontWeight: 700,
           },
           text: {
             fontFamily:
-              'Lato, -apple-system, BlinkMacSystemFont, "San Francisco", Roboto,  "Segoe UI", "Helvetica Neue"'
-          }
+              'Lato, -apple-system, BlinkMacSystemFont, "San Francisco", Roboto,  "Segoe UI", "Helvetica Neue"',
+          },
         }}
       >
         {pageContext.current && pageContext.current.title && (
@@ -73,7 +73,7 @@ export const Layout = ({
         <Root
           style={{ minHeight: '100vh' }}
           config={{
-            collapsible: false
+            collapsible: false,
           }}
         >
           <LayoutHeader>
@@ -83,7 +83,7 @@ export const Layout = ({
             header={
               // you can provide fixed header inside nav
               // change null to some react element
-              ctx => null
+              (ctx) => null
             }
           >
             <Sidebar location={location} current={id} />

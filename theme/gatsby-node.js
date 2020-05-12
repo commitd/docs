@@ -81,7 +81,7 @@ exports.sourceNodes = ({ actions, schema }) => {
 
 exports.createPages = async (
   { actions, graphql, reporter, createContentDigest },
-  options
+  { sidebar, search = true }
 ) => {
   const { createPage, createNode } = actions
   return new Promise((resolve, reject) => {
@@ -107,10 +107,7 @@ exports.createPages = async (
           return
         }
 
-        const treeData = calculateTreeData(
-          options.sidebar,
-          result.data.allDocs.edges
-        )
+        const treeData = calculateTreeData(sidebar, result.data.allDocs.edges)
 
         const data = flattenTree(treeData)
 
@@ -152,14 +149,16 @@ exports.createPages = async (
           },
         })
 
-        createPage({
-          path: '/search',
-          component: path.resolve(`${__dirname}/src/layout/search.tsx`),
-          context: {
-            layout: 'docs',
-            data,
-          },
-        })
+        if (search) {
+          createPage({
+            path: '/search',
+            component: path.resolve(`${__dirname}/src/layout/search.tsx`),
+            context: {
+              layout: 'docs',
+              data,
+            },
+          })
+        }
 
         const fieldData = {
           data: treeData,
@@ -248,4 +247,14 @@ exports.onCreateNode = ({
       })
     }
   }
+}
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type AuthorJson implements Node {
+      joinedAt: Date
+    }
+  `
+  createTypes(typeDefs)
 }

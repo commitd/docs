@@ -8,6 +8,7 @@ export const Header = () => {
     site: {
       siteMetadata: {
         header: { title, helpUrl, logo, links },
+        search,
       },
     },
   } = useStaticQuery(
@@ -27,6 +28,7 @@ export const Header = () => {
                 text
               }
             }
+            search
           }
         }
       }
@@ -58,11 +60,13 @@ export const Header = () => {
             </Button>
           </ClearLink>
         ))}
-      <ClearLink href="/search">
-        <Button color="inherit" variant="text">
-          <Icons.Search />
-        </Button>
-      </ClearLink>
+      {search ? (
+        <ClearLink href="/search">
+          <Button color="inherit" variant="text">
+            <Icons.Search />
+          </Button>
+        </ClearLink>
+      ) : null}
       {helpUrl !== '' ? (
         <a href={helpUrl}>
           <Icons.Help />

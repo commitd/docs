@@ -26,6 +26,7 @@ A theme for writing documentation sites in Markdown.
 - emojis using :shortcodes:
 - SEO friendly
 - Fully customizable
+- 🔍 Search
 
 ## 🔗 Live Demo and Instructions
 
@@ -66,7 +67,7 @@ gatsby develop
 
 Visit `http://localhost:8000/` to view the site.
 
-Full text search is provided, but you MUST before a clean first to reindex the content:
+Full text search is provided, but you MUST clean first to reindex the content:
 
 ```bash
 gatsby clean

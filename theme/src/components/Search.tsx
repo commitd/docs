@@ -69,6 +69,7 @@ export const Search: FC<SearchProps> = (props: SearchProps) => {
               label="Query"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              autoFocus
             />
             <Button color="primary">Search</Button>
           </Form>

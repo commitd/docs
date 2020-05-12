@@ -6,6 +6,7 @@ module.exports = ({
   sidebar,
   print,
   checkLinks = {},
+  search = true,
 }) => ({
   siteMetadata: {
     title: 'Docs',
@@ -34,17 +35,19 @@ module.exports = ({
       },
       print
     ),
+    search,
   },
   plugins: [
     `gatsby-plugin-typescript`,
     `gatsby-plugin-material-ui`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sharp`,
-    // Add search
     {
       resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
       options: {
-        fields: [`title`, `description`, `content`],
+        // don't index anything if search is off
+        // this retains schema entries but stops the effort.
+        fields: search ? [`title`, `description`, `content`] : [],
         resolvers: {
           Docs: {
             title: (node) => node.title,
