@@ -939,10 +939,10 @@
   resolved "https://registry.yarnpkg.com/@braintree/sanitize-url/-/sanitize-url-3.1.0.tgz#8ff71d51053cd5ee4981e5a501d80a536244f7fd"
   integrity sha512-GcIY79elgB+azP74j8vqkiXz8xLFfIzbQJdlwOPisgbKT00tviJQuEghOXSMVxJ00HoYJbGswr4kcllUc4xCcg==
 
-"@committed/components@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@committed/components/-/components-3.0.2.tgz#3e7afa360b511443c9bae054bdd75cc8374b6e83"
-  integrity sha512-zT4XN7RwYJb05b7qin87SVneJ6Cx9fR/ci6+oCca4YlAfwxq13wmEn0056OshutZeeA6pZthTJ8e8UUY4h0kIQ==
+"@committed/components@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@committed/components/-/components-3.2.0.tgz#3e2db6d49390148e2bc97bc218131f59cbc12663"
+  integrity sha512-FmMGpkHsuDO3is/kQuVjuj6As7w2VhWcSJBYnWLUHsm4nxb+n95iYvbI5Zwa3cWoV70tck7jor585/mpgjUzaA==
   dependencies:
     clsx "^1.1.0"
     deepmerge "^4.2.2"

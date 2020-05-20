@@ -3,7 +3,6 @@ import {
   CodeStyle,
   Container,
   ThemeProvider,
-  useThemeChoice,
   fonts,
 } from '@committed/components'
 import { Content, Header as LayoutHeader, Nav, Root } from '@committed/layout'
@@ -43,7 +42,6 @@ export const Layout = ({
   ...props
 }: LayoutProps) => {
   const [collapsed, setCollapsed] = useState((location && location.state) || {})
-  const [themeChoice, toggleThemeChoice, componentMounted] = useThemeChoice()
 
   useHotkeys('shift+home', () => {
     navigate('/')
@@ -58,7 +56,7 @@ export const Layout = ({
     })
   }
 
-  const component = componentMounted ? (
+  return (
     <DocsContext.Provider
       value={{
         pathname: location.pathname,
@@ -68,7 +66,6 @@ export const Layout = ({
       }}
     >
       <ThemeProvider
-        choice={themeChoice}
         createFonts={() => ({
           ...fonts.defaultFonts,
           display: {
@@ -103,10 +100,7 @@ export const Layout = ({
           }}
         >
           <LayoutHeader>
-            <Header
-              themeChoice={themeChoice}
-              toggleThemeChoice={toggleThemeChoice}
-            />
+            <Header />
           </LayoutHeader>
           <Nav>
             <Sidebar location={location} current={id} />
@@ -128,6 +122,5 @@ export const Layout = ({
         </Root>
       </ThemeProvider>
     </DocsContext.Provider>
-  ) : null
-  return component
+  )
 }

@@ -4,12 +4,15 @@ import {
   List,
   ListItem,
   ListItemText,
+  ListItemSecondaryAction,
+  IconButton,
   Theme,
-  useTheme
+  useTheme,
 } from '@committed/components'
 import React from 'react'
 import { Info, Item } from '../types'
 import { firstUrl } from '../util/tree'
+import { useLayout } from '@committed/layout'
 
 export interface TreeNodeProps extends Item {
   isActive: (id: string) => boolean
@@ -35,38 +38,50 @@ export const TreeNode = React.memo(
     ...rest
   }: TreeNodeProps) => {
     const theme = useTheme<Theme>()
+    const { navVariant, setOpen } = useLayout()
     const url = firstUrl({ id, label, items, info })
     const isCollapsed = collapsed[id] || false
     const hasChildren = items.length !== 0
     const title = info ? info.title : label
     const active = isActive(id)
+
+    const handleClick = () => {
+      if (navVariant === 'temporary') {
+        setOpen(false)
+      }
+      navigate(url)
+    }
+
     return (
       <>
         <ListItem
           style={{
-            paddingLeft: theme.spacing(2) * (level + 1)
+            paddingLeft: theme.spacing(2) * (level + 1),
           }}
           selected={active}
           button
-          onClick={() => {
-            setCollapsed(id)
-            navigate(url)
-          }}
+          onClick={handleClick}
         >
           <ListItemText
             primary={title}
             primaryTypographyProps={{
-              variant: level === 0 ? 'body1' : 'caption'
+              variant: level === 0 ? 'body1' : 'caption',
             }}
           />
           {title && hasChildren ? (
-            <>
-              {!isCollapsed ? (
-                <Icons.KeyboardArrowDown />
-              ) : (
-                <Icons.KeyboardArrowRight />
-              )}
-            </>
+            <ListItemSecondaryAction>
+              <IconButton
+                onClick={() => setCollapsed(id)}
+                edge="end"
+                aria-label={isCollapsed ? 'expand' : 'collapse'}
+              >
+                {!isCollapsed ? (
+                  <Icons.KeyboardArrowDown />
+                ) : (
+                  <Icons.KeyboardArrowRight />
+                )}
+              </IconButton>
+            </ListItemSecondaryAction>
           ) : null}
         </ListItem>
 

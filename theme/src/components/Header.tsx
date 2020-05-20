@@ -28,13 +28,7 @@ const ThemedLogo = () => {
   return <Logo size={24} className={classes.color} />
 }
 
-export const Header = ({
-  themeChoice,
-  toggleThemeChoice,
-}: {
-  themeChoice: ThemeChoice
-  toggleThemeChoice: () => void
-}) => {
+export const Header = () => {
   const {
     site: {
       siteMetadata: {
@@ -105,11 +99,7 @@ export const Header = ({
           </Button>
         </ClearLink>
       ) : null}
-      <ThemeSwitch
-        themeChoice={themeChoice}
-        toggleThemeChoice={toggleThemeChoice}
-        variant="celestial"
-      />
+      <ThemeSwitch />
       {helpUrl !== '' ? (
         <a href={helpUrl}>
           <Icons.Help />

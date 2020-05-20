@@ -2,13 +2,8 @@ import React from 'react'
 import { Tree } from './Tree'
 import { ClearLink } from './Link'
 import { useStaticQuery, graphql } from 'gatsby'
-import {
-  Icons,
-  Divider,
-  List,
-  ListItem,
-  ListItemText
-} from '@committed/components'
+import { Icons, Divider, List } from '@committed/components'
+import { NavListItem } from '@committed/layout'
 
 export interface SidebarProps {
   location: any
@@ -19,8 +14,8 @@ export const Sidebar = ({ location, current }: SidebarProps) => {
   const {
     menu: { data: data },
     site: {
-      siteMetadata: { sidebar: sidebar }
-    }
+      siteMetadata: { sidebar: sidebar },
+    },
   } = useStaticQuery(
     graphql`
       query MenuQuery {
@@ -52,13 +47,13 @@ export const Sidebar = ({ location, current }: SidebarProps) => {
       <Divider />
       <List>
         {sidebar.links
-          .filter(link => link.link !== '' && link.text !== '')
+          .filter((link) => link.link !== '' && link.text !== '')
           .map((link, key) => (
             <ClearLink key={key} href={link.link}>
-              <ListItem button>
-                <ListItemText primary={link.text} />
-                <Icons.ExitToApp color="disabled" />
-              </ListItem>
+              <NavListItem
+                text={link.text}
+                icon={<Icons.ExitToApp color="disabled" />}
+              />
             </ClearLink>
           ))}
       </List>
