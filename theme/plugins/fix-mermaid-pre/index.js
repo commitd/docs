@@ -1,6 +1,6 @@
 const visit = require('unist-util-visit')
 module.exports = ({ markdownAST }, pluginOptions) => {
-  visit(markdownAST, 'code', node => {
+  visit(markdownAST, 'code', (node) => {
     let { value, lang } = node
     if (lang === 'mermaid') {
       value = value.replace(/<<(join|fork)>>/g, '[[$1]]', 'g')

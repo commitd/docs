@@ -7,9 +7,9 @@ export const Header = () => {
   const {
     site: {
       siteMetadata: {
-        print: { classification }
-      }
-    }
+        print: { classification },
+      },
+    },
   } = useStaticQuery(
     graphql`
       query printHeaderQuery {

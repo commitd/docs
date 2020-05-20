@@ -27,7 +27,7 @@ function getHeadingsMapKey(link, path) {
   return {
     key,
     hasHash,
-    hashId
+    hashId,
   }
 }
 
@@ -57,7 +57,7 @@ module.exports = async (
     if (node.url.startsWith('#') || !/:[0-9]*\/\//.test(node.url)) {
       links.push({
         ...node,
-        frontmatter: markdownNode.frontmatter
+        frontmatter: markdownNode.frontmatter,
       })
     }
   }
@@ -70,7 +70,7 @@ module.exports = async (
     path: withPathPrefix(slug),
     links,
     headings,
-    setAt
+    setAt,
   })
 
   // wait to see if all of the Markdown and MDX has been visited
@@ -114,7 +114,7 @@ module.exports = async (
 
     const linksForPath = linksMap[path]
     if (linksForPath.length) {
-      const brokenLinks = linksForPath.filter(link => {
+      const brokenLinks = linksForPath.filter((link) => {
         // return true for broken links, false = pass
         const { key, hasHash, hashId } = getHeadingsMapKey(link.url, path)
         if (prefixedExceptions.includes(key)) {
@@ -151,7 +151,7 @@ module.exports = async (
 
             prefix = [
               String(line + offset).padStart(3, ' '),
-              String(column).padEnd(4, ' ')
+              String(column).padEnd(4, ' '),
             ].join(':')
           }
           console.warn(`${prefix} ${link.url}`)

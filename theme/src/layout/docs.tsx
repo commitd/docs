@@ -5,7 +5,7 @@ import '../style/mermaid.css'
 
 export default ({ data }) => {
   const {
-    docs: { body, tableOfContents }
+    docs: { body, tableOfContents },
   } = data
   return <Markdown>{body}</Markdown>
 }

@@ -1,6 +1,6 @@
 const visit = require('unist-util-visit')
 module.exports = ({ markdownAST }, pluginOptions) => {
-  visit(markdownAST, 'html', node => {
+  visit(markdownAST, 'html', (node) => {
     let { value, lang } = node
     if (lang === 'mermaid') {
       // Remove first style tag - then we can just use a single import

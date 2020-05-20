@@ -9,9 +9,9 @@ export const Footer = () => {
   const {
     site: {
       siteMetadata: {
-        print: { classification, reference }
-      }
-    }
+        print: { classification, reference },
+      },
+    },
   } = useStaticQuery(
     graphql`
       query printFooterQuery {

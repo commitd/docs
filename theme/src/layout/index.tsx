@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout } from '../components/Layout'
 
-export default props => {
+export default (props) => {
   const { children, pageContext, location } = props
 
   // Pass through when in print mode

@@ -18,7 +18,7 @@ export const Tree = ({
   location,
   ignoreIndex = true,
   current = '',
-  data
+  data,
 }: TreeProps) => {
   const { navigate, collapsed, setCollapsed } = useContext(DocsContext)
   const isActive = (id: string) => current === id
@@ -29,10 +29,10 @@ export const Tree = ({
       location.pathname.startsWith(withPrefix(item.slug))) ||
     false
 
-  const toggle = id => {
+  const toggle = (id) => {
     setCollapsed({
       ...collapsed,
-      [id]: !collapsed[id]
+      [id]: !collapsed[id],
     })
   }
 
@@ -40,7 +40,7 @@ export const Tree = ({
     navigate(firstUrl(data.items[index]))
   }
 
-  const index = data.items.findIndex(item => isParent(item))
+  const index = data.items.findIndex((item) => isParent(item))
 
   const navigateDown = useCallback(() => {
     if (index === -1) {
