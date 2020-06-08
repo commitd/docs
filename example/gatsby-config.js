@@ -29,7 +29,7 @@ module.exports = {
         },
         sidebar: {
           ignoreIndex: false,
-          links: [{ text: "Example", link: "https://committed.io" }],
+          links: [{ text: "GitHub", link: "https://github.com/commitd/docs" }],
         },
         checkLinks: {
           exceptions: ["/broken"],
