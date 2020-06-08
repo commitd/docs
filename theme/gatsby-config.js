@@ -77,7 +77,15 @@ module.exports = ({
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
-        remarkPlugins: [require('remark-slug'), require('remark-emoji')],
+        remarkPlugins: [
+          require('remark-slug'),
+          [
+            require('remark-emoji'),
+            {
+              padSpaceAfter: true,
+            },
+          ],
+        ],
         gatsbyRemarkPlugins: [
           {
             resolve: require.resolve(`./plugins/fix-mermaid-pre`),

@@ -31,13 +31,13 @@ If in a folder you can use relative links so to link from page `example/1.md` to
 
 #### (H4) Emojis
 
-:tada: [emojis](https://www.webfx.com/tools/emoji-cheat-sheet/) are supported using their :shortcodes:
+:tada:&nbsp; [emojis](https://www.webfx.com/tools/emoji-cheat-sheet/) are supported using their :shortcodes:
+
+> NB If you want a space after your emoji you may need to add `&nbsp;󠀠󠀠󠀠` or use the unicode space here ->󠀠󠀠󠀠󠀠 . This is a known issue.
 
 ##### (H5) Images
 
-Images (PNG and JPEG)
-
-![Example Image](./CommittedSoftware.png "Committed Software")
+Images (PNG and JPEG) ![Example Image](./CommittedSoftware.png "Committed Software")
 
 SVG
 
