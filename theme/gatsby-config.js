@@ -104,6 +104,7 @@ module.exports = ({
             options: {
               maxWidth: 896,
               disableBgImage: true,
+              linkImagesToOriginal: false,
             },
           },
           {
