@@ -6,8 +6,28 @@ function getCacheKey(node) {
   return `check-links-${node.id}-${node.internal.contentDigest}`
 }
 
+function getPosition(string, subString, index) {
+  return string.split(subString, index).join(subString).length;
+}
+
+function convertToBasePath(link, path) {
+  if (link.startsWith('../')) {
+    // Convert the relative link to an absolute one
+    const moveUpDirectoryCount = (link.match(/\.\.\//g) || []).length
+    let pathWithoutTrailingSlash = path[path.length - 1] === '/' ? path.slice(0, path.length - 1) : path
+    const pathSlashCount = (path.match(/\//g) || []).length
+    const indexToSliceTo = getPosition(pathWithoutTrailingSlash, '/', pathSlashCount - moveUpDirectoryCount) + 1
+    const slicedPath = pathWithoutTrailingSlash.slice(0, indexToSliceTo)
+    const slicedLink = link.slice(moveUpDirectoryCount * 3, link.length)
+    const concat = slicedPath.concat(slicedLink)
+    return concat.toLowerCase()
+  }
+  return link.toLowerCase().replace(/^\.\//, '') // strip ./
+
+}
+
 function getHeadingsMapKey(link, path) {
-  let basePath = link.toLowerCase().replace(/^\.\//, '') // strip ./
+  let basePath = convertToBasePath(link, path)
   const hashIndex = basePath.indexOf('#')
   const hasHash = hashIndex !== -1
   const hashId = hasHash ? basePath.slice(hashIndex + 1) : null
@@ -121,7 +141,8 @@ module.exports = async (
           return false
         }
 
-        const headings = headingsMap[key]
+        // If no heading is found, try again with a trailing /
+        const headings = headingsMap[key] == null ? headingsMap[`${key}/`] : headingsMap[key]
         if (headings) {
           if (hasHash) {
             return (
