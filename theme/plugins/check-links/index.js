@@ -7,14 +7,20 @@ function getCacheKey(node) {
 }
 
 function getNthPosition(string, subString, n) {
-  return string.split(subString, n).join(subString).length;
+  return string.split(subString, n).join(subString).length
 }
 
 function convertToAbsolutePath(link, path) {
   const moveUpDirectoryCount = (link.match(/\.\.\//g) || []).length
-  let pathWithoutTrailingSlash = path[path.length - 1] === '/' ? path.slice(0, path.length - 1) : path
+  let pathWithoutTrailingSlash =
+    path[path.length - 1] === '/' ? path.slice(0, path.length - 1) : path
   const pathSlashCount = (path.match(/\//g) || []).length
-  const indexToSliceTo = getNthPosition(pathWithoutTrailingSlash, '/', pathSlashCount - moveUpDirectoryCount) + 1
+  const indexToSliceTo =
+    getNthPosition(
+      pathWithoutTrailingSlash,
+      '/',
+      pathSlashCount - moveUpDirectoryCount
+    ) + 1
   const slicedPath = pathWithoutTrailingSlash.slice(0, indexToSliceTo)
   const slicedLink = link.slice(moveUpDirectoryCount * 3, link.length)
   return slicedPath.concat(slicedLink)
@@ -25,7 +31,6 @@ function convertToBasePath(link, path) {
     return convertToAbsolutePath(link, path).toLowerCase()
   }
   return link.toLowerCase().replace(/^\.\//, '') // strip ./
-
 }
 
 function getHeadingsMapKey(link, path) {
@@ -144,7 +149,8 @@ module.exports = async (
         }
 
         // If no heading is found, try again with a trailing /
-        const headings = headingsMap[key] == null ? headingsMap[`${key}/`] : headingsMap[key]
+        const headings =
+          headingsMap[key] == null ? headingsMap[`${key}/`] : headingsMap[key]
         if (headings) {
           if (hasHash) {
             return (
@@ -179,7 +185,6 @@ module.exports = async (
           }
           console.warn(`${prefix} ${link.url}`)
         }
-        console.log('')
       }
     }
   }
