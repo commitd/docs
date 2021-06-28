@@ -2,8 +2,9 @@ import React from 'react'
 import { Tree } from './Tree'
 import { ClearLink } from './Link'
 import { useStaticQuery, graphql } from 'gatsby'
-import { Icons, Divider, List } from '@committed/components'
+import { Divider, List } from '@committed/components'
 import { NavListItem } from '@committed/layout'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 
 export interface SidebarProps {
   location: any
@@ -52,7 +53,7 @@ export const Sidebar = ({ location, current }: SidebarProps) => {
             <ClearLink key={key} href={link.link}>
               <NavListItem
                 text={link.text}
-                icon={<Icons.ExitToApp color="disabled" />}
+                icon={<ExitToAppIcon color="disabled" />}
               />
             </ClearLink>
           ))}
