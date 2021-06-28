@@ -34,19 +34,19 @@ exports.sourceNodes = ({ actions, schema }) => {
         order: {
           type: 'String!',
         },
-        tableOfContents: {
-          type: 'Json!',
-          resolve(source, args, context, info) {
-            const type = info.schema.getType(`Mdx`)
-            const mdxNode = context.nodeModel.getNodeById({
-              id: source.parent,
-            })
-            const resolver = type.getFields()['tableOfContents'].resolve
-            return resolver(mdxNode, {}, context, {
-              fieldName: 'tableOfContents',
-            })
-          },
-        },
+        // tableOfContents: {
+        //   type: 'TocJson!',
+        //   resolve(source, args, context, info) {
+        //     const type = info.schema.getType(`Mdx`)
+        //     const mdxNode = context.nodeModel.getNodeById({
+        //       id: source.parent,
+        //     })
+        //     const resolver = type.getFields()['tableOfContents'].resolve
+        //     return resolver(mdxNode, {}, context, {
+        //       fieldName: 'tableOfContents',
+        //     })
+        //   },
+        // },
         body: {
           type: 'String!',
           resolve(source, args, context, info) {
@@ -71,7 +71,7 @@ exports.sourceNodes = ({ actions, schema }) => {
       fields: {
         id: { type: `ID!` },
         data: {
-          type: 'Json!',
+          type: 'MenuItem!',
         },
       },
       interfaces: [`Node`],
@@ -163,7 +163,6 @@ exports.createPages = async (
         const fieldData = {
           data: treeData,
         }
-
         createNode({
           ...fieldData,
           // Required fields.
@@ -224,7 +223,7 @@ exports.onCreateNode = ({
         metaTitle: node.frontmatter.metaTitle || title,
         metaDescription: node.frontmatter.metaDescription || '',
         order: node.frontmatter.order || title,
-        tableOfContents: node.tableOfContents,
+        // tableOfContents: node.tableOfContents,
         rawBody: node.rawBody,
       }
 
@@ -255,6 +254,22 @@ exports.createSchemaCustomization = ({ actions }) => {
     type AuthorJson implements Node {
       joinedAt: Date
     }
+
+    type MenuInfo implements Node {
+      id: String!
+      url: String!
+      order: String!
+      title: String!
+    }
+
+    type MenuItem implements Node {
+      id: String!
+      label: String!
+      info: MenuInfo
+      items: [MenuItem!]!
+    }
+
   `
+
   createTypes(typeDefs)
 }

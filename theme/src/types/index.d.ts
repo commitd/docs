@@ -6,7 +6,7 @@ export interface Doc {
   metaDescription: string
   order: string
   body: string
-  tableOfContents: object
+  // tableOfContents: object
 }
 
 export interface Page {

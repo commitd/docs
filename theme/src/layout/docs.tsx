@@ -5,7 +5,7 @@ import '../style/mermaid.css'
 
 export default ({ data }) => {
   const {
-    docs: { body, tableOfContents },
+    docs: { body },
   } = data
   return <Markdown>{body}</Markdown>
 }
@@ -13,7 +13,6 @@ export default ({ data }) => {
 export const pageQuery = graphql`
   query DocQuery($id: String!) {
     docs(id: { eq: $id }) {
-      tableOfContents
       body
     }
   }
