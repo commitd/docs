@@ -22,56 +22,7 @@ export const Sidebar = ({ location, current }: SidebarProps) => {
     graphql`
       query MenuQuery {
         menu(id: { eq: "menu" }) {
-          data {
-            id
-            label
-            info {
-              id
-              url
-              order
-              title
-            }
-            items {
-              id
-              label
-              info {
-                id
-                url
-                order
-                title
-              }
-              items {
-                id
-                label
-                info {
-                  id
-                  url
-                  order
-                  title
-                }
-                items {
-                  id
-                  label
-                  info {
-                    id
-                    url
-                    order
-                    title
-                  }
-                  items {
-                    id
-                    label
-                    info {
-                      id
-                      url
-                      order
-                      title
-                    }
-                  }
-                }
-              }
-            }
-          }
+          data
         }
         site {
           siteMetadata {
