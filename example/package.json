@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "gatsby clean && rm -rf ../node_modules/gh-pages/.cache",
-    "develop": "gatsby develop",
+    "start": "gatsby develop",
     "stage": "gatsby build",
     "build": "gatsby build --prefix-paths && cp ./README.md public/",
     "serve": "gatsby serve --prefix-paths",
