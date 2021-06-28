@@ -12,6 +12,7 @@ export interface SidebarProps {
 }
 
 export const Sidebar = ({ location, current }: SidebarProps) => {
+  // The GraphQL query is limited by hard coded recursion.
   const {
     menu: { data: data },
     site: {
@@ -21,7 +22,56 @@ export const Sidebar = ({ location, current }: SidebarProps) => {
     graphql`
       query MenuQuery {
         menu(id: { eq: "menu" }) {
-          data
+          data {
+            id
+            label
+            info {
+              id
+              url
+              order
+              title
+            }
+            items {
+              id
+              label
+              info {
+                id
+                url
+                order
+                title
+              }
+              items {
+                id
+                label
+                info {
+                  id
+                  url
+                  order
+                  title
+                }
+                items {
+                  id
+                  label
+                  info {
+                    id
+                    url
+                    order
+                    title
+                  }
+                  items {
+                    id
+                    label
+                    info {
+                      id
+                      url
+                      order
+                      title
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
         site {
           siteMetadata {
