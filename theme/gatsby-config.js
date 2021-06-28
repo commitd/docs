@@ -6,7 +6,7 @@ module.exports = ({
   sidebar,
   print,
   checkLinks = {},
-  search = true,
+  search = false,
 }) => ({
   siteMetadata: {
     title: 'Docs',
