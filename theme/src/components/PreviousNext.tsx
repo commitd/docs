@@ -1,8 +1,10 @@
-import { Button, Divider, Flex, Icons } from '@committed/components'
+import { Button, Divider, Flex } from '@committed/components'
 import React, { useCallback, useContext } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Info } from '../types'
 import { DocsContext } from './Layout'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 
 export interface PreviousNextProps {
   previous?: Info
@@ -46,7 +48,7 @@ export const PreviousNext = ({ previous, next }: PreviousNextProps) => {
             variant="outlined"
             onClick={() => navigate(previous.url)}
           >
-            <Icons.ArrowBack />
+            <ArrowBackIcon />
             {previous.title}
           </Button>
         )}
@@ -57,7 +59,7 @@ export const PreviousNext = ({ previous, next }: PreviousNextProps) => {
             onClick={() => navigate(next.url)}
           >
             {next.title}
-            <Icons.ArrowForward />
+            <ArrowForwardIcon />
           </Button>
         )}
       </Flex>

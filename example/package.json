@@ -6,20 +6,20 @@
   "license": "MIT",
   "scripts": {
     "clean": "gatsby clean && rm -rf ../node_modules/gh-pages/.cache",
-    "develop": "gatsby develop",
+    "start": "gatsby develop",
     "stage": "gatsby build",
     "build": "gatsby build --prefix-paths && cp ./README.md public/",
     "serve": "gatsby serve --prefix-paths",
     "deploy": "gh-pages -d public -r https://$GITHUB_TOKEN@github.com/commitd/docs.git"
   },
   "dependencies": {
-    "@committed/gatsby-theme-docs": "^2.0.0",
-    "gatsby": "^2.21.9",
-    "gatsby-plugin-manifest": "^2.4.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "@committed/gatsby-theme-docs": "^3.0.0",
+    "gatsby": "^3.8.0",
+    "gatsby-plugin-manifest": "^3.8.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "gh-pages": "^2.2.0"
+    "gh-pages": "^3.2.3"
   }
 }

@@ -35,7 +35,7 @@ exports.sourceNodes = ({ actions, schema }) => {
           type: 'String!',
         },
         tableOfContents: {
-          type: 'Json!',
+          type: 'JSON!',
           resolve(source, args, context, info) {
             const type = info.schema.getType(`Mdx`)
             const mdxNode = context.nodeModel.getNodeById({
@@ -71,7 +71,7 @@ exports.sourceNodes = ({ actions, schema }) => {
       fields: {
         id: { type: `ID!` },
         data: {
-          type: 'Json!',
+          type: 'JSON!',
         },
       },
       interfaces: [`Node`],
@@ -163,7 +163,6 @@ exports.createPages = async (
         const fieldData = {
           data: treeData,
         }
-
         createNode({
           ...fieldData,
           // Required fields.
@@ -256,5 +255,6 @@ exports.createSchemaCustomization = ({ actions }) => {
       joinedAt: Date
     }
   `
+
   createTypes(typeDefs)
 }

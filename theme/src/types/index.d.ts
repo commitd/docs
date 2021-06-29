@@ -6,7 +6,7 @@ export interface Doc {
   metaDescription: string
   order: string
   body: string
-  tableOfContents: object
+  // tableOfContents: object
 }
 
 export interface Page {
@@ -31,6 +31,8 @@ export interface Info {
 export interface Item extends Node {
   id: string
   label: string
+  info?: Info
+  items: Item[]
 }
 
 export interface Link {

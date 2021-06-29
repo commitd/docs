@@ -1,6 +1,5 @@
 import {
   Collapse,
-  Icons,
   List,
   ListItem,
   ListItemText,
@@ -13,6 +12,8 @@ import React from 'react'
 import { Info, Item } from '../types'
 import { firstUrl } from '../util/tree'
 import { useLayout } from '@committed/layout'
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 
 export interface TreeNodeProps extends Item {
   isActive: (id: string) => boolean
@@ -34,9 +35,9 @@ export const TreeNode = React.memo(
     level,
     label,
     info,
-    items,
     ...rest
   }: TreeNodeProps) => {
+    const items = rest.items || []
     const theme = useTheme<Theme>()
     const { navVariant, setOpen } = useLayout()
     const url = firstUrl({ id, label, items, info })
@@ -76,9 +77,9 @@ export const TreeNode = React.memo(
                 aria-label={isCollapsed ? 'expand' : 'collapse'}
               >
                 {!isCollapsed ? (
-                  <Icons.KeyboardArrowDown />
+                  <KeyboardArrowDownIcon />
                 ) : (
-                  <Icons.KeyboardArrowRight />
+                  <KeyboardArrowRightIcon />
                 )}
               </IconButton>
             </ListItemSecondaryAction>

@@ -3,7 +3,6 @@ import {
   Button,
   Flex,
   Heading,
-  Icons,
   Logo,
   ThemeChoice,
   ThemeSwitch,
@@ -13,6 +12,8 @@ import {
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import { ClearLink } from './Link'
+import HelpIcon from '@material-ui/icons/Help'
+import SearchIcon from '@material-ui/icons/Search'
 
 export const useStyles = makeStyles((theme) => ({
   color: {
@@ -95,14 +96,14 @@ export const Header = () => {
       {search ? (
         <ClearLink href="/search">
           <Button color="inherit" variant="text">
-            <Icons.Search />
+            <SearchIcon />
           </Button>
         </ClearLink>
       ) : null}
       <ThemeSwitch />
       {helpUrl !== '' ? (
         <a href={helpUrl}>
-          <Icons.Help />
+          <HelpIcon />
         </a>
       ) : null}
     </>

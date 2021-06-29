@@ -81,7 +81,7 @@ export const Tree = ({
           items={[]}
         />
       )}
-      {data.items.map((item, index) => (
+      {(data.items || []).map((item, index) => (
         <TreeNode
           key={`${item.label}-${item.info && item.info.url}`}
           navigate={navigate}
