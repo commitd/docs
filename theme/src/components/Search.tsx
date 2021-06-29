@@ -8,19 +8,14 @@ import {
   TextField,
   Typography,
 } from '@committed/components'
-import { Index } from 'elasticlunr'
-import React, {
-  FC,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import { useFlexSearch } from 'react-use-flexsearch'
+import React, { FC, useContext, useState } from 'react'
 import { DocsContext } from './Layout'
+import { withPrefix } from 'gatsby'
 
 interface SearchProps {
   index: any
+  store: any
 }
 
 // These are defined through gatsby-node.js in the elasticlunr config
@@ -35,34 +30,16 @@ interface Result {
 export const Search: FC<SearchProps> = (props: SearchProps) => {
   const { navigate } = useContext(DocsContext)
 
-  const [query, setQuery] = useState('')
-  const [results, setResults] = useState<Result[]>([])
+  const [query, setQuery] = useState(null)
+  const results = useFlexSearch(query, props.index, props.store)
 
-  const index = useMemo(() => {
-    return Index.load(props.index)
-  }, props.index)
-
-  const search = useCallback(() => {
-    // Consider: Should we stop if query.length < 3?
-
-    const r = index
-      // Expand allows for partial matches (mer matches mermaid)
-      .search(query, JSON.parse('{ "expand": true }'))
-      // Map over each ID and return the full document
-      .map(({ ref }) => index.documentStore.getDoc(ref))
-
-    //  Consider: Should be limit number of results?
-    setResults(r)
-  }, [index, query, setResults])
-
-  // Consider: Search as you type - possible not a good idea for larger sites?
-  useEffect(() => search(), [query, search])
+  console.log(results)
 
   return (
     <>
       <Card>
         <CardContent>
-          <Form display="flex" width={1} onSubmit={search}>
+          <Form display="flex" width={1} onSubmit={(e) => e.preventDefault()}>
             <TextField
               flexGrow={1}
               id="query-input"
@@ -75,7 +52,7 @@ export const Search: FC<SearchProps> = (props: SearchProps) => {
           </Form>
         </CardContent>
       </Card>
-      {results.length === 0 && query !== '' && (
+      {results.length === 0 && query !== null && query !== '' && (
         <Typography variant="body1" gutterBottom>
           Sorry, no results found for "<i>{query}</i>"
         </Typography>
@@ -87,18 +64,28 @@ export const Search: FC<SearchProps> = (props: SearchProps) => {
               Found {results.length} results for "<i>{query}</i>".
             </Typography>
             <List>
-              {results.map((r) => (
-                <ListItem
-                  key={r.id}
-                  button
-                  onClick={() => {
-                    navigate(r.slug)
-                  }}
-                >
-                  {r.title}
-                  {r.description && <small>: {r.description}</small>}
-                </ListItem>
-              ))}
+              {results.map((r) => {
+                let desc = r.description || r.excerpt
+                return (
+                  <ListItem
+                    key={r.id}
+                    button
+                    onClick={() => {
+                      // TODO: slug = test/mdTest is wrong, so we lowerc ase.
+                      // I don't know if there's a bug somewhere else (or ig we are wrong to have an upper case in our filename)
+                      navigate(withPrefix(r.slug.toLowerCase()))
+                    }}
+                  >
+                    <div>
+                      <b>
+                        {r.title || 'Untitled'}
+                        {desc ? ': ' : ''}
+                      </b>
+                      <small>{desc}</small>
+                    </div>
+                  </ListItem>
+                )
+              })}
             </List>
           </CardContent>
         </Card>

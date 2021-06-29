@@ -7,11 +7,14 @@ export default () => (
   <StaticQuery
     query={graphql`
       query SearchIndexQuery {
-        siteSearchIndex {
+        localSearchPages {
           index
+          store
         }
       }
     `}
-    render={({ siteSearchIndex: { index } }) => <Search index={index} />}
+    render={({ localSearchPages: { index, store } }) => (
+      <Search index={index} store={store} />
+    )}
   />
 )
