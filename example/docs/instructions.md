@@ -13,6 +13,10 @@ Write your documentation in [Markdown](https://www.markdownguide.org/) or [MDX](
 
 ```bash
 yarn add @committed/gatsby-theme-docs gatsby react react-dom
+
+# or
+
+npm add @committed/gatsby-theme-docs gatsby react react-dom
 ```
 
 and configure in `gatsby-config.js` with your site metadata e.g.

@@ -10,7 +10,8 @@
     "stage": "gatsby build",
     "build": "gatsby build --prefix-paths && cp ./README.md public/",
     "serve": "gatsby serve --prefix-paths",
-    "deploy": "gh-pages -d public -r https://$GITHUB_TOKEN@github.com/commitd/docs.git"
+    "deploy": "gh-pages -d public",
+    "deploy:ci": "gh-pages -d public -f -u 'github-actions-bot <support+actions@github.com>' -r https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git -u "
   },
   "dependencies": {
     "@committed/gatsby-theme-docs": "^3.0.0",

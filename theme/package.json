@@ -15,7 +15,8 @@
   "scripts": {
     "format": "prettier --write '**/{*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
     "format-check": "prettier --check '**/{**/*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
-    "deploy": "cp ../README.md .  ; npm publish  --access public"
+    "build": "cp ../README.md .",  
+    "deploy": "npm publish --access public"
   },
   "prettier": {
     "semi": false,

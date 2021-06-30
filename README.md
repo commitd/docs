@@ -100,7 +100,7 @@ We use yarn workspaces to develop the theme alongside an example usage that also
 On first use run
 
 ```bash
-yarn install
+npm install
 ```
 
 ### Layout
@@ -123,7 +123,7 @@ A simplified layout is shown below
 │   ├── package.json
 │   └── docs
 ├── package.json
-└── yarn.lock
+└── package-lock.json
 ```
 
 ### `theme`

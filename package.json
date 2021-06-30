@@ -1,16 +1,16 @@
 {
   "name": "@committed/gatsby-theme-docs-workspace",
   "private": true,
-  "version": "2.1.2",
-  "main": "index.js",
+  "version": "3.0.0",
   "license": "MIT",
   "scripts": {
-    "clean": "yarn workspace example clean",
-    "start": "yarn workspace example start",
-    "build": "yarn workspace example build",
-    "serve": "yarn workspace example serve",
-    "deploy": "yarn workspaces run deploy",
-    "bump": "yarn version --patch --no-git-tag-version ; yarn workspaces run version --patch --no-git-tag-version"
+    "clean": "npm run clean --workspace=example",
+    "start": "npm run start --workspace=example",
+    "build": "npm run build --workspaces",
+    "serve": "npm run serve --workspace=example",
+    "deploy": "npm run deploy --workspaces",
+    "deploy:ci": "npm run deploy --workspaces",
+    "bump": "npm version patch -ws --no-git-tag-version"
   },
   "workspaces": [
     "theme",
