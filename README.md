@@ -12,7 +12,6 @@
 </h1>
 
 [![Committed Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fcommitted.software%2Fbadge)](https://committed.io)
-[![Build Status](https://drone.committed.software/api/badges/commitd/docs/status.svg)](https://drone.committed.software/commitd/docs)
 
 A theme for writing documentation sites in Markdown.
 
@@ -30,17 +29,25 @@ A theme for writing documentation sites in Markdown.
 
 ## 🔗 Live Demo and Instructions
 
-Here's a [live demo](https://committed.software/docs)
+Here's a [live demo](https://docs.committed.software)
 
 ## 🚀 Quickstart
 
 Get started by adding the dependencies:
 
 ```bash
-yarn add @committed/gatsby-theme-docs gatsby react react-dom
+npm add @committed/gatsby-theme-docs gatsby react react-dom
 ```
 
-and configure in `gatsby-config.js` with your site metadata e.g.
+Add or create a `.gitignore`:
+
+```
+public/
+.cache/
+node_modules/
+```
+
+Configure in `gatsby-config.js` with your site metadata e.g.
 
 ```javascript
 module.exports = {
@@ -59,6 +66,19 @@ module.exports = {
 }
 ```
 
+
+You might like to add the following scripts to your `package.json`:
+
+```
+"scripts": {
+  "clean": "gatsby clean",
+  "start": "gatsby develop",
+  "build": "gatsby build"
+}
+
+```
+
+
 Put your markdown docs in `/docs/` and run:
 
 ```bash
@@ -76,6 +96,7 @@ gatsby build
 # Or
 gatbsy develop
 ```
+
 
 For full instructions see the [live demo](https://committed.software/theme).
 
