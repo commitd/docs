@@ -18,10 +18,6 @@
     "build": "cp ../README.md .",  
     "deploy": "npm publish --access public"
   },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
-  },
   "peerDependencies": {
     "gatsby": "^3.8.0",
     "react": "^17.0.2",

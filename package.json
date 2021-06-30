@@ -4,16 +4,31 @@
   "version": "3.0.0",
   "license": "MIT",
   "scripts": {
+    "prepare": "husky install",
     "clean": "npm run clean --workspace=example",
     "start": "npm run start --workspace=example",
     "build": "npm run build --workspaces",
     "serve": "npm run serve --workspace=example",
     "deploy": "npm run deploy --workspaces",
     "deploy:ci": "npm run deploy:ci --workspaces",
-    "bump": "npm version patch -ws --no-git-tag-version"
+    "bump": "npm version patch -ws --no-git-tag-version",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "workspaces": [
     "theme",
     "example"
-  ]
+  ],
+  "devDependencies": {
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.2"
+  },
+  "lint-staged": {
+    "*": "prettier --write"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  }
 }
