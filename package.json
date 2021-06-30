@@ -9,7 +9,7 @@
     "build": "npm run build --workspaces",
     "serve": "npm run serve --workspace=example",
     "deploy": "npm run deploy --workspaces",
-    "deploy:ci": "npm run deploy --workspaces",
+    "deploy:ci": "npm run deploy:ci --workspaces",
     "bump": "npm version patch -ws --no-git-tag-version"
   },
   "workspaces": [

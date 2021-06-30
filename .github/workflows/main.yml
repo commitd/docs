@@ -1,0 +1,45 @@
+name: Build Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # Install Node
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16"
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+        # Cache the gatsby intermediates to speed up the build
+      - uses: actions/cache@v2
+        with:
+          path: |
+            example/.cache
+            example/public
+          key: ${{ runner.os }}-gatsby-${{ hashFiles('**/package-lock.json', '**/gatsby-node.js', '**/gatsby-config.js') }}
+
+        # If we every do anything with gatsby use the cache - see deploy.yaml
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Build
+        run: npm run build
