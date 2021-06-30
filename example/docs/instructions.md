@@ -1,8 +1,8 @@
 ---
-title: "Instructions"
-order: "0"
-metaTitle: "Instructions"
-metaDescription: "Instructions to create documentation using Committed docs-theme"
+title: 'Instructions'
+order: '0'
+metaTitle: 'Instructions'
+metaDescription: 'Instructions to create documentation using Committed docs-theme'
 ---
 
 # Instructions
@@ -13,6 +13,10 @@ Write your documentation in [Markdown](https://www.markdownguide.org/) or [MDX](
 
 ```bash
 yarn add @committed/gatsby-theme-docs gatsby react react-dom
+
+# or
+
+npm add @committed/gatsby-theme-docs gatsby react react-dom
 ```
 
 and configure in `gatsby-config.js` with your site metadata e.g.
@@ -20,10 +24,10 @@ and configure in `gatsby-config.js` with your site metadata e.g.
 ```javascript
 module.exports = {
   siteMetadata: {
-    title: "Title",
-    author: "Author",
-    description: "Description",
-    siteUrl: "https://your.site.url",
+    title: 'Title',
+    author: 'Author',
+    description: 'Description',
+    siteUrl: 'https://your.site.url',
   },
   plugins: [
     {
@@ -31,7 +35,7 @@ module.exports = {
       options: {},
     },
   ],
-};
+}
 ```
 
 Further options are available to customize, detailed below.

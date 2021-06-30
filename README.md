@@ -45,10 +45,10 @@ and configure in `gatsby-config.js` with your site metadata e.g.
 ```javascript
 module.exports = {
   siteMetadata: {
-    title: "Title",
-    author: "Author",
-    description: "Description",
-    siteUrl: "https://your.site.url",
+    title: 'Title',
+    author: 'Author',
+    description: 'Description',
+    siteUrl: 'https://your.site.url',
   },
   plugins: [
     {
@@ -56,7 +56,7 @@ module.exports = {
       options: {},
     },
   ],
-};
+}
 ```
 
 Put your markdown docs in `/docs/` and run:
@@ -100,7 +100,7 @@ We use yarn workspaces to develop the theme alongside an example usage that also
 On first use run
 
 ```bash
-yarn install
+npm install
 ```
 
 ### Layout
@@ -123,7 +123,7 @@ A simplified layout is shown below
 │   ├── package.json
 │   └── docs
 ├── package.json
-└── yarn.lock
+└── package-lock.json
 ```
 
 ### `theme`

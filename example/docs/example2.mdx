@@ -1,12 +1,11 @@
 ---
-title: "Example mdx"
-order: "2"
-metaTitle: "This is meta title"
-metaDescription: "This is the meta description"
+title: 'Example mdx'
+order: '2'
+metaTitle: 'This is meta title'
+metaDescription: 'This is the meta description'
 ---
 
-import React from "react"
-
+import React from 'react'
 
 # Example MDX
 
@@ -18,28 +17,35 @@ Elements can use state:
 
 <Card my={3}>
   <CardContent>
-  {React.createElement(() =>  {
-    const [open, setOpen] = React.useState(false)
-    return (
-      <>
-      <FormControl component="fieldset">
-      <FormLabel component="legend">Example</FormLabel>
-      <FormGroup aria-label="position" row>
-        <FormControlLabel
-          control={<Checkbox checked={open} onChange={() => setOpen(!open)} color="primary" />}
-          label="Open"
-          labelPlacement="end"
-          onChange={() => setOpen()}
-        />
-      </FormGroup>
-    </FormControl>
-    <Collapse in={open}>
-      <Box p={4}>
-       <Loader color="primary" variant={'spin'} size={100}/>
-      </Box>
-    </Collapse>
-    </>
-    )})}
+    {React.createElement(() => {
+      const [open, setOpen] = React.useState(false)
+      return (
+        <>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Example</FormLabel>
+            <FormGroup aria-label="position" row>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={open}
+                    onChange={() => setOpen(!open)}
+                    color="primary"
+                  />
+                }
+                label="Open"
+                labelPlacement="end"
+                onChange={() => setOpen()}
+              />
+            </FormGroup>
+          </FormControl>
+          <Collapse in={open}>
+            <Box p={4}>
+              <Loader color="primary" variant={'spin'} size={100} />
+            </Box>
+          </Collapse>
+        </>
+      )
+    })}
   </CardContent>
 </Card>
 

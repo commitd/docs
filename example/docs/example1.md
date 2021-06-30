@@ -1,8 +1,8 @@
 ---
-title: "Example md"
-order: "1"
-metaTitle: "Example Markdown"
-metaDescription: "This is an example of markdown docs"
+title: 'Example md'
+order: '1'
+metaTitle: 'Example Markdown'
+metaDescription: 'This is an example of markdown docs'
 ---
 
 # (H1) Example Markdown
@@ -16,7 +16,7 @@ Some examples are below.
 The following is a code block with JavaScript language syntax highlighting by [prism](https://prismjs.com/).
 
 ```javascript
-import React from "react";
+import React from 'react'
 ```
 
 ### (H3) Links
@@ -37,11 +37,11 @@ If in a folder you can use relative links so to link from page `example/1.md` to
 
 ##### (H5) Images
 
-Images (PNG and JPEG) ![Example Image](./CommittedSoftware.png "Committed Software")
+Images (PNG and JPEG) ![Example Image](./CommittedSoftware.png 'Committed Software')
 
 SVG
 
-![Example Image](./CommittedSoftware.svg "Committed Software")
+![Example Image](./CommittedSoftware.svg 'Committed Software')
 
 ###### (H6) Lists
 

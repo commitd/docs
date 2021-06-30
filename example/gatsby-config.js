@@ -1,42 +1,42 @@
-const { NODE_ENV } = process.env;
+const { NODE_ENV } = process.env
 
 const pathPrefix = (env) => {
-  return env === "production" ? "/docs" : "";
-};
+  return env === 'production' ? '/docs' : ''
+}
 
 module.exports = {
   pathPrefix: pathPrefix(NODE_ENV),
   siteMetadata: {
-    title: "Committed Docs Theme",
-    author: "Committed",
-    description: "Documentation built with mdx.",
-    siteUrl: "https://committed.software/docs",
-    docsLocation: "https://github.com/commitd/docs-starter/tree/master/content",
+    title: 'Committed Docs Theme',
+    author: 'Committed',
+    description: 'Documentation built with mdx.',
+    siteUrl: 'https://committed.software/docs',
+    docsLocation: 'https://github.com/commitd/docs-starter/tree/master/content',
   },
   plugins: [
     {
       resolve: `@committed/gatsby-theme-docs`,
       options: {
-        contentPath: "docs",
+        contentPath: 'docs',
         header: {
-          title: "Committed Docs Example",
-          logo: { image: "", link: "/" },
-          helpUrl: "",
+          title: 'Committed Docs Example',
+          logo: { image: '', link: '/' },
+          helpUrl: '',
           links: [
-            { text: "example", link: "/example1" },
-            { text: "mdx", link: "/example2" },
+            { text: 'example', link: '/example1' },
+            { text: 'mdx', link: '/example2' },
           ],
         },
         sidebar: {
           ignoreIndex: false,
-          links: [{ text: "GitHub", link: "https://github.com/commitd/docs" }],
+          links: [{ text: 'GitHub', link: 'https://github.com/commitd/docs' }],
         },
         checkLinks: {
-          exceptions: ["/broken"],
+          exceptions: ['/broken'],
         },
         print: {
-          classification: "OFFICIAL",
-          reference: "https://committed.software/docs",
+          classification: 'OFFICIAL',
+          reference: 'https://committed.software/docs',
         },
       },
     },
@@ -56,4 +56,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-};
+}

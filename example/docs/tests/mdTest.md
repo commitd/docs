@@ -1,6 +1,6 @@
 ---
-title: "Markdown Test"
-order: "z"
+title: 'Markdown Test'
+order: 'z'
 ---
 
 # GitHub Markdown Kitchen Sink
@@ -203,13 +203,13 @@ git add @committed/gatsby-theme-docs
 
     ---
 
-This is [an example](http://example.com "Example") link.
+This is [an example](http://example.com 'Example') link.
 
 [This link](http://example.com) has no title attr.
 
 This is [an example][id] reference-style link.
 
-[id]: http://example.com "Optional Title"
+[id]: http://example.com 'Optional Title'
 
     This is [an example](http://example.com "Example") link.
 
@@ -243,6 +243,6 @@ This paragraph has some `code` in it.
 
     This paragraph has some `code` in it.
 
-![Alt Text](http://placekitten.com/300/200 "Place Kitten")
+![Alt Text](http://placekitten.com/300/200 'Place Kitten')
 
     ![Alt Text](http://placekitten.com/300/200 "Place Kitten")
