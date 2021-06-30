@@ -8,14 +8,10 @@ The example show the usage and provides instructions for the [@committed/gatsby-
 
 On first use run:
 
-```bash
-yarn install
-```
-
 To run use:
 
 ```bash
-yarn develop
+npm run start
 ```
 
 and the development site will be available on http://localhost:8000
@@ -23,7 +19,13 @@ and the development site will be available on http://localhost:8000
 To build run:
 
 ```bash
-yarn build
+npm run build
 ```
 
 The equivalent commands are available in the root directory and uses workspaces to delegate.
+
+Once built, to publish to the `gh-pages` branch
+
+```bash
+npm run site
+```
