@@ -15,7 +15,7 @@
   "scripts": {
     "format": "prettier --write '**/{*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
     "format-check": "prettier --check '**/{**/*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
-    "build": "cp ../README.md .",  
+    "build": "cp ../README.md .",
     "deploy": "npm publish --access public"
   },
   "peerDependencies": {

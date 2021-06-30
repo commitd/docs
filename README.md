@@ -45,10 +45,10 @@ and configure in `gatsby-config.js` with your site metadata e.g.
 ```javascript
 module.exports = {
   siteMetadata: {
-    title: "Title",
-    author: "Author",
-    description: "Description",
-    siteUrl: "https://your.site.url",
+    title: 'Title',
+    author: 'Author',
+    description: 'Description',
+    siteUrl: 'https://your.site.url',
   },
   plugins: [
     {
@@ -56,7 +56,7 @@ module.exports = {
       options: {},
     },
   ],
-};
+}
 ```
 
 Put your markdown docs in `/docs/` and run:

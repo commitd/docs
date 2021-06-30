@@ -1,8 +1,8 @@
 ---
-title: "Instructions"
-order: "0"
-metaTitle: "Instructions"
-metaDescription: "Instructions to create documentation using Committed docs-theme"
+title: 'Instructions'
+order: '0'
+metaTitle: 'Instructions'
+metaDescription: 'Instructions to create documentation using Committed docs-theme'
 ---
 
 # Instructions
@@ -24,10 +24,10 @@ and configure in `gatsby-config.js` with your site metadata e.g.
 ```javascript
 module.exports = {
   siteMetadata: {
-    title: "Title",
-    author: "Author",
-    description: "Description",
-    siteUrl: "https://your.site.url",
+    title: 'Title',
+    author: 'Author',
+    description: 'Description',
+    siteUrl: 'https://your.site.url',
   },
   plugins: [
     {
@@ -35,7 +35,7 @@ module.exports = {
       options: {},
     },
   ],
-};
+}
 ```
 
 Further options are available to customize, detailed below.
