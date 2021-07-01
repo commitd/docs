@@ -16,7 +16,8 @@
     "format": "prettier --write '**/{*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
     "format-check": "prettier --check '**/{**/*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
     "build": "cp ../README.md .",
-    "deploy": "npm publish --access public"
+    "deploy": "npm publish --access public",
+    "deploy:ci": "npm run deploy"
   },
   "peerDependencies": {
     "gatsby": "^3.8.0",
