@@ -66,7 +66,6 @@ module.exports = {
 }
 ```
 
-
 You might like to add the following scripts to your `package.json`:
 
 ```
@@ -77,7 +76,6 @@ You might like to add the following scripts to your `package.json`:
 }
 
 ```
-
 
 Put your markdown docs in `/docs/` and run:
 
@@ -96,7 +94,6 @@ gatsby build
 # Or
 gatbsy develop
 ```
-
 
 For full instructions see the [live demo](https://committed.software/theme).
 
