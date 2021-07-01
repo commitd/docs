@@ -129,16 +129,14 @@ module.exports = ({
         // required.
         query: `
           {
-            allMdx {
+            allDocs {
               nodes {
+                description
                 id
                 slug
-                frontmatter {
-                   title
-                   metaDescription
-                }
-                excerpt
+                title
                 rawBody
+                excerpt
               }
             }
           }
@@ -156,19 +154,18 @@ module.exports = ({
         // List of keys to store and make available in your UI. The values of
         // the keys are taken from the normalizer function below.
         // Default: all fields
-        store: ['id', 'slug', 'title', 'description', 'excerpt'],
+        store: ['id', 'slug', 'title', 'description'],
 
         // Function used to map the result from the GraphQL query. This should
         // return an array of items to index in the form of flat objects
         // containing properties to index. The objects must contain the `ref`
         // field above (default: 'id'). This is required.
         normalizer: ({ data }) =>
-          data.allMdx.nodes.map((node) => ({
+          data.allDocs.nodes.map((node) => ({
             id: node.id,
             slug: node.slug,
-            title: node.frontmatter.title,
-            description: node.frontmatter.description,
-            excerpt: node.excerpt,
+            title: node.title || '',
+            description: node.description || node.excerpt || '',
             body: node.rawBody,
           })),
       },

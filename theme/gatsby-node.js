@@ -37,6 +37,19 @@ exports.sourceNodes = ({ actions, schema }) => {
         order: {
           type: 'String!',
         },
+        excerpt: {
+          type: 'String!',
+          resolve(source, _args, context, info) {
+            const type = info.schema.getType(`Mdx`)
+            const mdxNode = context.nodeModel.getNodeById({
+              id: source.parent,
+            })
+            const resolver = type.getFields()['excerpt'].resolve
+            return resolver(mdxNode, {}, context, {
+              fieldName: 'excerpt',
+            })
+          },
+        },
         tableOfContents: {
           type: 'JSON!',
           resolve(source, _args, context, info) {
@@ -226,7 +239,9 @@ exports.onCreateNode = ({
         metaDescription:
           node.frontmatter.metaDescription ||
           node.frontmatter.description ||
+          node.excerpt ||
           '',
+        excerpt: node.excerpt,
         order: node.frontmatter.order || title || 999999,
         tableOfContents: node.tableOfContents,
         rawBody: node.rawBody,
