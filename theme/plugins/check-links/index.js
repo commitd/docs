@@ -72,6 +72,8 @@ module.exports = async (
   const parent = await getNode(markdownNode.parent)
   let slug = makeSlug(parent)
 
+  const protocols = ['mailto:', 'http://', , 'https://']
+
   const links = []
   const headings = []
 
@@ -81,12 +83,16 @@ module.exports = async (
       return
     }
 
-    if (node.url.startsWith('#') || !/:[0-9]*\/\//.test(node.url)) {
-      links.push({
-        ...node,
-        frontmatter: markdownNode.frontmatter,
-      })
+    const url = node.url
+    // Any link we find which isn't internal, then ignore it
+    if (protocols.find((p) => url.startsWith(p))) {
+      return
     }
+
+    links.push({
+      ...node,
+      frontmatter: markdownNode.frontmatter,
+    })
   }
 
   visit(markdownAST, 'link', visitor)
@@ -141,28 +147,37 @@ module.exports = async (
 
     const linksForPath = linksMap[path]
     if (linksForPath.length) {
-      const brokenLinks = linksForPath.filter((link) => {
-        // return true for broken links, false = pass
-        const { key, hasHash, hashId } = getHeadingsMapKey(link.url, path)
-        if (prefixedExceptions.includes(key)) {
-          return false
-        }
-
-        // If no heading is found, try again with a trailing /
-        const headings =
-          headingsMap[key] == null ? headingsMap[`${key}/`] : headingsMap[key]
-        if (headings) {
-          if (hasHash) {
-            return (
-              !prefixedExceptions.includes(hashId) && !headings.includes(hashId)
-            )
+      const brokenLinks = linksForPath
+        // Ignore links which are external
+        .filter((link) => {
+          if (protocols.find((p) => link.url.startsWith(p))) {
+            return false
+          }
+          return true
+        })
+        .filter((link) => {
+          // return true for broken links, false = pass
+          const { key, hasHash, hashId } = getHeadingsMapKey(link.url, path)
+          if (prefixedExceptions.includes(key)) {
+            return false
           }
 
-          return false
-        }
+          // If no heading is found, try again with a trailing /
+          const headings =
+            headingsMap[key] == null ? headingsMap[`${key}/`] : headingsMap[key]
+          if (headings) {
+            if (hasHash) {
+              return (
+                !prefixedExceptions.includes(hashId) &&
+                !headings.includes(hashId)
+              )
+            }
 
-        return true
-      })
+            return false
+          }
+
+          return true
+        })
 
       const brokenLinkCount = brokenLinks.length
       totalBrokenLinks += brokenLinkCount
