@@ -1,7 +1,7 @@
 const { NODE_ENV } = process.env
 
 const pathPrefix = (env) => {
-  // If you have a context bath in production set it here e..g /docs
+  // If you have a context path in production set it here e..g /docs
   return env === 'production' ? '' : ''
 }
 
