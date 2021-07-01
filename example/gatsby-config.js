@@ -1,7 +1,8 @@
 const { NODE_ENV } = process.env
 
 const pathPrefix = (env) => {
-  return env === 'production' ? '/docs' : ''
+  // If you have a context bath in production set it here e..g /docs
+  return env === 'production' ? '' : ''
 }
 
 module.exports = {
@@ -10,8 +11,7 @@ module.exports = {
     title: 'Committed Docs Theme',
     author: 'Committed',
     description: 'Documentation built with mdx.',
-    siteUrl: 'https://committed.software/docs',
-    docsLocation: 'https://github.com/commitd/docs-starter/tree/master/content',
+    siteUrl: 'https://docs.committed.software',
   },
   plugins: [
     {
@@ -35,8 +35,8 @@ module.exports = {
           exceptions: ['/broken'],
         },
         print: {
-          classification: 'OFFICIAL',
-          reference: 'https://committed.software/docs',
+          classification: 'OPEN SOURCE',
+          reference: 'https://docs.committed.software',
         },
       },
     },
