@@ -25,18 +25,21 @@ exports.sourceNodes = ({ actions, schema }) => {
         title: {
           type: 'String!',
         },
+        description: {
+          type: 'String',
+        },
         metaTitle: {
-          type: 'String!',
+          type: 'String',
         },
         metaDescription: {
-          type: 'String!',
+          type: 'String',
         },
         order: {
           type: 'String!',
         },
         tableOfContents: {
           type: 'JSON!',
-          resolve(source, args, context, info) {
+          resolve(source, _args, context, info) {
             const type = info.schema.getType(`Mdx`)
             const mdxNode = context.nodeModel.getNodeById({
               id: source.parent,
@@ -49,7 +52,7 @@ exports.sourceNodes = ({ actions, schema }) => {
         },
         body: {
           type: 'String!',
-          resolve(source, args, context, info) {
+          resolve(source, _args, context, info) {
             const type = info.schema.getType(`Mdx`)
             const mdxNode = context.nodeModel.getNodeById({
               id: source.parent,
@@ -203,8 +206,6 @@ exports.onCreateNode = ({
 }) => {
   const { createNode, createParentChildLink } = actions
   if (node.internal.type === `Mdx`) {
-    const { frontmatter } = node
-
     const parent = getNode(node.parent)
     const slug = makeSlug(parent)
     const title = makeTitle(node, parent, slug)
@@ -219,10 +220,14 @@ exports.onCreateNode = ({
     ) {
       const fieldData = {
         title,
+        description: node.frontmatter.description || '',
         slug,
-        metaTitle: node.frontmatter.metaTitle || title,
-        metaDescription: node.frontmatter.metaDescription || '',
-        order: node.frontmatter.order || title,
+        metaTitle: node.frontmatter.metaTitle || title || '',
+        metaDescription:
+          node.frontmatter.metaDescription ||
+          node.frontmatter.description ||
+          '',
+        order: node.frontmatter.order || title || 999999,
         tableOfContents: node.tableOfContents,
         rawBody: node.rawBody,
       }

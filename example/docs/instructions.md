@@ -1,8 +1,7 @@
 ---
 title: 'Instructions'
 order: '0'
-metaTitle: 'Instructions'
-metaDescription: 'Instructions to create documentation using Committed docs-theme'
+description: 'Instructions to create documentation using Committed docs-theme'
 ---
 
 # Instructions
@@ -49,9 +48,11 @@ Each documentation page can add frontmatter that is used to improve SEO. You can
 ```markup
 ---
 title: "The title (used in links)"
-order: "key for ordering"
-metaTitle: "This is the meta title tag of this page"
-metaDescription: "This is the meta description"
+order: "key for ordering (defaults to title)"
+description: "This is the meta description"
+metaDescription: "This is the meta tag title, but will default to title"
+metaTescription: "This is the meta tag description, , but will default to description"
+
 ---
 ```
 
