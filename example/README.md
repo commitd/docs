@@ -1,6 +1,6 @@
 # @committed/gatsby-theme-docs example
 
-See site at https://committed.software/docs
+See site at https://docs.committed.software.
 
 The example show the usage and provides instructions for the [@committed/gatsby-theme-docs](https://github.com/commitd/gatsby-theme-docs).
 

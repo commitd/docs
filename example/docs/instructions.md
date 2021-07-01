@@ -91,7 +91,6 @@ module.exports = {
     author: "Committed",
     description: "Documentation built with mdx.",
     siteUrl: "https://committed.software/docs",
-    docsLocation: "https://github.com/commitd/docs-starter/tree/master/content"
   },
   plugins: [
     {
@@ -113,7 +112,7 @@ module.exports = {
           ignoreIndex: false
         },
         print: {
-          classification: null
+          classification: "OPEN SOURCE"
           reference: "https://committed.software/docs"
         },
         // can omit search when true, as true is the default

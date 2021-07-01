@@ -30,8 +30,8 @@ module.exports = ({
     ),
     print: Object.assign(
       {
-        classification: null,
-        reference: null,
+        classification: '',
+        reference: '',
       },
       print
     ),
