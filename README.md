@@ -104,8 +104,9 @@ The docs come with SEO. Configure meta tags like title and description for each 
 ```markup
 ---
 title: "Title of the page"
-metaTitle: "Meta Title Tag for this page"
-metaDescription: "Meta Description Tag for this page"
+description: "Description Tag for this page"
+metaTitle: "Meta Title Tag for this page, but will default to title"
+metaDescription: "Meta Description Tag for this page, but will default to description"
 ---
 ```
 

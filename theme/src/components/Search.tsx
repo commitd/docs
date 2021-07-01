@@ -65,7 +65,6 @@ export const Search: FC<SearchProps> = (props: SearchProps) => {
             </Typography>
             <List>
               {results.map((r) => {
-                let desc = r.description || r.excerpt
                 return (
                   <ListItem
                     key={r.id}
@@ -79,9 +78,9 @@ export const Search: FC<SearchProps> = (props: SearchProps) => {
                     <div>
                       <b>
                         {r.title || 'Untitled'}
-                        {desc ? ': ' : ''}
+                        {r.description ? ': ' : ''}
                       </b>
-                      <small>{desc}</small>
+                      <small>{r.description}</small>
                     </div>
                   </ListItem>
                 )

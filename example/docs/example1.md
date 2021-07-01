@@ -1,8 +1,7 @@
 ---
 title: 'Example md'
 order: '1'
-metaTitle: 'Example Markdown'
-metaDescription: 'This is an example of markdown docs'
+description: 'This is an example of markdown docs'
 ---
 
 # (H1) Example Markdown
