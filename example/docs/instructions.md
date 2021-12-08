@@ -43,7 +43,7 @@ Further options are available to customize, detailed below.
 
 The `index.md(x)` file is shown on load.
 
-Each documentation page can add frontmatter that is used to improve SEO. You can add metadata, [order](ordered/index) the pages and add user friendly links:
+Each documentation page can add frontmatter that is used to improve SEO. You can add metadata, [order](ordered/index.md) the pages and add user friendly links:
 
 ```markup
 ---
@@ -56,7 +56,7 @@ metaTescription: "This is the meta tag description, , but will default to descri
 ---
 ```
 
-If no title is provided the filename is used. The sidebar is populated from the files in `docs` folder and supports [nesting](nested/index) in sub-folders. At each level the contents are sorted using alphanumerically using the order frontmatter or the title.
+If no title is provided the filename is used. The sidebar is populated from the files in `docs` folder and supports [nesting](nested/index.md) in sub-folders. At each level the contents are sorted using alphanumerically using the order frontmatter or the title.
 
 ## Navigation
 

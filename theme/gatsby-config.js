@@ -71,6 +71,9 @@ module.exports = ({
         ],
         gatsbyRemarkPlugins: [
           {
+            resolve: require.resolve(`./plugins/fix-links`),
+          },
+          {
             resolve: require.resolve(`./plugins/fix-mermaid-pre`),
           },
           {

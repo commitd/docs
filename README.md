@@ -26,6 +26,7 @@ A theme for writing documentation sites in Markdown.
 - SEO friendly
 - Fully customizable
 - 🔍 Search
+- Use links that work in github
 
 ## 🔗 Live Demo and Instructions
 
@@ -114,7 +115,7 @@ Canonical URLs are generated automatically.
 
 ## Development
 
-We use yarn workspaces to develop the theme alongside an example usage that also serves as a documentation site for this project.
+We use workspaces to develop the theme alongside an example usage that also serves as a documentation site for this project.
 
 On first use run
 
@@ -161,5 +162,5 @@ site of someone who installed and used your theme.
 You can run the example with:
 
 ```shell
-yarn workspace example develop
+npm run start
 ```
