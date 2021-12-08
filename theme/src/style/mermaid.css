@@ -20,6 +20,7 @@
 
 .node .label {
   text-align: center;
+  text-anchor: middle;
 }
 
 .node.clickable {
@@ -49,6 +50,7 @@
 .cluster > .label {
   fill: #2e2e2e;
   color: #2e2e2e;
+  text-align: center;
 }
 
 div.mermaidTooltip {
@@ -206,8 +208,6 @@ text.actor {
 .sectionTitle {
   text-anchor: start;
   font-size: 11px;
-  text-height: 14px;
-
   font-family: var(--mermaid-font-family);
 }
 
@@ -577,6 +577,7 @@ g.stateGroup line {
 .label {
   font-family: var(--mermaid-font-family);
   color: #ffbb00;
+  font-size: 12px;
 }
 
 .label text {

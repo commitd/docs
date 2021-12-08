@@ -7,8 +7,7 @@ module.exports = ({ markdownAST }, pluginOptions) => {
     if (protocols.find((p) => node.url.startsWith(p))) {
       return
     }
-    const old = node.url
-    node.url = node.url.replace(/\.md$/, '')
+    node.url = node.url.replace(/\.mdx?$/, '')
   })
   return markdownAST
 }
