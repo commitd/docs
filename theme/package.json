@@ -27,7 +27,7 @@
     "build": "cp ../README.md .",
     "deploy": "npm publish --access public",
     "deploy:ci": "npm run deploy",
-    "semantic-release": "semantic-release"
+    "semantic-release": "cp ../README.md . ; semantic-release"
   },
   "peerDependencies": {
     "gatsby": "^3.8.0",
