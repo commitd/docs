@@ -1,7 +1,7 @@
 {
   "name": "@committed/gatsby-theme-docs-workspace",
   "private": true,
-  "version": "3.2.0",
+  "version": "0.0.0-development",
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
@@ -13,16 +13,22 @@
     "deploy:ci": "npm run deploy:ci --workspaces",
     "bump": "npm version minor -ws --no-git-tag-version; npm version minor --no-git-tag-version",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "commit": "cz"
   },
   "workspaces": [
     "theme",
     "example"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "semantic-release": "^18.0.1"
   },
   "lint-staged": {
     "*": "prettier --write"
@@ -30,5 +36,15 @@
   "prettier": {
     "semi": false,
     "singleQuote": true
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

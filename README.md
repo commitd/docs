@@ -123,6 +123,10 @@ On first use run
 npm install
 ```
 
+A standard set of support scripts are available throught the `package.json`.
+We use semantic-release with [conventional commits](https://www.conventionalcommits.org).
+Run `npm run commit` to help correctly form commit messages.
+
 ### Layout
 
 A simplified layout is shown below
