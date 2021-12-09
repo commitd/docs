@@ -1,6 +1,6 @@
 {
   "name": "@committed/gatsby-theme-docs",
-  "version": "3.1.0",
+  "version": "0.0.0-development",
   "main": "index.js",
   "author": "Committed <opensource@committed.io>",
   "license": "MIT",
@@ -12,12 +12,22 @@
     "url": "https://github.com/commitd/docs.git",
     "directory": "theme"
   },
+  "release": {
+    "branches": [
+      "main",
+      {
+        "name": "beta",
+        "prerelease": true
+      }
+    ]
+  },
   "scripts": {
     "format": "prettier --write '**/{*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
     "format-check": "prettier --check '**/{**/*.js,*.ts,*.tsx,*.json,*.md,*.mdx}'",
     "build": "cp ../README.md .",
     "deploy": "npm publish --access public",
-    "deploy:ci": "npm run deploy"
+    "deploy:ci": "npm run deploy",
+    "semantic-release": "semantic-release"
   },
   "peerDependencies": {
     "gatsby": "^3.8.0",

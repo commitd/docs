@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "3.1.0",
+  "version": "0.0.0-development",
   "main": "index.js",
   "author": "Committed <opensource@committed.io>",
   "license": "MIT",
@@ -11,10 +11,10 @@
     "build": "gatsby build --prefix-paths && cp ./README.md public/",
     "serve": "gatsby serve --prefix-paths",
     "deploy": "gh-pages -d public",
-    "deploy:ci": "gh-pages -d public -f -u 'github-actions-bot <support+actions@github.com>' -r https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+    "deploy:ci": "gh-pages -d public -f -u 'github-actions-bot <support+actions@github.com>' -r https://${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
   },
   "dependencies": {
-    "@committed/gatsby-theme-docs": "^3.0.0",
+    "@committed/gatsby-theme-docs": "*",
     "gatsby": "^3.8.0",
     "gatsby-plugin-manifest": "^3.8.0",
     "react": "^17.0.2",
