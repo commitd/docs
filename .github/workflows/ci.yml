@@ -134,7 +134,9 @@ jobs:
           GIT_COMMITTER_NAME: commitd-bot
           GIT_COMMITTER_EMAIL: 56758001+commitd-bot@users.noreply.github.com
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+        run: |
+          cp ../README.md .
+          npx semantic-release
         working-directory: ./theme
   publish-docs:
     runs-on: ubuntu-latest
