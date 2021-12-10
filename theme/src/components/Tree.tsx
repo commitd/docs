@@ -30,9 +30,10 @@ export const Tree = ({
     false
 
   const toggle = (id) => {
+    // Assume all navigation is collapsed at first. If undefined we expand, if not toggle.
     setCollapsed({
       ...collapsed,
-      [id]: !collapsed[id],
+      [id]: collapsed[id] === undefined ? false : !collapsed[id],
     })
   }
 

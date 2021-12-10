@@ -41,7 +41,7 @@ export const TreeNode = React.memo(
     const theme = useTheme<Theme>()
     const { navVariant, setOpen } = useLayout()
     const url = firstUrl({ id, label, items, info })
-    const isCollapsed = collapsed[id] || false
+    const isCollapsed = collapsed[id] === undefined ? true : collapsed[id]
     const hasChildren = items.length !== 0
     const title = info ? info.title : label
     const active = isActive(id)
