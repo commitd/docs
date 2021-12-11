@@ -12,8 +12,16 @@ exports.onPreBootstrap = ({ reporter }, options) => {
   }
 }
 
-exports.sourceNodes = ({ actions, schema }) => {
+exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createTypes } = actions
+  const typeDefs = `
+    type AuthorJson implements Node {
+      joinedAt: Date
+    }
+  `
+
+  createTypes(typeDefs)
+
   createTypes([
     schema.buildObjectType({
       name: `Docs`,
@@ -266,15 +274,4 @@ exports.onCreateNode = ({
       })
     }
   }
-}
-
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
-  const typeDefs = `
-    type AuthorJson implements Node {
-      joinedAt: Date
-    }
-  `
-
-  createTypes(typeDefs)
 }
