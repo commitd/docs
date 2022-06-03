@@ -45,7 +45,7 @@
     "gatsby-plugin-layout": "^2.8.0",
     "gatsby-plugin-local-search": "^2.0.1",
     "gatsby-plugin-material-ui": "^3.0.1",
-    "gatsby-plugin-mdx": "^2.8.0",
+    "gatsby-plugin-mdx": "^2.14.1",
     "gatsby-plugin-react-helmet": "^4.8.0",
     "gatsby-plugin-sharp": "^3.8.0",
     "gatsby-plugin-typescript": "^3.8.0",
